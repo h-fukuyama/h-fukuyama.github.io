@@ -13,7 +13,7 @@ import LtDetail from './components/LtDetail';
 import LtSpecific from './components/LtSpecific';
 import FileInputScreen from './components/FileInputScreen';
 import ResetComponent from './components/ResetComponent';
-import '/App.css';
+import './App.css';
 
 const homeUrl = process.env.PUBLIC_URL;
 const APP_NAME = "test-app/";
