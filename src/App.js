@@ -21,7 +21,7 @@ console.log("homeUrl= "+homeUrl);
 console.log("APP_NAME= "+APP_NAME);
 function App() {
   return (
-    <Router basename="/test-app/">
+    <Router>
       <FileProvider>
         <Routes>
           <Route path={ "/" } element={<FileInputScreen />} />
