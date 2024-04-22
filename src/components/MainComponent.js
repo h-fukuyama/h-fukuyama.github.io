@@ -18,7 +18,7 @@ const MainComponent = () => {
 
   useEffect(() => {
     if (!file) {
-      navigate('/reset');
+      navigate('/#/reset');
     }
   }, [file, navigate]);
 
