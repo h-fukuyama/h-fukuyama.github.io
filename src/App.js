@@ -15,10 +15,6 @@ import FileInputScreen from './components/FileInputScreen';
 import ResetComponent from './components/ResetComponent';
 import './App.css';
 
-const homeUrl = process.env.PUBLIC_URL;
-const APP_NAME = "test-app/";
-console.log("homeUrl= "+homeUrl);
-console.log("APP_NAME= "+APP_NAME);
 function App() {
   return (
     <Router>
