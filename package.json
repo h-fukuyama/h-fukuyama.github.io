@@ -1,5 +1,6 @@
 {
   "name": "config-analyzer",
+  "homepage": "https://h-fukuyama.github.io/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,10 +13,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "rm": "rm -rf docs",
+    "mv": "mv build docs",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "git": "git add . && git commit && git push origin master",
+    "deploy": "npm run rm && npm run build && npm run mv && npm run git"
   },
   "eslintConfig": {
     "extends": [
