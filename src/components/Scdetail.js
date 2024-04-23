@@ -13,7 +13,6 @@ const ScDetail = () => {
   const { fileContent } = useFileContent(file); //fileのファイルの内容を読み込む
   const navigate = useNavigate();
   const { id } = useParams();
-  const startIndex = id >= 101 ? (id - 101) * 56 : ((id - 1) * 56)+44800;
 
   useEffect(() => {
     if (!file) {
@@ -22,10 +21,13 @@ const ScDetail = () => {
   }, [file, navigate]);
 
   const ScDetailProcessor = ({ sc,id }) => {
+    // const startIndex = id >= 16 ? (id - 101) * 56 : ((id - 1) * 56)+44800;
+    const startIndex=id;
     console.log("id="+id+", startIndex="+startIndex)
     switch (sc[startIndex]) {
       case '00': //コメント再生         
           const fileName = [sc[startIndex+1],sc[startIndex+5],sc[startIndex+9],sc[startIndex+13],sc[startIndex+17]];
+          const fileName2 = [sc[startIndex+449],sc[startIndex+453],sc[startIndex+457],sc[startIndex+461],sc[startIndex+465]];
           const folder = [sc[startIndex+2],sc[startIndex+6],sc[startIndex+10],sc[startIndex+14],sc[startIndex+18]];
           const transformedFolder = folder.map(mapFolderValue);
           const volume = [sc[startIndex+3],sc[startIndex+7],sc[startIndex+11],sc[startIndex+15],sc[startIndex+19]];
@@ -49,7 +51,8 @@ const ScDetail = () => {
               }
           })();
           channel.push(channelName);
-          return <ScDetailTable0 fileName={fileName} folder={transformedFolder} volume={transformedVolume} mixing={transformedMixing} output={output} repeat={repeat} external={external} channel={channel}/>;
+          const back=fileName2?.join('') === '' ? '利用しない' : '利用する';
+          return <ScDetailTable0 fileName={fileName} folder={transformedFolder} volume={transformedVolume} mixing={transformedMixing} output={output} repeat={repeat} external={external} channel={channel}  back={back}/>;
       case '01': //電源制御:1行
           return <ScDetailTable1 title="電源ON/OFF" power={replaceValue(sc[startIndex+33])} back={sc[startIndex+22400] === '00' ? "利用しない" : "利用する"} />;
       case '02': //チャンネル変更:9行(呼び戻し無し)
@@ -83,9 +86,10 @@ const ScDetail = () => {
     }
   } 
   console.log(id);
-  const tableSet = ScDetailProcessor({ sc: fileContent?.if_config?.sc || [], id: id });
-  const tableSet2 = ScDetailProcessor({ sc: fileContent?.if_config?.sc || [], id: startIndex<44800 ? 22400 : 448 });
-  
+  const tableSet = ScDetailProcessor({ sc: fileContent?.if_config?.sc || [], id: id>=16? (id - 101) * 56 : ((id - 1) * 56)+44800 });
+  console.log(tableSet);
+  const tableSet2 = ScDetailProcessor({ sc: fileContent?.if_config?.sc || [], id: id>=16? ((id - 101) * 56)+22400 : ((id - 1) * 56)+45248 });
+  console.log(tableSet2);
   return (
     <div>
       {file && (
@@ -105,7 +109,7 @@ const ScDetail = () => {
                   呼び戻し無し
                 </>
                 : 
-                (tableSet.props.back === '利用しない' || tableSet.props.fileName.join('') === '') 
+                (tableSet.props?.back === '利用しない' || tableSet.props?.fileName?.join('') === '') 
                 ?
                 <>
                   <h4>呼戻</h4>

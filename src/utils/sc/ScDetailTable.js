@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ScDetailTable0 = ({fileName, folder, volume, mixing, output, repeat, external, channel }) => {
+export const ScDetailTable0 = ({fileName, folder, volume, mixing, output, repeat, external, channel, back }) => {
   const rowHeaders = ["前チャイム", "コメント①", "コメント②", "コメント③", "後チャイム"];
 
   return (
@@ -72,6 +72,10 @@ export const ScDetailTable0 = ({fileName, folder, volume, mixing, output, repeat
           </tr>
         </>
       )}
+      <tr>
+          <th>呼戻し</th>
+          <td>{back}</td>
+        </tr>
       </tbody>
     </table>
   )
