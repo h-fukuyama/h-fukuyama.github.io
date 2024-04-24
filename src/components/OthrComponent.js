@@ -265,7 +265,7 @@ const OthrComponent = () => {
   const processFunction23 = (property) => {
     const result23 = [];
     if (property) {
-      const volume = hexToSignedDecimal(parseInt(property, 16));
+      const volume = hexToSignedDecimal(property, 16);
       if (volume === 255 ) {
         result23.push({ property: 'インカム音量インカム出力基準値', value: '未設定' });
       } else {

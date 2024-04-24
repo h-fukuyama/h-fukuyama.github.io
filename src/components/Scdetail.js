@@ -86,9 +86,9 @@ const ScDetail = () => {
     }
   } 
   console.log(id);
-  const tableSet = ScDetailProcessor({ sc: fileContent?.if_config?.sc || [], id: id>=16? (id - 101) * 56 : ((id - 1) * 56)+44800 });
+  const tableSet = ScDetailProcessor({ sc: fileContent?.if_config?.sc || [], id: id>16? (id - 101) * 56 : ((id - 1) * 56)+44800 });
   console.log(tableSet);
-  const tableSet2 = ScDetailProcessor({ sc: fileContent?.if_config?.sc || [], id: id>=16? ((id - 101) * 56)+22400 : ((id - 1) * 56)+45248 });
+  const tableSet2 = ScDetailProcessor({ sc: fileContent?.if_config?.sc || [], id: id>16? ((id - 101) * 56)+22400 : ((id - 1) * 56)+45248 });
   console.log(tableSet2);
   return (
     <div>
