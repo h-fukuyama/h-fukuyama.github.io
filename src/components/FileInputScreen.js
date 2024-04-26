@@ -52,31 +52,31 @@ const FileInputScreen = () => {
         newErrors.push('othrプロパティが存在しません。');
       } else if (fileContent.if_config?.othr?.length !== 33) {
         const length = fileContent.if_config?.othr?.length
-        newErrors.push('othrプロパティの個数が不正です。(正常値: 33, アップロードされた個数: ' +length+')');
+        newErrors.push('othrプロパティの要素数が不正です。(正常な要素数: 33, アップロードファイルのothr要素数: ' +length+')');
       } 
       if(fileContent.if_config?.isms === undefined) {
         newErrors.push('ismsプロパティが存在しません。');
       } else if (fileContent.if_config?.isms?.length !== 91) {
         const length = fileContent.if_config?.isms?.length
-        newErrors.push('ismsプロパティの個数が不正です。(正常値: 91, アップロードされた個数: ' +length+')');
+        newErrors.push('ismsプロパティの要素数が不正です。(正常な要素数: 91, アップロードファイルのisms要素数: ' +length+')');
       } 
       if(fileContent.if_config?.menu === undefined) {
         newErrors.push('menuプロパティが存在しません。');
       } else if (fileContent.if_config?.menu?.length !== 1000) {
         const length = fileContent.if_config?.menu?.length
-        newErrors.push('menuプロパティの個数が不正です。(正常値: 1000, アップロードされた個数: ' +length+')');
+        newErrors.push('menuプロパティの要素数が不正です。(正常な要素数: 1000, アップロードされたmenu要素数: ' +length+')');
       }
       if(fileContent.if_config?.sc === undefined) {
         newErrors.push('scプロパティが存在しません。');
       } else if (fileContent.if_config?.sc?.length !== 45696) {
         const length = fileContent.if_config?.sc?.length
-        newErrors.push('scプロパティの個数が不正です。(正常値: 45696, アップロードされた個数: ' +length+')');
+        newErrors.push('scプロパティの要素数が不正です。(正常な要素数: 45696, アップロードされたsc要素数: ' +length+')');
       }
       if(fileContent.if_config?.lt === undefined) {
         newErrors.push('ltプロパティが存在しません。');
       } else if (fileContent.if_config?.lt?.length !== 32914) {
         const length = fileContent.if_config?.lt?.length
-        newErrors.push('ltプロパティの個数が不正です。(正常値: 32914, アップロードされた個数: ' +length+')');
+        newErrors.push('ltプロパティの要素数が不正です。(正常な要素数: 32914, アップロードされたlt要素数: ' +length+')');
       }
       if (newErrors.length === 0) {
         return { isValid: true, errors: [] };
@@ -92,7 +92,10 @@ const FileInputScreen = () => {
 
   return (
     <div>
-      <h1>PRX-IP5000 configファイル解析アプリ</h1>
+      <div  style={{ display: 'flex', alignItems: 'center' }}>
+      <div className="box"></div>
+        <h1 style={{ marginTop: '64px', marginBottom: '64px', flex: 1 }}>PRX-IP5000 configファイル解析アプリ</h1></div>
+      <div style={{marginLeft: '64px', marginRight: '64px'}}>  
       <b>{renderErrorMessages}</b>
       <div
         {...getRootProps({
@@ -112,7 +115,8 @@ const FileInputScreen = () => {
         })}
       >
         <input {...getInputProps()} />
-        <p><b>JSONファイルをここにドラッグ&ドロップするか<br />クリックしてファイルを一つ選択してください。</b></p>
+        <p><b>PRX-IP5000のconfigファイル(.json)<br />をここにドラッグ&ドロップするか<br />クリックしてファイルを一つ選択してください。</b></p>
+      </div>
       </div>
     </div>
   );

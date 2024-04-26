@@ -61,7 +61,7 @@ const MainComponent = () => {
             <h2>Main Page</h2>
             <p>ファイル名: {file.name}</p>
             {fileContent? (
-              <div>
+              <>
                 <h2 ref={staffCall}>スタッフコール(両方未接続の設定以外を表示)</h2>
                 <h3>無線① WCシリーズ(101~400)</h3>
                 {datasets1.map((data, index) => (
@@ -108,7 +108,7 @@ const MainComponent = () => {
                     </div>
                   ))}
                   <br /><br /><br />
-              </div>
+              </>
             ) : (
               <p>Loading...</p>
             )}
