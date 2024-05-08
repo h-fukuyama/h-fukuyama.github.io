@@ -19,7 +19,7 @@ const ScComponent = () => {
     }
   }, [file, navigate]);
 
-  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
+  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop-80);
   const wireless1Ref = useRef(null);
   const wireless2Ref = useRef(null);
   const wiredRef = useRef(null);

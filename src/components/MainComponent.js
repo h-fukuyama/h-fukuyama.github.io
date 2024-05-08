@@ -22,7 +22,7 @@ const MainComponent = () => {
     }
   }, [file, navigate]);
 
-  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
+  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop-80);
   const staffCall = useRef(null);
   const oneTouchButton = useRef(null);
   const localTimer = useRef(null);
