@@ -43,18 +43,18 @@ export const ScDetailTable0 = ({fileName, folder, volume, mixing, output, extern
       {external[0] !== "利用しない" && (
         <>
           <tr>
-            <th>出力先</th>
-            <td>{external[1]}</td>
+            <th width='30px'>出力先</th>
+            <td width='30px'>{external[1]}</td>
             <td colSpan={3}>(外部制御1~16)</td>
           </tr>
           <tr>
-            <th>動作</th>
+            <th width='30px'>動作</th>
             <td colSpan={4}>{external[2]}</td>
           </tr>
           {external[2] === "秒数指定" && (
           <tr>
-            <th>秒数</th>
-            <td colSpan={3}>{external[3]}秒</td>
+            <th width='30px'>秒数</th>
+            <td width='30px' colSpan={3}>{external[3]}秒</td>
             <td>(1~99秒)</td>
           </tr>
           )}
@@ -67,7 +67,7 @@ export const ScDetailTable0 = ({fileName, folder, volume, mixing, output, extern
       {channel[0] !== "利用しない" && (
         <>
           <tr>
-            <th>チャンネル</th>
+            <th width='30px'>チャンネル</th>
             <td colSpan={4}>{channel[1]}</td>
           </tr>
         </>

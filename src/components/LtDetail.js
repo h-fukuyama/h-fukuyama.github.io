@@ -57,18 +57,20 @@ const LtDetail = () => {
         {file && (
         <div>
             <Header />
-            <h2>LocalTimer Detail Page</h2>
-            <h3>ローカルタイマー{Number(id)}の詳細</h3>
-            {fileContent && (
-              <>
-                <div><LtDetailTable week={tableSet[0]} title={tableSet[1]} /></div>
-                {tableSet2.map((data, index) => (
-                  <div key={index}>
-                    <div><LtDetailTable2 id={data[0]} id2={data[1]} hour={data[2]} minute={data[3]} call={data[4]} /></div>
-                  </div>
-                ))}
-              </>
-            )}
+            <div style={{margin: '30px'}}>
+              <h2>LocalTimer Detail Page</h2>
+              <h3>ローカルタイマー{Number(id)}の詳細</h3>
+              {fileContent && (
+                <>
+                  <div><LtDetailTable week={tableSet[0]} title={tableSet[1]} /></div>
+                  {tableSet2.map((data, index) => (
+                    <div key={index}>
+                      <div><LtDetailTable2 id={data[0]} id2={data[1]} hour={data[2]} minute={data[3]} call={data[4]} /></div>
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
         </div>
         )}
         {!file && <h2>Lt Page</h2>}

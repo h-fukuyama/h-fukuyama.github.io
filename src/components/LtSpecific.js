@@ -81,12 +81,19 @@ const LtSpecific = () => {
           {file && ( 
             <div>
               <Header />
-              <h2>Lt Page</h2>
-              {fileContent && (
-                <div>
-                  <h3>ローカルタイマー{id}の要素{id2}</h3>
-                  {table.props.fileName?.join('') === '' ? '未登録' : table}                </div>
-              )}
+              <div style={{margin: '30px'}}>
+                <h2>Lt Page</h2>
+                {fileContent && (
+                  <div>
+                    <h3>ローカルタイマー{id}の要素{id2}</h3>
+                    {table.props.fileName?.join('') === '' ? 
+                      <table align='center'>
+                        <tbody>
+                          <td><b>未登録</b></td>
+                        </tbody>
+                      </table> : table}                </div>
+                )}
+              </div>
             </div>
           )}
           {!file && <h2>Lt Page</h2>} {/* fileが存在しなければタイトルだけ表示（/に遷移するとかでもよさそう) */}
