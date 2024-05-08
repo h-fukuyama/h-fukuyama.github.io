@@ -173,14 +173,14 @@ export const MenuDetailTable2 = ({action, cm, bgm, minute}) => {
           <td colSpan={4}><b>BGM/CMカット</b></td>
         </tr>
         <tr>
-          <th>動作</th>
+          <th width='22%'>動作</th>
           <td colSpan={3}>{action}</td>
         </tr>
         <tr>
-          <td></td>
-          <th>店内<br />(エリア1)</th>
-          <th>事務所<br />(エリア2)</th>
-          <th>インカム<br />(エリア3)</th>
+          <td width='22%'></td>
+          <th width='26%'>店内<br />(エリア1)</th>
+          <th width='26%'>事務所<br />(エリア2)</th>
+          <th width='26%'>インカム<br />(エリア3)</th>
         </tr>
         <tr>
           <th>BGM</th>

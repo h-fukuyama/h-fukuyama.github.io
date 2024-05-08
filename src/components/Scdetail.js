@@ -95,36 +95,51 @@ const ScDetail = () => {
       {file && (
         <div>
           <Header />
-          <h2>Sc Detail Page</h2>
-          <h3>ボタン: {Number(id)}の詳細</h3>
-          {fileContent && (
-              <div>
-                <h4>呼出</h4>
-                {tableSet.props.fileName?.join('') === '' ? '未登録' : tableSet}
-                {
-                (id >= 9 && id <= 16)
-                ? 
-                <>
-                  <h4>呼戻</h4>
-                  呼び戻し無し
-                </>
-                : 
-                (tableSet.props?.back === '利用しない' || tableSet.props?.fileName?.join('') === '') 
-                ?
-                <>
-                  <h4>呼戻</h4>
-                  未登録
-                </>
-                :
-                <>
-                  <h4>呼戻</h4>
-                  {tableSet2}
-                </>
-              }
-              </div>
-            )
-          }
-        </div>
+          <div  style={{margin: '30px'}}>
+            <h2>Sc Detail Page</h2>
+            <h3>ボタン: {Number(id)}の詳細</h3>
+            {fileContent && (
+                <div>
+                  <h4>呼出</h4>
+                  {tableSet.props.fileName?.join('') === '' ? 
+                    <table align='center'>
+                      <tbody>
+                        <td><b>未登録</b></td>
+                      </tbody>
+                    </table> : tableSet}
+                  {
+                  (id >= 9 && id <= 16)
+                  ? 
+                  <>
+                    <h4>呼戻</h4>
+                    <table align='center'>
+                      <tbody>
+                        <td><b>呼び戻し無し</b></td>
+                      </tbody>
+                    </table>
+                  </>
+                  : 
+                  (tableSet.props?.back === '利用しない' || tableSet.props?.fileName?.join('') === '') 
+                  ?
+                  <>
+                    <h4>呼戻</h4>
+                    <table align='center'>
+                      <tbody>
+                        <td><b>未登録</b></td>
+                      </tbody>
+                    </table>
+                  </>
+                  :
+                  <>
+                    <h4>呼戻</h4>
+                    {tableSet2}
+                  </>
+                }
+                </div>
+              )
+            }
+          </div>
+          </div>
       )}
       {!file && <h2>Sc Page</h2>}
     </div>
