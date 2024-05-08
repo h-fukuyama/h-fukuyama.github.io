@@ -195,3 +195,9 @@ tr:hover {
   height       : 50px;
   background   : #000000;
 }
+
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}

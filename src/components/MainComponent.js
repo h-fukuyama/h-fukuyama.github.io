@@ -48,7 +48,7 @@ const MainComponent = () => {
     <div>
       {file && (
         <div>
-          <Header />
+          <Header/>
           <div id="sidebar">
             {/* サイドバー */}
             <ul><b>
