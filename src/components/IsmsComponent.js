@@ -193,45 +193,30 @@ const IsmsComponent = () => {
       {file && (
         <div>
           <Header />
-          <h2>isms Page</h2>
-          {fileContent && fileContent.if_config ? (
-          <div style={{marginLeft: '80px', marginRight: '80px'}}>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <div style={{ flex: 1 }}>
-                {results_all && results_all.slice(0,1).map((result, index) => (
-                <div key={index}>
-                  <h4>初期設定</h4>
-                  <div className='card'>
-                    {typeof result === 'object' && result.map && result.map(({ property, value }) => (
-                      <div
-                        key={property}
-                        className={`item ${value === '有効' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                      >
-                        {`${property}: ${value}`}
-                      </div>
-                    ))}
+          <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
+            <h2>isms Page</h2>
+            {fileContent && fileContent.if_config ? (
+            <div style={{marginLeft: '80px', marginRight: '80px'}}>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div style={{ flex: 1 }}>
+                  {results_all && results_all.slice(0,1).map((result, index) => (
+                  <div key={index}>
+                    <h4>初期設定</h4>
+                    <div className='card'>
+                      {typeof result === 'object' && result.map && result.map(({ property, value }) => (
+                        <div
+                          key={property}
+                          className={`item ${value === '有効' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
+                        >
+                          {`${property}: ${value}`}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                ))}
-                <h4>DNS設定</h4>
-                <div className='card'>
-                  {results_all && results_all.slice(2,5).map((result, index) => (
-                  <>
-                    {typeof result === 'object' && result.map && result.map(({ property, value }) => (
-                      <div
-                        key={property}
-                        className={`${value === '有効' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                        style={{ margin: '0.2em' }}
-                      >
-                        {`${property}: ${value}`}
-                      </div>
-                    ))}
-                  </>
-                ))}
-                </div>
-                <h4>放送優先順位</h4>
-                <div className='card'>
-                  {results_all && results_all.slice(5).map((result, index) => (
+                  ))}
+                  <h4>DNS設定</h4>
+                  <div className='card'>
+                    {results_all && results_all.slice(2,5).map((result, index) => (
                     <>
                       {typeof result === 'object' && result.map && result.map(({ property, value }) => (
                         <div
@@ -244,31 +229,48 @@ const IsmsComponent = () => {
                       ))}
                     </>
                   ))}
+                  </div>
+                  <h4>放送優先順位</h4>
+                  <div className='card'>
+                    {results_all && results_all.slice(5).map((result, index) => (
+                      <>
+                        {typeof result === 'object' && result.map && result.map(({ property, value }) => (
+                          <div
+                            key={property}
+                            className={`${value === '有効' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
+                            style={{ margin: '0.2em' }}
+                          >
+                            {`${property}: ${value}`}
+                          </div>
+                        ))}
+                      </>
+                    ))}
+                  </div>
+                </div>
+                <div style={{ flex: 1 }}>
+                  {results_all && results_all.slice(1, 2).map((result, index) => (
+                    <>
+                      <h4>チャンネルマスク設定</h4>
+                      <div className='card' style={{ overflowY: 'auto', maxHeight: '550px' }}>
+                        {typeof result === 'object' && result.map && result.map(({ property, value }) => (
+                          <div
+                            key={property}
+                            className={`${value === '有効' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
+                            style={{ marginBottom: '0.5em' }}
+                          >
+                            {`${property}: ${value}`}
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  ))}
                 </div>
               </div>
-              <div style={{ flex: 1 }}>
-                {results_all && results_all.slice(1, 2).map((result, index) => (
-                  <>
-                    <h4>チャンネルマスク設定</h4>
-                    <div className='card' style={{ overflowY: 'auto', maxHeight: '600px' }}>
-                      {typeof result === 'object' && result.map && result.map(({ property, value }) => (
-                        <div
-                          key={property}
-                          className={`${value === '有効' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                          style={{ marginBottom: '0.5em' }}
-                        >
-                          {`${property}: ${value}`}
-                        </div>
-                      ))}
-                    </div>
-                  </>
-                ))}
-              </div>
             </div>
-          </div>
           ) : (
             <p>Loading...</p>
           )}
+           </div> 
         </div>
       )}
       {!file && (
