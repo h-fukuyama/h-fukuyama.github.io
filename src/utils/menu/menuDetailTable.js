@@ -44,16 +44,16 @@ export const MenuDetailTable0 = ({
 
       {pattern === "1~99回設定" && (
         <tr>
-          <th>回数</th>
+          <th width='30%'>回数</th>
           <td>{manual}</td>
         </tr>
       )}
       <tr>
-        <td></td>
-        <th colSpan={2}>ファイル名</th>
-        <th>格納フォルダ</th>
-        <th>再生音量</th>
-        <th>ミキシング</th>
+        <td width='20%'></td>
+        <th colSpan={2} width='30%'>ファイル名</th>
+        <th width='20%'>格納フォルダ</th>
+        <th width='15%'>再生音量</th>
+        <th width='15%'>ミキシング</th>
       </tr>
       {rowHeaders.map((header, index) => (
         <tr key={index}>
@@ -91,18 +91,18 @@ export const MenuDetailTable0 = ({
       {external[0] !== "利用しない" && (
         <>
           <tr>
-            <th>出力先</th>
-            <td colSpan={2}>{external[1]}</td>
+            <th width='30%'>出力先</th>
+            <td width='40%' colSpan={2}>{external[1]}</td>
             <td colSpan={3}>(外部制御1~16)</td>
           </tr>
           <tr>
-            <th>動作</th>
+            <th width='30%'>動作</th>
             <td colSpan={5}><b>{external[2]}</b></td>
           </tr>
           {external[2] === "秒数指定" && (
           <tr>
-            <th>秒数</th>
-            <td colSpan={2}>{external[3]}秒</td>
+            <th width='30%'>秒数</th>
+            <td width='40%' colSpan={2}>{external[3]}秒</td>
             <td colSpan={3}>(1~99秒)</td>
           </tr>
           )}
@@ -115,7 +115,7 @@ export const MenuDetailTable0 = ({
       {channel[0] !== "利用しない" && (
         <>
           <tr>
-            <th>チャンネル</th>
+            <th width='30%'>チャンネル</th>
             <td colSpan={5}>{channel[1]}</td>
           </tr>
         </>
@@ -133,28 +133,28 @@ export const MenuDetailTable1 = ({channel, external}) => {
           <td colSpan={2}><b>チャンネル変更</b></td>
         </tr>
         <tr>
-          <th>チャンネル</th>
+          <th width='30%'>チャンネル</th>
           <td>{channel}</td>
         </tr>
         <tr>
-          <th colSpan={1}>外部出力</th>
+          <th width='30%' colSpan={1}>外部出力</th>
           <td colSpan={4}>{external[0]}</td>
         </tr>
         {external[0] !== "利用しない" && (
           <>
             <tr>
-              <th>出力先</th>
-              <td>{external[1]}</td>
+              <th width='30%'>出力先</th>
+              <td width='30%'>{external[1]}</td>
               <td colSpan={3}>(外部制御1~16)</td>
             </tr>
             <tr>
-              <th>動作</th>
+              <th width='30%'>動作</th>
               <td colSpan={4}>{external[2]}</td>
             </tr>
             {external[2] === "秒数指定" && (
               <tr>
-                <th>秒数</th>
-                <td colSpan={3}>{external[3]}秒</td>
+                <th width='30%'>秒数</th>
+                <td width='40%' colSpan={3}>{external[3]}秒</td>
                 <td>(1~99秒)</td>
               </tr>
             )}
@@ -214,18 +214,18 @@ export const MenuDetailTable3 = ({external3}) => {
             <td colSpan={3}><b>外部制御</b></td>
           </tr>
           <tr>
-            <th>出力先</th>
-            <td>{external3[0]}</td>
+            <th width='30%'>出力先</th>
+            <td width='30%'>{external3[0]}</td>
             <td>(外部制御1~16)</td>
         </tr>
         <tr>
-            <th>動作</th>
+            <th width='30%'>動作</th>
             <td colSpan={2}>{external3[1]}</td>
         </tr>
         {external3[1] === "秒数指定" && (
         <tr>
-            <th>秒数</th>
-            <td>{external3[2]}秒</td>
+            <th width='30%'>秒数</th>
+            <td width='30%'>{external3[2]}秒</td>
             <td>(1~99秒)</td>
         </tr>
         )}
@@ -242,17 +242,17 @@ export const MenuDetailTable4 = ({subject, control, volume}) => {
             <td colSpan={3}><b>音量制御</b></td>
           </tr>
           <tr>
-            <th>対象</th>
+            <th width='30%'>対象</th>
             <td colSpan={2}>{subject}</td>
         </tr>
         <tr>
-            <th>制御</th>
+            <th width='30%'>制御</th>
             <td colSpan={2}>{control}</td>
         </tr>
         {control === "秒数指定" && (
         <tr>
-            <th>秒数</th>
-            <td>{volume}秒</td>
+            <th width='30%'>秒数</th>
+            <td width='30%'>{volume}秒</td>
             <td>(1~99秒)</td>
         </tr>
         )}
@@ -269,7 +269,7 @@ export const MenuDetailTable5 = ({title, power}) => {
             <td colSpan={3}><b>{title}</b></td>
           </tr>
           <tr>
-            <th>動作</th>
+            <th width='30%'>動作</th>
             <td colSpan={2}>{power}</td>
         </tr>
         </tbody>

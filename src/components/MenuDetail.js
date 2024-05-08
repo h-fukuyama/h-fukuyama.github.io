@@ -106,10 +106,18 @@ const MenuDetail = () => {
       {file && (
         <div>
           <Header />
-          <h2>Menu Detail Page</h2>
-          <h3>ワンタッチボタン: {Number(id)}の詳細</h3>
-          {fileContent && (
-            <div>{tableSet.props.fileName?.join('') === '' ? '未登録' : tableSet}</div>)}
+          <div style={{margin: '30px'}}>
+            <h2>Menu Detail Page</h2>
+            <h3>ワンタッチボタン: {Number(id)}の詳細</h3>
+            {fileContent && (
+              <div>{tableSet.props.fileName?.join('') === '' ?
+                <table align='center'>
+                  <tbody>
+                    <td><b>未登録</b></td>
+                  </tbody>
+                </table>              
+              : tableSet}</div>)}
+          </div>
         </div>
       )}
       {!file && <h2>Lt Page</h2>}
