@@ -1,4 +1,4 @@
-import React, { useEffect,useRef } from 'react';
+import React, { useEffect,useRef,useState } from 'react';
 import { useFileContext } from '../context/FileContext';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
@@ -15,6 +15,11 @@ const MainComponent = () => {
   const { file } = useFileContext();
   const { fileContent } = useFileContent(file);
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
 
   useEffect(() => {
     if (!file) {
@@ -62,6 +67,15 @@ const MainComponent = () => {
             <p>ファイル名: {file.name}</p>
             {fileContent? (
               <>
+                <div>
+                  <button id='info' onClick={toggleVisibility}>
+                    {isVisible ? '機器情報一覧非表示' : '機器情報一覧表示'}
+                  </button>
+                  {isVisible && 
+                  <div>
+                    hidden zone!
+                  </div>}
+                </div>
                 <h2 ref={staffCall}>スタッフコール(両方未接続の設定以外を表示)</h2>
                 <h3>無線① WCシリーズ(101~400)</h3>
                 {datasets1.map((data, index) => (
