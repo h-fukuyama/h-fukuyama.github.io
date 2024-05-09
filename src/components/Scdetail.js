@@ -23,7 +23,6 @@ const ScDetail = () => {
   const ScDetailProcessor = ({ sc,id }) => {
     // const startIndex = id >= 16 ? (id - 101) * 56 : ((id - 1) * 56)+44800;
     const startIndex=id;
-    console.log("id="+id+", startIndex="+startIndex)
     switch (sc[startIndex]) {
       case '00': //コメント再生         
           const fileName = [sc[startIndex+1],sc[startIndex+5],sc[startIndex+9],sc[startIndex+13],sc[startIndex+17]];
@@ -85,11 +84,8 @@ const ScDetail = () => {
         return "";
     }
   } 
-  console.log(id);
   const tableSet = ScDetailProcessor({ sc: fileContent?.if_config?.sc || [], id: id>16? (id - 101) * 56 : ((id - 1) * 56)+44800 });
-  console.log(tableSet);
   const tableSet2 = ScDetailProcessor({ sc: fileContent?.if_config?.sc || [], id: id>16? ((id - 101) * 56)+22400 : ((id - 1) * 56)+45248 });
-  console.log(tableSet2);
   return (
     <div>
       {file && (

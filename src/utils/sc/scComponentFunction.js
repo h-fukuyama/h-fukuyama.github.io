@@ -122,7 +122,6 @@ export const getActionResult1 = (sc, i) => {
       case '02':
         let channel = "";
         if(sc[i+34] === '00') {
-          console.log()
           const num = sc[i+38]==='00'?"":parseInt(sc[i+38],16);
           channel = ` ${processBGMBand(sc[i + 37])}${num}`
         } else if(sc[i+34] === '01') {
