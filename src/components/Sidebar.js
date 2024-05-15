@@ -1,18 +1,17 @@
-import React, { useContext } from 'react';
-import { SidebarContext } from './SidebarContext';
+import React from 'react';
 
-const Sidebar = () => {
-  const { items } = useContext(SidebarContext);
-
-  return (
-    <div id="sidebar">
-      <ul>
-        {items.map((item, index) => (
-          <li key={index}>{item.text}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+const Sidebar = ({ items, scrollToRef }) => (
+  <div id="sidebar">
+    <ul>
+      {items.map(({label, ref }, index) => (
+        <b key={index}>
+          <li onClick={() => scrollToRef(ref)}>
+            {label}
+          </li>
+        </b>
+      ))}
+    </ul>
+  </div>
+);
 
 export default Sidebar;
