@@ -9,63 +9,64 @@ import { getActionResult1, getActionResult2 } from '../utils/sc/scComponentFunct
 import { ScTable1, ScTable2 } from '../utils/sc/scTable';
 
 const ScComponent = () => {
-  const { file } = useFileContext();
-  const { fileContent } = useFileContent(file);
-  const navigate = useNavigate();
+  //未設定の表示は不要な為、ここはごっそり不要
+  // const { file } = useFileContext();
+  // const { fileContent } = useFileContent(file);
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!file) {
-      navigate('/reset');
-    }
-  }, [file, navigate]);
+  // useEffect(() => {
+  //   if (!file) {
+  //     navigate('/reset');
+  //   }
+  // }, [file, navigate]);
 
-  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop-80);
-  const wireless1Ref = useRef(null);
-  const wireless2Ref = useRef(null);
-  const wiredRef = useRef(null);
+  // const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop-80);
+  // const wireless1Ref = useRef(null);
+  // const wireless2Ref = useRef(null);
+  // const wiredRef = useRef(null);
 
-  const datasets1 = ScProcessor1({ sc: fileContent?.if_config?.sc || [] });
-  const datasets2 = ScProcessor2({ sc: fileContent?.if_config?.sc || [] });
+  // const datasets1 = ScProcessor1({ sc: fileContent?.if_config?.sc || [] });
+  // const datasets2 = ScProcessor2({ sc: fileContent?.if_config?.sc || [] });
 
-  return (
-    <div>
-      {file && (
-        <div>
-          <Header />
-          <div id="sidebar">
-            {/* サイドバー */}
-            <ul><b>
-              <li onClick={() => scrollToRef(wireless1Ref)}>無線① WCシリーズ</li>
-              <li onClick={() => scrollToRef(wireless2Ref)}>無線② UTW/WCシリーズ</li>
-              <li onClick={() => scrollToRef(wiredRef)}>有線</li>
-            </b></ul>
-          </div>
-          <div id="main-content">
-            <h2 ref={wireless1Ref}>Sc Page</h2>
-            <h3>無線① WCシリーズ(400ペア)</h3>
-            {datasets1.map((data, index) => (
-              <div key={index}>
-                <ScTable1 id={data[0]} button={data[0]+100} call={data[1]} back={data[2]} />
-              </div>
-            ))}
-            <h3 ref={wireless2Ref}>無線② UTW/WCシリーズ(1~16)</h3>
-            {datasets2.map((data, index) => (
-              <div key={index}>
-                <ScTable1 id={data[0]} button={data[0]} call={data[1]} back={data[2]} />
-              </div>
-            ))}
-            <h3 ref={wiredRef}>有線(1~16)</h3>
-            {datasets2.map((data, index) => (
-              <div key={index}>
-                <ScTable2 id={data[0]} call={data[1]} />
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-      {!file && <h2>Sc Page</h2>}
-    </div>
-  );
+  // return (
+  //   <div>
+  //     {file && (
+  //       <div>
+  //         <Header />
+  //         <div id="sidebar">
+  //           {/* サイドバー */}
+  //           <ul><b>
+  //             <li onClick={() => scrollToRef(wireless1Ref)}>無線① WCシリーズ</li>
+  //             <li onClick={() => scrollToRef(wireless2Ref)}>無線② UTW/WCシリーズ</li>
+  //             <li onClick={() => scrollToRef(wiredRef)}>有線</li>
+  //           </b></ul>
+  //         </div>
+  //         <div id="main-content">
+  //           <h2 ref={wireless1Ref}>Sc Page</h2>
+  //           <h3>無線① WCシリーズ(400ペア)</h3>
+  //           {datasets1.map((data, index) => (
+  //             <div key={index}>
+  //               <ScTable1 id={data[0]} button={data[0]+100} call={data[1]} back={data[2]} />
+  //             </div>
+  //           ))}
+  //           <h3 ref={wireless2Ref}>無線② UTW/WCシリーズ(1~16)</h3>
+  //           {datasets2.map((data, index) => (
+  //             <div key={index}>
+  //               <ScTable1 id={data[0]} button={data[0]} call={data[1]} back={data[2]} />
+  //             </div>
+  //           ))}
+  //           <h3 ref={wiredRef}>有線(1~16)</h3>
+  //           {datasets2.map((data, index) => (
+  //             <div key={index}>
+  //               <ScTable2 id={data[0]} call={data[1]} />
+  //             </div>
+  //           ))}
+  //         </div>
+  //       </div>
+  //     )}
+  //     {!file && <h2>Sc Page</h2>}
+  //   </div>
+  // );
 };
 
 export default ScComponent;
