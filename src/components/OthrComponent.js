@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useFileContext } from '../context/FileContext';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
@@ -8,7 +8,7 @@ import { processVolume } from '../utils/processVolume';
 import { hexToBinary, checkBit, hexToSignedDecimal } from '../utils/calculate';
 import { checkButton } from '../utils/checkButton';
 
-const OthrComponent = () => {
+const OthrComponent = ({ resultsAll, resultsAll2 }) => {
   const { file } = useFileContext(); //fileとsetFileContextを取得
   const { fileContent } = useFileContent(file); //fileのファイルの内容を読み込む
   const navigate = useNavigate();
@@ -349,12 +349,104 @@ const OthrComponent = () => {
 // ここまで-----------------------------------------------------------
 
   const results_all = OthrProcessor({ other: fileContent?.if_config?.othr || [] });
+  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop-80);
+  const wireless1Ref = useRef(null);
+  console.log(resultsAll);
 
   return (
     <div>
       {file && (
         <div>
-          <Header />
+          <div>
+            {file && (
+              <div>
+                <Header />
+                <div id="sidebar">
+                  <ul><b>
+                    <li onClick={() => scrollToRef(wireless1Ref)}>設定一覧</li>
+                  </b></ul>
+                </div>
+                <div id="main-content">
+                  <h2>Menu Page</h2>
+                  {fileContent && fileContent.if_config ? (
+                    <div>
+                      <h2 ref={wireless1Ref}>設定一覧</h2>
+                      <h4>イコライザ設定</h4>
+                      <div className='card' style={{ display: 'flex' }}>
+                        {resultsAll.slice(0, 3).map((result, index) => (
+                          <div key={index} style={{ flex: 1 }}>
+                            <div>
+                              {result.map(({ property, value }) => (
+                                <div key={property}> {`${property}: ${value}`}</div>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'row' }}>
+                        <div style={{ flex: 1 }}>
+                        <h4>LCD設定</h4>
+                        <div className='card'>
+                          {resultsAll.slice(3, 7).map((result, index) => (
+                            <div key={index}>
+                              <div>
+                                {result.map(({ property, value }) => (
+                                  <div key={property}> {`${property}: ${value}`}</div>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                          </div>
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <h4>入力レベル</h4>
+                          <div className='card'>
+                          {resultsAll?.slice(8, 11).map((result, index) => (
+                            <div key={index}>
+                              {result.map(({ property, value }) => (
+                                <div key={property}> {`${property}: ${value}`}</div>
+                              ))}
+                            </div>
+                          ))}
+                          </div>
+                        </div>
+                      </div>
+                      <div className='card'>
+                        {resultsAll?.slice(11,12).map((result, index) => (
+                          <div key={index}>
+                            {result.map(({ property, value }) => (
+                              <div key={property}> {`${property}: ${value}`}</div>
+                            ))}
+                          </div>
+                        ))}
+                        {resultsAll?.slice(13,15).map((result, index) => (
+                          <div key={index}>
+                            {result.map(({ property, value }) => (
+                              <div key={property}> {`${property}: ${value}`}</div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                      <h4>配信設定</h4>
+                      <div className='card'>
+                      {resultsAll2?.map((result, index) => (
+                        <div key={index}>
+                          <div>
+                            {result.map(({ property, value }) => (
+                              <div key={property}>{`${property}: ${value}`}</div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <p>Loading...</p>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
           <h2 style={{ marginBottom: '20px', marginLeft: '20px', marginTop: '20px' }}>Othr Page</h2>
           {fileContent && fileContent.if_config ? (
             <div  style={{marginLeft: '80px', marginRight: '80px'}}>

@@ -8,6 +8,7 @@ import { replaceEQ, eqSetting } from '../utils/menu/menuComponentFunction';
 import { oneTouch } from '../utils/checkButton';
 import { getActionResult, replacePattern } from '../utils/menu/menuComponentFunction';
 import { MenuTable } from '../utils/menu/menuTable';
+import OthrComponent from './OthrComponent';
 
 
 const MenuComponent = () => {
@@ -21,8 +22,6 @@ const MenuComponent = () => {
     }
   }, [file, navigate]);
 
-  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop-80);
-  const wireless1Ref = useRef(null);
   const wireless2Ref = useRef(null);
 
   const MenuProcessor = ({ menu }) => {
@@ -228,119 +227,34 @@ const MenuComponent = () => {
   const datasets = MenuProcessor3({ menu: fileContent?.if_config?.menu || [] })
 
   return (
-    <div>
-      {file && (
-        <div>
-          <Header />
-          <div id="sidebar">
-            {/* サイドバー */}
-            <ul><b>
-              <li onClick={() => scrollToRef(wireless1Ref)}>設定一覧</li>
-              <li onClick={() => scrollToRef(wireless2Ref)}>ワンタッチボタン</li>
-            </b></ul>
+    <>
+      {/* <div>
+        <OthrComponent resultsAll={results_all} resultsAll2={results_all2} />
+      </div> */}
+      <div>
+        {file && (
+          <div>
+            <Header />
+              <h2>Menu Page</h2>
+              {fileContent && fileContent.if_config ? (
+                <div>
+                  <h2 ref={wireless2Ref}>ワンタッチボタン一覧</h2>
+                  {datasets.map((data, index) => (
+                    <div key={index} >
+                      <MenuTable id={data[0]} title={data[1]} call={data[2]} />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p>Loading...</p>
+              )}
           </div>
-          <div id="main-content">
-            <h2>Menu Page</h2>
-            {fileContent && fileContent.if_config ? (
-              <div>
-                <h2 ref={wireless1Ref}>設定一覧</h2>
-                <h4>イコライザ設定</h4>
-                <div className='card' style={{ display: 'flex' }}>
-                  {results_all.slice(0, 3).map((result, index) => (
-                    <div key={index} style={{ flex: 1 }}>
-                      <div>
-                        {result.map(({ property, value }) => (
-                          <div key={property}> {`${property}: ${value}`}</div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                  <div style={{ flex: 1 }}>
-                  <h4>LCD設定</h4>
-                  <div className='card'>
-                    {results_all.slice(3, 7).map((result, index) => (
-                      <div key={index}>
-                        <div>
-                          {result.map(({ property, value }) => (
-                            <div key={property}> {`${property}: ${value}`}</div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                    </div>
-                  </div>
-                  {/* {results_all?.slice(7, 8).map((result, index) => (
-                    <div key={index}>
-                      <h4>{`Result ${index + 8}`}</h4>
-                      <div class='card'>
-                        {result.map(({ property, value }) => (
-                          <div key={property}> {`${property}: ${value}`}</div>
-                        ))}
-                      </div>
-                    </div>
-                  ))} */}
-                  <div style={{ flex: 1 }}>
-                    <h4>入力レベル</h4>
-                    <div className='card'>
-                    {results_all?.slice(8, 11).map((result, index) => (
-                      <div key={index}>
-                        {result.map(({ property, value }) => (
-                          <div key={property}> {`${property}: ${value}`}</div>
-                        ))}
-                      </div>
-                    ))}
-                    </div>
-                  </div>
-                </div>
-                <div className='card'>
-                  {results_all?.slice(11,12).map((result, index) => (
-                    <div key={index}>
-                    {/* <h4>{`Result ${index + 12}`}</h4> */}
-                      {result.map(({ property, value }) => (
-                        <div key={property}> {`${property}: ${value}`}</div>
-                      ))}
-                    </div>
-                  ))}
-                  {results_all?.slice(13,15).map((result, index) => (
-                    <div key={index}>
-                      {/* <h4>{`Result ${index + 12}`}</h4> */}
-                      {result.map(({ property, value }) => (
-                        <div key={property}> {`${property}: ${value}`}</div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-                <h4>配信設定</h4>
-                <div className='card'>
-                {results_all2?.map((result, index) => (
-                  <div key={index}>
-                    <div>
-                      {result.map(({ property, value }) => (
-                        <div key={property}>{`${property}: ${value}`}</div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                </div>
-                <h2 ref={wireless2Ref}>ワンタッチボタン一覧</h2>
-                {datasets.map((data, index) => (
-                  <div key={index} >
-                    <MenuTable id={data[0]} title={data[1]} call={data[2]} />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p>Loading...</p>
-            )}
-          </div>
-        </div>
-      )}
-      {!file && (
-        <p>Resetting...</p>
-      )}
-    </div>
+        )}
+        {!file && (
+          <p>Resetting...</p>
+        )}
+      </div>
+    </>
   );
 };
 
