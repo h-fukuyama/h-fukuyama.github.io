@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useFileContext } from '../context/FileContext';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
@@ -7,6 +7,7 @@ import { processBGMBand } from '../utils/bgmBand';
 import { processVolume } from '../utils/processVolume';
 import { hexToBinary, checkBit, hexToSignedDecimal } from '../utils/calculate';
 import { checkButton } from '../utils/checkButton';
+import MenuComponent, { MenuProcessor, MenuProcessor2 } from './MenuComponent';
 
 const OthrComponent = () => {
   const { file } = useFileContext(); //fileとsetFileContextを取得
@@ -349,12 +350,19 @@ const OthrComponent = () => {
 // ここまで-----------------------------------------------------------
 
   const results_all = OthrProcessor({ other: fileContent?.if_config?.othr || [] });
+  const menu_all = MenuProcessor({ menu: fileContent?.if_config?.menu || [] });
+  const menu_all2 = MenuProcessor2({ menu: fileContent?.if_config?.menu || [] });
 
   return (
     <div>
       {file && (
         <div>
           <Header />
+          <MenuComponent
+            results_all={menu_all}
+            results_all2={menu_all2}
+            wireless1Ref={wireless1Ref}
+          />
           <h2 style={{ marginBottom: '20px', marginLeft: '20px', marginTop: '20px' }}>Othr Page</h2>
           {fileContent && fileContent.if_config ? (
             <div  style={{marginLeft: '80px', marginRight: '80px'}}>
