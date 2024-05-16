@@ -1,22 +1,12 @@
-import React, { useEffect } from 'react';
-import { useFileContext } from '../context/FileContext';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import Header from './Header';
-import useFileContent from '../utils/useFileContent';
 import { LtMainTable } from '../utils/lt/ltMainTable';
 import { hexToBinary } from '../utils/calculate';
 import { oneTouch } from '../utils/checkButton';
+import useFileNavigation from './useFileNavigation';
 
 const LtComponent = () => {
-  const { file } = useFileContext(); //fileとsetFileContextを取得
-  const { fileContent } = useFileContent(file); //fileのファイルの内容を読み込む
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!file) {
-      navigate('/reset');
-    }
-  }, [file, navigate]);
+  const { file, fileContent} = useFileNavigation();
 
   const lt = fileContent?.if_config?.lt;
   const menu = fileContent?.if_config?.menu[10];

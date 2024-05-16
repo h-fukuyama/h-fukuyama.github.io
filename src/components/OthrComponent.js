@@ -7,6 +7,8 @@ import { checkButton } from '../utils/checkButton';
 import MenuComponent, { MenuProcessor, MenuProcessor2 } from './MenuComponent';
 import useFileNavigation from './useFileNavigation';
 import Sidebar from './Sidebar';
+import { IsmsProcessor } from './IsmsComponent';
+import { IsmsSettingComponent } from './IsmsSettingComponent';
 
   // ここから１行ずつのルール定義に入る(1~33行目)------------------------
 const processFunction1 = (property) => {
@@ -342,11 +344,13 @@ const OthrComponent = () => {
 
   //サイドバーのitems定義
   const refs = {
+    othr: useRef(null),
     menu: useRef(null),
-    othr: useRef(null)
+    isms: useRef(null)
   };
   const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop - 80);
   const items = [
+    { label: 'isms設定値', ref: refs.isms },
     { label: 'menu設定値', ref: refs.menu },
     { label: 'othr設定値', ref: refs.othr }
   ];
@@ -356,17 +360,23 @@ const OthrComponent = () => {
   //Menu設定値の呼出し
   const menu_all = MenuProcessor({ menu: fileContent?.if_config?.menu || [] });
   const menu_all2 = MenuProcessor2({ menu: fileContent?.if_config?.menu || [] });
-
+  //isms設定値の呼出し
+  const isms_all = IsmsProcessor({ isms: fileContent?.if_config?.isms || []  })
+  
   return (
     <div>
       {file && (
         <div>
           <Header />
           <Sidebar items={items} scrollToRef={scrollToRef} />
+          <IsmsSettingComponent
+            results_all={isms_all}
+            ismsRef={refs.isms}
+          />
           <MenuComponent
             results_all={menu_all}
             results_all2={menu_all2}
-            wireless1Ref={refs.menu}
+            menuRef={refs.menu}
           />
           <div id="main-content">
             <h2 ref={refs.othr} style={{ marginBottom: '20px', marginTop: '20px' }}>Othr Page</h2>
