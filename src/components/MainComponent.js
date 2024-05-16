@@ -1,8 +1,5 @@
-import React, { useEffect,useRef } from 'react';
-import { useFileContext } from '../context/FileContext';
-import { useNavigate } from 'react-router-dom';
+import React, { useRef } from 'react';
 import Header from './Header';
-import useFileContent from '../utils/useFileContent';
 import { ScProcessor1, ScProcessor2 } from './ScComponent'
 import { ScTable1, ScTable2 } from '../utils/sc/scTable';
 import { MenuTable } from '../utils/menu/menuTable';
@@ -11,18 +8,10 @@ import { hexToBinary } from '../utils/calculate';
 import { LtMainTable } from '../utils/lt/ltMainTable';
 import { oneTouch } from '../utils/checkButton';
 import Sidebar from './Sidebar';
+import useFileNavigation from './useFileNavigation';
 
 const MainComponent = () => {
-  const { file } = useFileContext();
-  const { fileContent } = useFileContent(file);
-  const navigate = useNavigate();
-
-  //ファイルが存在しなければresetに遷移する
-  useEffect(() => {
-    if (!file) {
-      navigate('/#/reset');
-    }
-  }, [file, navigate]);
+  const { file, fileContent} = useFileNavigation();
 
   //サイドバーのitems定義
   const refs = {

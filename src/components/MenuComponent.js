@@ -1,13 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { useFileContext } from '../context/FileContext';
-import { useNavigate } from 'react-router-dom';
-import Header from './Header';
-import useFileContent from '../utils/useFileContent';
+import React from 'react';
 import { hexToBinary, checkBit, hexToSignedDecimal } from '../utils/calculate';
 import { replaceEQ, eqSetting } from '../utils/menu/menuComponentFunction';
 import { oneTouch } from '../utils/checkButton';
 import { getActionResult, replacePattern } from '../utils/menu/menuComponentFunction';
-import { MenuTable } from '../utils/menu/menuTable';
+import useFileNavigation from './useFileNavigation';
 
   // ここから１行ずつのルール定義に入る------------------------
   const processFunction1 = (property) => {
@@ -167,31 +163,16 @@ import { MenuTable } from '../utils/menu/menuTable';
       return [{ property: "CM選択(ONスイッチ)", value: results.join(',') }];
     }
   };
+  // ---------------------------------------------------------------------
   
- const MenuComponent = ({ results_all, results_all2, scrollToRef, wireless1Ref, wireless2Ref }) => {
-  const { file } = useFileContext(); //fileとsetFileContextを取得
-  const { fileContent } = useFileContent(file); //fileのファイルの内容を読み込む
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!file) {
-      navigate('/reset');
-    }
-  }, [file, navigate]);
-
-  // --------------------------------------------------------------------------
-  // const results_all = MenuProcessor({ menu: fileContent?.if_config?.menu || [] });
-  // const results_all2 = MenuProcessor2({ menu: fileContent?.if_config?.menu || [] });
-
-  // const datasets = MenuProcessor3({ menu: fileContent?.if_config?.menu || [] })
-
+ const MenuComponent = ({ results_all, results_all2, wireless1Ref }) => {
+  const { file, fileContent } = useFileNavigation();
   return (
     <>
       <div id="main-content">
         <h2>Menu Page</h2>
         {fileContent && fileContent.if_config ? (
           <div>
-            <h2 ref={wireless1Ref}>設定一覧</h2>
             <h4>イコライザ設定</h4>
             <div className='card' style={{ display: 'flex' }}>
               {results_all.slice(0, 3).map((result, index) => (
