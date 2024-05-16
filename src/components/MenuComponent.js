@@ -1,66 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { useFileContext } from '../context/FileContext';
-import { useNavigate } from 'react-router-dom';
-import Header from './Header';
-import useFileContent from '../utils/useFileContent';
+import React from 'react';
 import { hexToBinary, checkBit, hexToSignedDecimal } from '../utils/calculate';
 import { replaceEQ, eqSetting } from '../utils/menu/menuComponentFunction';
 import { oneTouch } from '../utils/checkButton';
 import { getActionResult, replacePattern } from '../utils/menu/menuComponentFunction';
-import { MenuTable } from '../utils/menu/menuTable';
-
-
-const MenuComponent = () => {
-  const { file } = useFileContext(); //fileとsetFileContextを取得
-  const { fileContent } = useFileContent(file); //fileのファイルの内容を読み込む
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!file) {
-      navigate('/reset');
-    }
-  }, [file, navigate]);
-
-  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop-80);
-  const wireless1Ref = useRef(null);
-  const wireless2Ref = useRef(null);
-
-  const MenuProcessor = ({ menu }) => {
-    const menuPropertyFunctions = [
-      processFunction1, processFunction2, processFunction3, processFunction4, processFunction5, processFunction6, processFunction7, processFunction8, processFunction9, processFunction10,
-      processFunction11, processFunction12, processFunction13, processFunction14, processFunction15, processFunction16, processFunction17
-    ];
-
-    const results = [];
-
-    for (let i = 0; i < 17 ; i++) {
-      if(i===0||i===1||i===2){continue}
-      const property = menu[i];
-      if(property){
-        const func = menuPropertyFunctions[i];
-        const result = func(property);
-        results.push(result);
-      }
-    }
-    return results;
-  };
-  const MenuProcessor2 = ({ menu }) => {
-    const menuPropertyFunctions = [
-      processFunction997, processFunction998, processFunction999
-    ];
-
-    const results = [];
-
-    for (let i = 997; i < 1000 ; i++) {
-      const property = menu[i];
-      if(property){
-        const func = menuPropertyFunctions[i-997];
-        const result = func(property);
-        results.push(result);
-      }
-    }
-    return results;
-  };
+import useFileNavigation from './useFileNavigation';
 
   // ここから１行ずつのルール定義に入る------------------------
   const processFunction1 = (property) => {
@@ -220,131 +163,129 @@ const MenuComponent = () => {
       return [{ property: "CM選択(ONスイッチ)", value: results.join(',') }];
     }
   };
-  // --------------------------------------------------------------------------
-
-  const results_all = MenuProcessor({ menu: fileContent?.if_config?.menu || [] });
-  const results_all2 = MenuProcessor2({ menu: fileContent?.if_config?.menu || [] });
-
-  const datasets = MenuProcessor3({ menu: fileContent?.if_config?.menu || [] })
-
+  // ---------------------------------------------------------------------
+  
+ const MenuComponent = ({ results_all, results_all2, menuRef }) => {
+  const { fileContent } = useFileNavigation();
   return (
-    <div>
-      {file && (
-        <div>
-          <Header />
-          <div id="sidebar">
-            {/* サイドバー */}
-            <ul><b>
-              <li onClick={() => scrollToRef(wireless1Ref)}>設定一覧</li>
-              <li onClick={() => scrollToRef(wireless2Ref)}>ワンタッチボタン</li>
-            </b></ul>
-          </div>
-          <div id="main-content">
-            <h2>Menu Page</h2>
-            {fileContent && fileContent.if_config ? (
-              <div>
-                <h2 ref={wireless1Ref}>設定一覧</h2>
-                <h4>イコライザ設定</h4>
-                <div className='card' style={{ display: 'flex' }}>
-                  {results_all.slice(0, 3).map((result, index) => (
-                    <div key={index} style={{ flex: 1 }}>
-                      <div>
-                        {result.map(({ property, value }) => (
-                          <div key={property}> {`${property}: ${value}`}</div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                  <div style={{ flex: 1 }}>
-                  <h4>LCD設定</h4>
-                  <div className='card'>
-                    {results_all.slice(3, 7).map((result, index) => (
-                      <div key={index}>
-                        <div>
-                          {result.map(({ property, value }) => (
-                            <div key={property}> {`${property}: ${value}`}</div>
-                          ))}
-                        </div>
-                      </div>
+    <>
+      <div id="main-content">
+        <h2 ref={menuRef}>Menu Page</h2>
+        {fileContent && fileContent.if_config ? (
+          <div>
+            <h4>イコライザ設定</h4>
+            <div className='card' style={{ display: 'flex' }}>
+              {results_all.slice(0, 3).map((result, index) => (
+                <div key={index} style={{ flex: 1 }}>
+                  <div>
+                    {result.map(({ property, value }) => (
+                      <div key={property}> {`${property}: ${value}`}</div>
                     ))}
-                    </div>
-                  </div>
-                  {/* {results_all?.slice(7, 8).map((result, index) => (
-                    <div key={index}>
-                      <h4>{`Result ${index + 8}`}</h4>
-                      <div class='card'>
-                        {result.map(({ property, value }) => (
-                          <div key={property}> {`${property}: ${value}`}</div>
-                        ))}
-                      </div>
-                    </div>
-                  ))} */}
-                  <div style={{ flex: 1 }}>
-                    <h4>入力レベル</h4>
-                    <div className='card'>
-                    {results_all?.slice(8, 11).map((result, index) => (
-                      <div key={index}>
-                        {result.map(({ property, value }) => (
-                          <div key={property}> {`${property}: ${value}`}</div>
-                        ))}
-                      </div>
-                    ))}
-                    </div>
                   </div>
                 </div>
-                <div className='card'>
-                  {results_all?.slice(11,12).map((result, index) => (
-                    <div key={index}>
-                    {/* <h4>{`Result ${index + 12}`}</h4> */}
-                      {result.map(({ property, value }) => (
-                        <div key={property}> {`${property}: ${value}`}</div>
-                      ))}
-                    </div>
-                  ))}
-                  {results_all?.slice(13,15).map((result, index) => (
-                    <div key={index}>
-                      {/* <h4>{`Result ${index + 12}`}</h4> */}
-                      {result.map(({ property, value }) => (
-                        <div key={property}> {`${property}: ${value}`}</div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-                <h4>配信設定</h4>
-                <div className='card'>
-                {results_all2?.map((result, index) => (
+              ))}
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <div style={{ flex: 1 }}>
+              <h4>LCD設定</h4>
+              <div className='card'>
+                {results_all.slice(3, 7).map((result, index) => (
                   <div key={index}>
                     <div>
                       {result.map(({ property, value }) => (
-                        <div key={property}>{`${property}: ${value}`}</div>
+                        <div key={property}> {`${property}: ${value}`}</div>
                       ))}
                     </div>
                   </div>
                 ))}
                 </div>
-                <h2 ref={wireless2Ref}>ワンタッチボタン一覧</h2>
-                {datasets.map((data, index) => (
-                  <div key={index} >
-                    <MenuTable id={data[0]} title={data[1]} call={data[2]} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <h4>入力レベル</h4>
+                <div className='card'>
+                {results_all?.slice(8, 11).map((result, index) => (
+                  <div key={index}>
+                    {result.map(({ property, value }) => (
+                      <div key={property}> {`${property}: ${value}`}</div>
+                    ))}
                   </div>
                 ))}
+                </div>
               </div>
-            ) : (
-              <p>Loading...</p>
-            )}
+            </div>
+            <div className='card'>
+              {results_all?.slice(11,12).map((result, index) => (
+                <div key={index}>
+                  {result.map(({ property, value }) => (
+                    <div key={property}> {`${property}: ${value}`}</div>
+                  ))}
+                </div>
+              ))}
+              {results_all?.slice(13,15).map((result, index) => (
+                <div key={index}>
+                  {result.map(({ property, value }) => (
+                    <div key={property}> {`${property}: ${value}`}</div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <h4>配信設定</h4>
+            <div className='card'>
+            {results_all2?.map((result, index) => (
+              <div key={index}>
+                <div>
+                  {result.map(({ property, value }) => (
+                    <div key={property}>{`${property}: ${value}`}</div>
+                  ))}
+                </div>
+              </div>
+            ))}
+            </div>
           </div>
-        </div>
-      )}
-      {!file && (
-        <p>Resetting...</p>
-      )}
-    </div>
+        ) : null}
+      </div>
+    </>
   );
 };
-
 export default MenuComponent;
+
+export const MenuProcessor = ({ menu }) => {
+  const menuPropertyFunctions = [
+    processFunction1, processFunction2, processFunction3, processFunction4, processFunction5, processFunction6, processFunction7, processFunction8, processFunction9, processFunction10,
+    processFunction11, processFunction12, processFunction13, processFunction14, processFunction15, processFunction16, processFunction17
+  ];
+
+  const results = [];
+
+  for (let i = 0; i < 17 ; i++) {
+    if(i===0||i===1||i===2){continue}
+    const property = menu[i];
+    if(property){
+      const func = menuPropertyFunctions[i];
+      const result = func(property);
+      results.push(result);
+    }
+  }
+  return results;
+};
+
+export const MenuProcessor2 = ({ menu }) => {
+  const menuPropertyFunctions = [
+    processFunction997, processFunction998, processFunction999
+  ];
+
+  const results = [];
+
+  for (let i = 997; i < 1000 ; i++) {
+    const property = menu[i];
+    if(property){
+      const func = menuPropertyFunctions[i-997];
+      const result = func(property);
+      results.push(result);
+    }
+  }
+  return results;
+};
 
 export const MenuProcessor3 = ({ menu }) => {
   const datasets = [];
