@@ -166,11 +166,11 @@ import useFileNavigation from './useFileNavigation';
   // ---------------------------------------------------------------------
   
  const MenuComponent = ({ results_all, results_all2, wireless1Ref }) => {
-  const { file, fileContent } = useFileNavigation();
+  const { fileContent } = useFileNavigation();
   return (
     <>
       <div id="main-content">
-        <h2>Menu Page</h2>
+        <h2 ref={wireless1Ref}>Menu Page</h2>
         {fileContent && fileContent.if_config ? (
           <div>
             <h4>イコライザ設定</h4>
@@ -247,7 +247,6 @@ import useFileNavigation from './useFileNavigation';
     </>
   );
 };
-
 export default MenuComponent;
 
 export const MenuProcessor = ({ menu }) => {
