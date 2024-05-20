@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link  } from 'react-router-dom';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import IconButton from '@mui/material/Button'
@@ -59,7 +58,7 @@ export const ScTable2 = ({ id, call }) => {
                 </td>
             </tr>
             {open && (
-                    <tr>
+                    <tr style={{backgroundColor: 'white'}}>
                         <td colSpan={5}>
                             <Collapse in={open} timeout="auto" unmountOnExit>
                                 <ScDetail id={id} />
