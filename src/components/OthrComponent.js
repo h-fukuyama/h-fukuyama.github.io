@@ -9,6 +9,7 @@ import useFileNavigation from './useFileNavigation';
 import Sidebar from './Sidebar';
 import { IsmsProcessor } from './IsmsComponent';
 import { IsmsSettingComponent } from './IsmsSettingComponent';
+import CardComponent from './CardComponent';
 
   // ここから１行ずつのルール定義に入る(1~33行目)------------------------
 const processFunction1 = (property) => {
@@ -319,7 +320,6 @@ const processFunction33 = (property) => {
 
 const OthrComponent = () => {
   const { file, fileContent} = useFileNavigation();
-
   const OthrProcessor = ({ other }) => {
     const otherPropertyFunctions = [
       processFunction1, processFunction2, processFunction3, processFunction4, processFunction5, processFunction6, processFunction7, processFunction8, processFunction9, processFunction10,
@@ -327,16 +327,13 @@ const OthrComponent = () => {
       processFunction21, processFunction22, processFunction23, processFunction24, processFunction25, processFunction26, processFunction27, processFunction28, processFunction29, processFunction30,
       processFunction31, processFunction32, processFunction33
     ];
-
     const results = [];
 
     for (let i = 0; i < 33 ; i++) {
       if(i===1||i===2||i===3||i===4){continue}
       const property = other[i];
       const func = otherPropertyFunctions[i];
-
       const result = func(property);
-
       results.push(result);
     }
     return results;
@@ -365,224 +362,56 @@ const OthrComponent = () => {
   
   return (
     <div>
-      {file && (
+      {file ? (
         <div>
           <Header />
           <Sidebar items={items} scrollToRef={scrollToRef} />
-          <IsmsSettingComponent
-            results_all={isms_all}
-            ismsRef={refs.isms}
-          />
-          <MenuComponent
-            results_all={menu_all}
-            results_all2={menu_all2}
-            menuRef={refs.menu}
-          />
+          <IsmsSettingComponent results_all={isms_all} ismsRef={refs.isms} />
+          <MenuComponent results_all={menu_all} results_all2={menu_all2} menuRef={refs.menu} />
           <div id="main-content">
             <h2 ref={refs.othr} style={{ marginBottom: '20px', marginTop: '20px' }}>Othr Page</h2>
             {fileContent && fileContent.if_config ? (
               <div>
-                <div style={{ display: 'flex '}}>
+                <div style={{ display: 'flex' }}>
                   <div style={{ flex: 1 }}>
-                    {results_all.slice(0,1).map((result, index) => (
-                    <div key={index} className="card">
-                      <div style={{ marginBottom: '0.3em' }}>
-                        {result.map(({ property, value }) => (
-                          <div
-                            key={property}
-                            className={`${value === 'ON' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                            style={{ margin: '0.4em' }}
-                          >
-                            {`${property}: ${value}`}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    ))}
+                    <CardComponent results={results_all.slice(0, 1)} />
                   </div>
                   <div style={{ flex: 1 }}>
-                    {results_all.slice(1,4).map((result, index) => (
-                      <div key={index} className="card">
-                        <div style={{ marginBottom: '0.1em' }}>
-                          {result.map(({ property, value }) => (
-                            <div
-                              key={property}
-                              className={`${value === 'ON' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                              style={{ margin: '0.3em' }}
-                            >
-                              {`${property}: ${value}`}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                    <h4>　特殊バンド設定</h4>
-                    <div className="card">
-                      {results_all.slice(4,7).map((result, index) => (
-                        <div style={{ marginBottom: '0.1em' }}>
-                          {result.map(({ property, value }) => (
-                            <div
-                              key={property}
-                              className={`${value === 'ON' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                              style={{ margin: '0.1em' }}
-                            >
-                              {`${property}: ${value}`}
-                            </div>
-                          ))}
-                          </div>
-                      ))}
-                    </div>
-                    </div>
+                    <CardComponent results={results_all.slice(1, 4)} />
+                    <h4>特殊バンド設定</h4>
+                    <CardComponent results={results_all.slice(4, 7)} />
+                  </div>
                 </div>
                 <div style={{ display: 'flex' }}>
                   <div style={{ flex: 1 }}>
                     <h4>店内/事務所音量</h4>
-                    <div className='card' style={{ display: 'flex' }}>
-                      <div style={{ flex: 1 }}>
-                        {results_all.slice(7,9).map((result, index) => (
-                        <div>
-                          {result.map(({ property, value }) => (
-                            <div
-                              key={property}
-                              className={`${value === 'ON' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                              style={{ margin: '0.3em' }}
-                            >
-                              {`${property}: ${value}`}
-                            </div>
-                          ))}
-                        </div>
-                        ))}
-                      </div>
-                      <div style={{ flex: 1 }}>
-                        {results_all.slice(9,11).map((result, index) => (
-                          <div>
-                            {result.map(({ property, value }) => (
-                              <div
-                                key={property}
-                                className={`${value === 'ON' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                                style={{ margin: '0.3em' }}
-                              >
-                                {`${property}: ${value}`}
-                              </div>
-                            ))}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    <CardComponent results={results_all.slice(7, 11)} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <h4>CMバランス</h4>
-                    <div className='card' style={{display: 'flex'}}>
-                      <div style={{ flex: 1 }}>
-                        {results_all.slice(11,13).map((result, index) => (
-                          <div style={{ marginBottom: '0.1em' }}>
-                            {result.map(({ property, value }) => (
-                              <div
-                                key={property}
-                                className={`${value === 'ON' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                                style={{ margin: '0.3em' }}
-                              >
-                                {`${property}: ${value}`}
-                              </div>
-                            ))}
-                          </div>
-                        ))}
-                      </div>
-                      <div style={{flex: 1}}>
-                        {results_all.slice(13,15).map((result, index) => (
-                          <div style={{ marginBottom: '0.1em' }}>
-                            {result.map(({ property, value }) => (
-                              <div
-                                key={property}
-                                className={`${value === 'ON' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                                style={{ margin: '0.3em' }}
-                              >
-                                {`${property}: ${value}`}
-                              </div>
-                            ))}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    <CardComponent results={results_all.slice(11, 15)} />
                   </div>
                 </div>
                 <div style={{ display: 'flex' }}>
                   <div style={{ flex: 1 }}>
                     <h4>インカム音量</h4>
-                    <div className="card">
-                      {results_all.slice(15,19).map((result, index) => (  
-                      <div style={{ marginBottom: '0.1em' }}>
-                        {result.map(({ property, value }) => (
-                          <div
-                            key={property}
-                            className={`${value === 'ON' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                            style={{ margin: '0.3em' }}
-                          >
-                            {`${property}: ${value}`}
-                          </div>
-                        ))}
-                      </div>
-                      ))}
-                    </div>
+                    <CardComponent results={results_all.slice(15, 19)} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <h4>音量値</h4>
-                    <div className="card">  
-                      {results_all.slice(19,24).map((result, index) => (
-                        <div style={{ marginBottom: '0.1em' }}>
-                          {result.map(({ property, value }) => (
-                            <div
-                              key={property}
-                              className={`${value === 'ON' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                              style={{ margin: '0.1em' }}
-                            >
-                              {`${property}: ${value}`}
-                            </div>
-                          ))}
-                        </div>
-                      ))}
-                    </div>
+                    <CardComponent results={results_all.slice(19, 24)} />
                   </div>
                 </div>
-                <div className="card">  
-                  {results_all.slice(24,25).map((result, index) => (
-                    <div style={{ marginBottom: '0.1em' }}>
-                      {result.map(({ property, value }) => (
-                        <div
-                          key={property}
-                          className={`${value === 'ON' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                          style={{ margin: '0.3em' }}
-                        >
-                          {`${property}: ${value}`}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
+                <CardComponent results={results_all.slice(24, 25)} />
                 <h4>許可ボタン設定</h4>
-                <div className="card" style={{ display: 'flex' }}>  
-                  {results_all.slice(25).map((result, index) => (
-                    <div style={{ flex: 1 }}>
-                      {result.map(({ property, value }) => (
-                        <div
-                          key={property}
-                          className={`${value === 'ON' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                          style={{ margin: '0.3em' }}
-                        >
-                          {property}: {value}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
+                <CardComponent results={results_all.slice(25)} />
               </div>
             ) : (
               <p>Loading...</p>
             )}
           </div>
         </div>
-      )}
-      {!file && (
+      ) : (
         <p>Resetting...</p>
       )}
     </div>

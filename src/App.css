@@ -45,7 +45,7 @@ ul {
 }
 
 li {
-  margin-right: 20px; /* リンク間の余白 */
+  margin-right: 30px; /* リンク間の余白 */
 }
 
 li:last-child {

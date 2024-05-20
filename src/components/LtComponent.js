@@ -22,11 +22,11 @@ const LtComponent = () => {
 
   return (
     <div>
-      {file && ( //fileが存在すれば以下を表示
+      {file ? ( // fileが存在すれば以下を表示
         <div>
           <Header />
           <h2 style={{ marginBottom: '50px', marginLeft: '20px', marginTop: '20px' }}>Lt Page</h2>
-          {fileContent && (
+          {fileContent ? (
             <div>
               {datasets.map((data, index) => (
                 <div key={index} style={{padding: '5px'}}>
@@ -34,12 +34,15 @@ const LtComponent = () => {
                 </div>
               ))}
             </div>
+          ) : (
+            <p>Loading...</p>
           )}
         </div>
+      ) : (
+        <p>Resetting...</p>
       )}
-      {!file && <h2>Lt Page</h2>} {/* fileが存在しなければタイトルだけ表示（/に遷移するとかでもよさそう) */}
     </div>
-  );
+  );  
 };
 
 export default LtComponent;

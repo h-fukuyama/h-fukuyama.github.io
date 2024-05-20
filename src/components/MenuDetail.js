@@ -1,27 +1,18 @@
-import React, { useEffect } from 'react';
-import { useFileContext } from '../context/FileContext';
-import { useNavigate, useParams } from 'react-router-dom';
+import React from 'react';
+import {  useParams } from 'react-router-dom';
 import Header from './Header';
-import useFileContent from '../utils/useFileContent';
 import { MenuDetailTable0, MenuDetailTable1, MenuDetailTable2, MenuDetailTable3, MenuDetailTable4, MenuDetailTable5 } from '../utils/menu/menuDetailTable'
 import { BinaryConverter, mapFolderValue, replaceControl, replaceValue, replaceSubject, replaceVolume, generateOutput } from '../utils/sc/scComponentFunction';
 import { hexToSignedDecimal } from '../utils/calculate';
 import { processBGMBand } from '../utils/bgmBand';
 import { oneTouch } from '../utils/checkButton';
+import useFileNavigation from './useFileNavigation';
 
 const MenuDetail = () => {
-  const { file } = useFileContext(); //fileとsetFileContextを取得
-  const { fileContent } = useFileContent(file); //fileのファイルの内容を読み込む
-  const navigate = useNavigate();
+  const { file, fileContent } = useFileNavigation();
   const { id } = useParams();
   const startIndex = ((id - 1) * 70) + 17 ;
   
-  useEffect(() => {
-    if (!file) {
-      navigate('/reset');
-    }
-  }, [file, navigate]);
-
   const MenuDetailProcessor = ({ menu }) => {
     switch (menu[startIndex]) {
       case '00': //コメント再生         

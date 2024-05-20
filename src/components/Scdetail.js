@@ -1,27 +1,17 @@
-import React, { useEffect } from 'react';
-import { useFileContext } from '../context/FileContext';
-import { useNavigate, useParams } from 'react-router-dom';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import Header from './Header';
-import useFileContent from '../utils/useFileContent';
 import { ScDetailTable0, ScDetailTable1, ScDetailTable2, ScDetailTable3, ScDetailTable4, ScDetailTable5, ScDetailTable6 } from '../utils/sc/ScDetailTable';
 import { BinaryConverter, mapFolderValue, replaceControl, replaceValue, replaceSubject, replaceVolume, generateOutput } from '../utils/sc/scComponentFunction';
 import { hexToSignedDecimal } from '../utils/calculate';
 import { processBGMBand } from '../utils/bgmBand';
+import useFileNavigation from './useFileNavigation';
 
 const ScDetail = () => {
-  const { file } = useFileContext(); //fileとsetFileContextを取得
-  const { fileContent } = useFileContent(file); //fileのファイルの内容を読み込む
-  const navigate = useNavigate();
+  const { file, fileContent } = useFileNavigation();
   const { id } = useParams();
 
-  useEffect(() => {
-    if (!file) {
-      navigate('/reset');
-    }
-  }, [file, navigate]);
-
   const ScDetailProcessor = ({ sc,id }) => {
-    // const startIndex = id >= 16 ? (id - 101) * 56 : ((id - 1) * 56)+44800;
     const startIndex=id;
     switch (sc[startIndex]) {
       case '00': //コメント再生         
