@@ -198,4 +198,22 @@ tr:nth-child(even) {
   background-color: #c3edff; /* 背景色を変更 */
 }
 
+.infoTable {
+  border: 1px solid black;
+  width: 100%;
+}
+
+.infoTable th{
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  text-align: left;
+  width: auto;
+}
+.infoTable td {
+  border: 0px solid black;
+  background-color: white;
+  color: black;
+  text-align: left;
+}
 
