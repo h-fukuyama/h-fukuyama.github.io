@@ -30,7 +30,7 @@ code {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #282c34;
+  background-color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -157,10 +157,6 @@ tr:nth-child(even) {
   background-color: #f2f2f2; /* 偶数行の背景色を変更 */
 }
 
-tr:hover {
-  background-color: #f5f5f5; /* ホバー時の背景色を変更 */
-}
-
 
 /* Sidebar styles */
 #sidebar {
@@ -201,3 +197,5 @@ tr:hover {
 .highlighted {
   background-color: #c3edff; /* 背景色を変更 */
 }
+
+

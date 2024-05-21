@@ -1,5 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import IconButton from '@mui/material/Button'
+import { Collapse } from '@mui/material';
+import LtSpecific from '../../components/LtSpecific';
 
 const daysOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
 
@@ -24,19 +28,30 @@ export const LtDetailTable = ({ week, title }) => {
     );
 };
 export const LtDetailTable2 = ({ id, id2, hour, minute, call }) => {
+    const [open, setOpen] = React.useState(false);
     return (
     <table align='center'>
     <tbody>
-        <tr align='center' className={call !== '<未登録>' ? 'highlighted' : ''}>
+        <tr align='center'>
         <td width="5%" textalign="center">{id2}</td>
         <td width="25%" textalign="center">{hour}:{minute}</td>
         <td width="50%" textalign="center"><b>{call}</b></td>
         <td width="20%">
-            <Link to={`/lt/${id}/${id2}`}>
-            <button className="detail-button">詳細表示</button>
-            </Link>
+        <IconButton style={{color: 'black'}} z-index='1'  onClick={() => setOpen(!open)}>
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            {open ? "詳細非表示": "詳細表示"}
+        </IconButton>
         </td>
         </tr>
+        {open && (
+            <tr style={{backgroundColor: 'white'}}>
+                <td colSpan={4}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <LtSpecific id={id} id2={id2} />
+                    </Collapse>
+                </td>
+            </tr>
+        )}
     </tbody>
     </table>
     );
