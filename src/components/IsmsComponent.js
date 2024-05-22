@@ -1,10 +1,12 @@
 // IsmsComponent.js
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { processIsmsBGMBand } from '../utils/bgmBand';
 import { hexToBinary, checkBit } from '../utils/calculate';
 import { channelMask } from '../utils/checkButton';
 import useFileNavigation from './useFileNavigation';
 import Header from './Header';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
  // ここから１行ずつのルール定義に入る(1~33行目)------------------------
  const processFunction1 = (property) => {
@@ -140,28 +142,109 @@ const processFunction14 = (property) => {
 };
 // ここまで-----------------------------------------------------------
 
+const processResults = (results_all) => {
+  const categories = {
+    'A-Z': [],
+    'UA-UZ': [],
+    'ZA-ZZ': [],
+  };
+
+  results_all.forEach(({ property, value }) => {
+    if (property.match(/^[A-Z]チャンネルマスク/)) {
+      categories['A-Z'].push({ property, value });
+    } else if (property.match(/^U[A-Z]チャンネルマスク/)) {
+      categories['UA-UZ'].push({ property, value });
+    } else if (property.match(/^Z[A-Z]チャンネルマスク/)) {
+      categories['ZA-ZZ'].push({ property, value });
+    }
+  });
+
+  console.log('categories:', categories); // 追加: デバッグのためのログ
+
+  return categories;
+};
+
+
+const StickyHeaderTable = (width, zIndex, left) => {
+  return {
+    position: "sticky",
+    left: left,
+    background: "white",
+    width: width,
+    zIndex: zIndex,
+  };
+}
+
+const renderMatrix = (data, title) => {
+  return (
+    <TableContainer component={Paper} sx={{ maxWidth: '70%', margin: 'auto' }}>
+      <Table stickyHeader>
+        <TableHead>
+          <TableRow>
+            <StyledTableCell className="MuiTableCell-stickyHeader" colSpan={100} align="center">{title}</StyledTableCell>
+          </TableRow>
+          <TableRow>
+            <StyledTableCell className="MuiTableCell-stickyHeader MuiTableCell-firstColumn">Property</StyledTableCell>
+            {Array.from({ length: 99 }, (_, i) => (
+              <StyledTableCell key={i} align="center" className="MuiTableCell-stickyHeader">{i + 1}</StyledTableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((item, rowIndex) => (
+            <TableRow key={rowIndex}>
+              <StyledTableCell className="MuiTableCell-firstColumn">{item.property}</StyledTableCell>
+              {Array.from({ length: 99 }, (_, colIndex) => (
+                <TableCell
+                  key={colIndex}
+                  style={{ backgroundColor: item.value.split(', ').includes(`${colIndex + 1}`) ? 'lightgreen' : 'white' }}
+                >
+                  {item.value.split(', ').includes(`${colIndex + 1}`) ? '〇' : ''}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+};
+
+
+const StyledTableCell = styled(TableCell)(({ theme, isOn }) => ({
+  backgroundColor: isOn ? theme.palette.success.light : 'inherit',
+  color: isOn ? theme.palette.success.contrastText : 'inherit',
+  textAlign: 'center',
+}));
+
 export const IsmsComponent = () => {
   const { fileContent } = useFileNavigation();
-    const results_all = IsmsProcessor({ isms: fileContent?.if_config?.isms || []  })  
+  const [ results_all, setResultsAll] = useState([]);
+  const [ categories, setCategories ] = useState({});
+  useEffect(() => {
+    const results_all = [];
+    for (let i = 0x41; i <= 0x8E; i++) {
+      const bgmBand = processIsmsBGMBand(i);
+      results_all.push(channelMask(fileContent?.if_config?.isms[i - 0x40], bgmBand));
+    }
+  
+    const flattenedResultsAll = results_all.flat(); // `results_all` がネストされている場合にフラット化
+  
+    console.log('flattenedResultsAll:', flattenedResultsAll); // 追加: デバッグのためのログ
+  
+    setResultsAll(flattenedResultsAll);
+    setCategories(processResults(flattenedResultsAll));
+  }, [fileContent]);
+
+   console.log(results_all);
     return (
       <div>
         <Header />
-        {results_all && results_all.slice(1, 2).map((result, index) => (
-          <>
-            <h2 style={{ marginBottom: '50px', marginLeft: '20px', marginTop: '20px' }}>チャンネルマスク設定</h2>
-            <div style={{ margin: '50px' }}>
-              {typeof result === 'object' && result.map && result.map(({ property, value }) => (
-                <div
-                  key={property}
-                  className={`${value === '有効' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                  style={{ marginBottom: '0.5em' }}
-                >
-                  {`${property}: ${value}`}
-                </div>
-              ))}
-            </div>
-          </>
-        ))}
+        <div>
+          <div style={{margin: '50px'}}>{categories['A-Z'] && renderMatrix(categories['A-Z'], 'A-Z チャンネルマスク')}</div>
+          <div style={{margin: '50px'}}>{categories['UA-UZ'] && renderMatrix(categories['UA-UZ'], 'UA-UZ チャンネルマスク')}</div>
+          <div style={{margin: '50px'}}>{categories['ZA-ZZ'] && renderMatrix(categories['ZA-ZZ'], 'ZA-ZZ チャンネルマスク')}</div>
+        </div>
       </div>
     );
 };
