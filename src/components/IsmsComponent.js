@@ -177,44 +177,78 @@ const StickyHeaderTable = (width, zIndex, left) => {
 
 const renderMatrix = (data, title) => {
   return (
-    <TableContainer component={Paper} sx={{ maxWidth: '70%', margin: 'auto' }}>
-      <Table stickyHeader>
-        <TableHead>
-          <TableRow>
-            <StyledTableCell className="MuiTableCell-stickyHeader" colSpan={100} align="center">{title}</StyledTableCell>
-          </TableRow>
-          <TableRow>
-            <StyledTableCell className="MuiTableCell-stickyHeader MuiTableCell-firstColumn">Property</StyledTableCell>
-            {Array.from({ length: 99 }, (_, i) => (
-              <StyledTableCell key={i} align="center" className="MuiTableCell-stickyHeader">{i + 1}</StyledTableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((item, rowIndex) => (
-            <TableRow key={rowIndex}>
-              <StyledTableCell className="MuiTableCell-firstColumn">{item.property}</StyledTableCell>
-              {Array.from({ length: 99 }, (_, colIndex) => (
-                <TableCell
-                  key={colIndex}
-                  style={{ backgroundColor: item.value.split(', ').includes(`${colIndex + 1}`) ? 'lightgreen' : 'white' }}
+    <>
+      <h2>{title}</h2>
+      <TableContainer component={Paper} sx={{ maxWidth: '80%', margin: 'auto', maxHeight: '80vh', overflow: 'auto' }}>
+        <Table size="small" stickyHeader>
+          <TableHead>
+            <TableRow>
+              <StyledTableCell
+                className="MuiTableCell-stickyHeader MuiTableCell-firstColumn"
+                sx={{
+                  position: 'sticky',
+                  left: 0,
+                  top: 0,
+                  zIndex: 2,
+                  backgroundColor: 'white',
+                }}
+              ></StyledTableCell>
+              {Array.from({ length: 99 }, (_, i) => (
+                <StyledTableCell
+                  key={i}
+                  align="center"
+                  className="MuiTableCell-stickyHeader"
+                  sx={{
+                    position: 'sticky',
+                    top: 0,
+                    zIndex: 2,
+                    backgroundColor: 'white',
+                  }}
                 >
-                  {item.value.split(', ').includes(`${colIndex + 1}`) ? '〇' : ''}
-                </TableCell>
+                  {i + 1}
+                </StyledTableCell>
               ))}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {data.map((item, rowIndex) => (
+              <TableRow key={rowIndex}>
+                <StyledTableCell
+                  className="MuiTableCell-firstColumn"
+                  sx={{
+                    position: 'sticky',
+                    left: 0,
+                    zIndex: 1, // ヘッダーの下に来るように設定
+                    backgroundColor: 'white',
+                    height: rowIndex === 0 ? '50px' : 'auto',
+                  }}
+                >
+                  {item.property}
+                </StyledTableCell>
+                {Array.from({ length: 99 }, (_, colIndex) => (
+                  <TableCell
+                    key={colIndex}
+                    style={{
+                      backgroundColor: item.value.split(', ').includes(`${colIndex + 1}`) ? 'lightgreen' : 'white',
+                    }}
+                  >
+                    {item.value.split(', ').includes(`${colIndex + 1}`) ? '〇' : ''}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 };
 
-
-const StyledTableCell = styled(TableCell)(({ theme, isOn }) => ({
-  backgroundColor: isOn ? theme.palette.success.light : 'inherit',
-  color: isOn ? theme.palette.success.contrastText : 'inherit',
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
   textAlign: 'center',
+  whiteSpace: 'nowrap',
+  width: '20px',
+  backgroundColor: 'white',
 }));
 
 export const IsmsComponent = () => {
@@ -239,7 +273,7 @@ export const IsmsComponent = () => {
    console.log(results_all);
     return (
       <div>
-        <Header />
+        <Header zIndex={1000000} />
         <div>
           <div style={{margin: '50px'}}>{categories['A-Z'] && renderMatrix(categories['A-Z'], 'A-Z チャンネルマスク')}</div>
           <div style={{margin: '50px'}}>{categories['UA-UZ'] && renderMatrix(categories['UA-UZ'], 'UA-UZ チャンネルマスク')}</div>
