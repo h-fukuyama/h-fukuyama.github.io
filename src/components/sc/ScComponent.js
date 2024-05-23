@@ -1,9 +1,5 @@
 import { getActionResult1, getActionResult2 } from '../../utils/sc/scComponentFunction';
 
-const ScComponent = () => {
-};
-export default ScComponent;
-
 export const ScProcessor1 = ({ sc }) => {
   const datasets = [];
   for (let i = 0; i < 22400; i += 56) {

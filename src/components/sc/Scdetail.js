@@ -7,63 +7,53 @@ import useFileNavigation from '../useFileNavigation';
 
 const ScDetail = (props) => {
   const { file, fileContent } = useFileNavigation();
-  // const { id } = useParams();
   const  id  = props.id;
-  // const { file } = props.file;
-  // const { fileContent } = props.fileContent;
-  console.log(id);
   const tableSet = ScDetailProcessor({ sc: fileContent?.if_config?.sc || [], id: id>16? (id - 101) * 56 : ((id - 1) * 56)+44800 });
   const tableSet2 = ScDetailProcessor({ sc: fileContent?.if_config?.sc || [], id: id>16? ((id - 101) * 56)+22400 : ((id - 1) * 56)+45248 });
-  console.log(tableSet);
   return (
     <div>
       {file && (
         <div>
-          {/* <Header /> */}
-          <div  >
-            {/* <h2>Sc Detail Page</h2>
-            <h3>ボタン: {Number(id)}の詳細</h3> */}
-            {fileContent && (
-                <div>
-                  <h4 align='left'>呼出</h4>
-                  {tableSet.props.fileName?.join('') === '' ? 
-                    <table align='center'>
-                      <tbody>
-                        <td><b>未登録</b></td>
-                      </tbody>
-                    </table> : tableSet}
-                  {
-                  (id >= 9 && id <= 16)
-                  ? 
-                  <>
-                    <h4 align='left'>呼戻</h4>
-                    <table align='center'>
-                      <tbody>
-                        <td><b>呼び戻し無し</b></td>
-                      </tbody>
-                    </table>
-                  </>
-                  : 
-                  (tableSet.props?.back === '利用しない' || tableSet.props?.fileName?.join('') === '') 
-                  ?
-                  <>
-                    <h4 align='left'>呼戻</h4>
-                    <table align='center'>
-                      <tbody>
-                        <td><b>未登録</b></td>
-                      </tbody>
-                    </table>
-                  </>
-                  :
-                  <>
-                    <h4 align='left'>呼戻</h4>
-                    {tableSet2}
-                  </>
-                }
-                </div>
-              )
-            }
-          </div>
+          {fileContent && (
+              <div>
+                <h4 align='left'>呼出</h4>
+                {tableSet.props.fileName?.join('') === '' ? 
+                  <table align='center'>
+                    <tbody>
+                      <td><b>未登録</b></td>
+                    </tbody>
+                  </table> : tableSet}
+                {
+                (id >= 9 && id <= 16)
+                ? 
+                <>
+                  <h4 align='left'>呼戻</h4>
+                  <table align='center'>
+                    <tbody>
+                      <td><b>呼び戻し無し</b></td>
+                    </tbody>
+                  </table>
+                </>
+                : 
+                (tableSet.props?.back === '利用しない' || tableSet.props?.fileName?.join('') === '') 
+                ?
+                <>
+                  <h4 align='left'>呼戻</h4>
+                  <table align='center'>
+                    <tbody>
+                      <td><b>未登録</b></td>
+                    </tbody>
+                  </table>
+                </>
+                :
+                <>
+                  <h4 align='left'>呼戻</h4>
+                  {tableSet2}
+                </>
+              }
+            </div>
+            )
+          }
           </div>
       )}
       {!file && <h2>Sc Page</h2>}

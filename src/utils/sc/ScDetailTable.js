@@ -32,10 +32,6 @@ export const ScDetailTable0 = ({fileName, folder, volume, mixing, output, extern
           <td>{output[1]}</td>
           <td>{output[2]}</td>
       </tr>
-      {/* <tr>
-          <th colSpan={1}>リピート感覚</th>
-          <td colSpan={4}>{repeat}秒</td>
-      </tr> */}
       <tr>
           <th colSpan={1}>外部出力</th>
           <td colSpan={4}>{external[0]}</td>
@@ -72,10 +68,6 @@ export const ScDetailTable0 = ({fileName, folder, volume, mixing, output, extern
           </tr>
         </>
       )}
-      {/* <tr>
-          <th>呼戻し</th>
-          <td colSpan={4}>{back}</td>
-        </tr> */}
       </tbody>
     </table>
   )
@@ -92,10 +84,6 @@ export const ScDetailTable1 = ({title, power, back}) => {
           <th width='30%'>動作</th>
           <td>{power}</td>
         </tr>
-        {/* <tr>
-          <th>呼戻し</th>
-          <td>{back}</td>
-        </tr> */}
         </tbody>
       </table>
     )
@@ -136,10 +124,6 @@ export const ScDetailTable2 = ({channel, external, back}) => {
             )}
           </>
         )}
-        {/* <tr>
-          <th>呼戻し</th>
-          <td colSpan={2}>{back}</td>
-        </tr> */}
         </tbody>
       </table>
   )
@@ -180,10 +164,6 @@ export const ScDetailTable3 = ({action, cm, bgm, minute, back}) => {
         <td key={index}>{value ? '☑' : ''}</td>
       ))}
       </tr>
-      {/* <tr>
-          <th>呼戻し</th>
-          <td colSpan={3}>{back}</td>
-        </tr> */}
         </tbody>
     </table>
   )
@@ -204,10 +184,6 @@ export const ScDetailTable4 = ({button, control, back}) => {
             <th width='30%'>動作</th>
             <td>{control}</td>
           </tr>
-          {/* <tr>
-            <th>呼戻し</th>
-            <td>{back}</td>
-          </tr> */}
           </tbody>
       </table>
     )
@@ -236,10 +212,6 @@ export const ScDetailTable5 = ({external2, back}) => {
             <td>(1~99秒)</td>
         </tr>
         )}
-        {/* <tr>
-          <th>呼戻し</th>
-          <td colSpan={2}>{back}</td>
-        </tr> */}
         </tbody>
       </table>
     )
@@ -267,10 +239,6 @@ export const ScDetailTable6 = ({subject, control, volume, back}) => {
             <td>(1~99秒)</td>
         </tr>
         )}
-        {/* <tr>
-          <th>呼戻し</th>
-          <td colSpan={2}>{back}</td>
-        </tr> */}
         </tbody>
         </table>
     )
