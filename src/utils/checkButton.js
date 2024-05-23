@@ -66,7 +66,7 @@ export const channelMask = (property, prefix) => {
           value: `${buttons.map((button) => button.property).join(', ')}`
         }));
     }
-    console.log(`channelMask for ${prefix}:`, resultEntries); 
+    // console.log(`channelMask for ${prefix}:`, resultEntries); 
     return resultEntries;
   } else {
     return [{ property: `${prefix}チャンネルマスク:`, value: '不明' }];

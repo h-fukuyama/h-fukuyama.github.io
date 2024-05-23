@@ -4,6 +4,25 @@ import { processVolume } from '../../utils/processVolume';
 import { hexToBinary, checkBit, hexToSignedDecimal } from '../../utils/calculate';
 import { checkButton } from '../../utils/checkButton';
 
+export const OthrProcessor = ({ other }) => {
+    const otherPropertyFunctions = [
+      processFunction1, processFunction2, processFunction3, processFunction4, processFunction5, processFunction6, processFunction7, processFunction8, processFunction9, processFunction10,
+      processFunction11, processFunction12, processFunction13, processFunction14, processFunction15, processFunction16, processFunction17, processFunction18, processFunction19, processFunction20,
+      processFunction21, processFunction22, processFunction23, processFunction24, processFunction25, processFunction26, processFunction27, processFunction28, processFunction29, processFunction30,
+      processFunction31, processFunction32, processFunction33
+    ];
+    const results = [];
+
+    for (let i = 0; i < 33 ; i++) {
+      if(i===1||i===2||i===3||i===4){continue}
+      const property = other[i];
+      const func = otherPropertyFunctions[i];
+      const result = func(property);
+      results.push(result);
+    }
+    return results;
+  };
+
   // ここから１行ずつのルール定義に入る(1~33行目)------------------------
 export const processFunction1 = (property) => {
   const result1 = [];
@@ -300,12 +319,10 @@ export const processFunction31 = (property) => {
     return [{ property: 'スタッフコール無線①変更', value: '不明' }];
   }
 };
-
 export const processFunction32 = (property) => {
   return checkButton(property, 16, 'スタッフコール無線②変更許可ボタン');
 };
 export const processFunction33 = (property) => {
   return checkButton(property, 16, 'スタッフコール有線許可ボタン');
 };
-
 // ここまで-----------------------------------------------------------

@@ -7,7 +7,6 @@ import useFileNavigation from '../useFileNavigation';
 
 const LtComponent = () => {
   const { file, fileContent} = useFileNavigation();
-
   const lt = fileContent?.if_config?.lt;
   const menu = fileContent?.if_config?.menu[10];
   const datasets = [];
