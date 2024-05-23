@@ -1,14 +1,14 @@
 import React, { useRef, useState } from 'react';
-import Header from './Header';
-import { ScProcessor1, ScProcessor2 } from './ScComponent'
-import { ScTable1, ScTable2 } from '../utils/sc/scTable';
-import { MenuTable } from '../utils/menu/menuTable';
-import { MenuProcessor3 } from './MenuComponent';
-import { hexToBinary } from '../utils/calculate';
-import { LtMainTable } from '../utils/lt/ltMainTable';
-import { oneTouch } from '../utils/checkButton';
-import Sidebar from './Sidebar';
-import useFileNavigation from './useFileNavigation';
+import Header from '../Header';
+import { ScProcessor1, ScProcessor2 } from '../sc/ScComponent'
+import { ScTable1, ScTable2 } from '../../utils/sc/scTable';
+import { MenuTable } from '../../utils/menu/menuTable';
+import { MenuProcessor3 } from '../menu/MenuComponent';
+import { hexToBinary } from '../../utils/calculate';
+import { LtMainTable } from '../../utils/lt/ltMainTable';
+import { oneTouch } from '../../utils/checkButton';
+import Sidebar from '../Sidebar';
+import useFileNavigation from '../useFileNavigation';
 
 const MainComponent = () => {
   const { file, fileContent} = useFileNavigation();

@@ -1,13 +1,12 @@
 // IsmsComponent.js
 import React, {useState, useEffect, useRef} from 'react';
-import { processIsmsBGMBand } from '../utils/bgmBand';
-import { hexToBinary, checkBit } from '../utils/calculate';
-import { channelMask } from '../utils/checkButton';
-import useFileNavigation from './useFileNavigation';
-import Header from './Header';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, ButtonGroup, Button } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import Sidebar from './Sidebar';
+import { processIsmsBGMBand } from '../../utils/bgmBand';
+import { hexToBinary, checkBit } from '../../utils/calculate';
+import { channelMask } from '../../utils/checkButton';
+import useFileNavigation from '../useFileNavigation';
+import Header from '../Header';
+import { renderMatrix } from './renderMatrixComponent';
+import Sidebar from '../Sidebar';
 
  // ここから１行ずつのルール定義に入る(1~33行目)------------------------
  const processFunction1 = (property) => {
@@ -149,7 +148,6 @@ const processResults = (results_all) => {
     'UA-UZ': [],
     'ZA-ZZ': [],
   };
-
   results_all.forEach(({ property, value }) => {
     if (property.match(/^[A-Z]チャンネルマスク/)) {
       categories['A-Z'].push({ property, value });
@@ -159,96 +157,11 @@ const processResults = (results_all) => {
       categories['ZA-ZZ'].push({ property, value });
     }
   });
-
-  console.log('categories:', categories); // 追加: デバッグのためのログ
-
   return categories;
 };
 
-const renderMatrix = (data, title) => {
-  return (
-    <>
-      <h2>{title}</h2>
-      <TableContainer component={Paper} sx={{ maxWidth: '90%', margin: 'auto', maxHeight: '80vh', overflow: 'auto' }}>
-        <Table size="small" stickyHeader>
-          <TableHead>
-            <TableRow>
-              <StyledTableCell
-                className="MuiTableCell-stickyHeader MuiTableCell-firstColumn"
-                sx={{
-                  position: 'sticky',
-                  left: 0,
-                  top: 0,
-                  zIndex: 2,
-                  backgroundColor: 'white',
-                }}
-              ></StyledTableCell>
-              {Array.from({ length: 99 }, (_, i) => (
-                <StyledTableCell
-                  key={i}
-                  align="center"
-                  className="MuiTableCell-stickyHeader"
-                  sx={{
-                    position: 'sticky',
-                    top: 0,
-                    zIndex: 2,
-                    backgroundColor: 'white',
-                  }}
-                >
-                  {i + 1}
-                </StyledTableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((item, rowIndex) => (
-              <TableRow key={rowIndex}>
-                <StyledTableCell
-                  isFirstColumn={true}
-                  isAllOff={item.value === '全てOFF'}
-                  sx={{
-                    position: 'sticky',
-                    left: 0,
-                    backgroundColor: item.value === '全てOFF' ? 'white' : 'lightgreen',
-                    height: rowIndex === 0 ? '15px' : 'auto',
-                  }}
-                >
-                  {item.property}
-                </StyledTableCell>
-                {Array.from({ length: 99 }, (_, colIndex) => (
-                  <TableCell
-                    key={colIndex}
-                    style={{
-                      backgroundColor: item.value.split(', ').includes(`${colIndex + 1}`) ? 'lightgreen' : 'white',
-                    }}
-                  >
-                    {item.value.split(', ').includes(`${colIndex + 1}`) ? '〇' : ''}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
-  );
-};
-
-const StyledTableCell = styled(TableCell)(({ theme, isHeader, isFirstColumn, isAllOff }) => ({
-  textAlign: 'center',
-  whiteSpace: 'nowrap',
-  minWidth: '8px',
-  height: '10px',
-  backgroundColor: isAllOff ? 'white' : (isFirstColumn ? 'lightgreen' : 'inherit'),
-  color: isHeader ? theme.palette.primary.main : 'inherit',
-  position: isHeader ? 'sticky' : 'inherit',
-  left: isFirstColumn ? 0 : 'inherit',
-}));
-
-
 const IsmsComponent = () => {
   const { fileContent } = useFileNavigation();
-  const [ results_all, setResultsAll] = useState([]);
   const [ categories, setCategories ] = useState({});
   const [ isLoading, setIsLoading ] = useState(true);
 
@@ -259,14 +172,13 @@ const IsmsComponent = () => {
   }, [categories]);
 
   useEffect(() => {
-    const results_all = [];
+    const results = [];
     for (let i = 0x41; i <= 0x8E; i++) {
       const bgmBand = processIsmsBGMBand(i);
-      results_all.push(channelMask(fileContent?.if_config?.isms[i - 0x40], bgmBand));
+      results.push(channelMask(fileContent?.if_config?.isms[i - 0x40], bgmBand));
     }
-    const flattenedResultsAll = results_all.flat(); // `results_all` がネストされている場合にフラット化  
-    setResultsAll(flattenedResultsAll);
-    setCategories(processResults(flattenedResultsAll));
+    const flattenedResults = results.flat(); // `results_all` がネストされている場合にフラット化
+    setCategories(processResults(flattenedResults));
   }, [fileContent]);
 
   const refs = {
@@ -299,8 +211,7 @@ const IsmsComponent = () => {
       </div>
     </div>
   );
-};
-export default IsmsComponent;
+};export default IsmsComponent;
 
 export const IsmsProcessor = ({ isms }) => {
   const ismsPropertyFunctions = [

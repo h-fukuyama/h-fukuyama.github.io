@@ -1,9 +1,9 @@
 import React from 'react';
-import { ScDetailTable0, ScDetailTable1, ScDetailTable2, ScDetailTable3, ScDetailTable4, ScDetailTable5, ScDetailTable6 } from '../utils/sc/ScDetailTable';
-import { BinaryConverter, mapFolderValue, replaceControl, replaceValue, replaceSubject, replaceVolume, generateOutput } from '../utils/sc/scComponentFunction';
-import { hexToSignedDecimal } from '../utils/calculate';
-import { processBGMBand } from '../utils/bgmBand';
-import useFileNavigation from './useFileNavigation';
+import { ScDetailTable0, ScDetailTable1, ScDetailTable2, ScDetailTable3, ScDetailTable4, ScDetailTable5, ScDetailTable6 } from '../../utils/sc/ScDetailTable';
+import { BinaryConverter, mapFolderValue, replaceControl, replaceValue, replaceSubject, replaceVolume, generateOutput } from '../../utils/sc/scComponentFunction';
+import { hexToSignedDecimal } from '../../utils/calculate';
+import { processBGMBand } from '../../utils/bgmBand';
+import useFileNavigation from '../useFileNavigation';
 
 const ScDetail = (props) => {
   const { file, fileContent } = useFileNavigation();

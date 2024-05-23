@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFileContext } from '../context/FileContext';
+import { useFileContext } from '../../context/FileContext';
 import { useDropzone } from 'react-dropzone';
 
 const FileInputScreen = () => {

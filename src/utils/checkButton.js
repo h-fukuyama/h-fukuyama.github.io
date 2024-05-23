@@ -2,14 +2,8 @@ export const checkButton = (property, buttonCount, buttonDisplayName) => {
   const binary = parseInt(property, 16).toString(2).padStart(16, '0');
   const buttonStatus = binary.slice(-buttonCount).split('').map(bit => (bit === '0' ? '許可': '禁止')).reverse();
 
-  if (buttonStatus.every(status => status === '禁止')) {
-    return [{ property: buttonDisplayName, value: '全て禁止' }];
-  }
-
-  if (buttonStatus.every(status => status === '許可')) {
-    return [{ property: buttonDisplayName, value: '全て許可' }];
-  }
-
+  if (buttonStatus.every(status => status === '禁止')){ return [{ property: buttonDisplayName, value: '全て禁止' }];}
+  if (buttonStatus.every(status => status === '許可')) { return [{ property: buttonDisplayName, value: '全て許可' }];}
   const activeButtons = buttonStatus.reduce((acc, status, index) => {
     if (status === '許可') {  
       acc.push(index + 1);

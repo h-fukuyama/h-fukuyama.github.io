@@ -2,17 +2,17 @@
 import React from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { FileProvider } from './context/FileContext';
-import OthrComponent from './components/OthrComponent';
-import MainComponent from './components/MainComponent';
-import ScComponent from './components/ScComponent';
-import ScDetail from './components/Scdetail';
-import MenuComponent from './components/MenuComponent';
-import MenuDetail from './components/MenuDetail';
-import IsmsComponent from './components/IsmsComponent';
-import LtComponent from './components/LtComponent';
-import LtDetail from './components/LtDetail';
-import LtSpecific from './components/LtSpecific';
-import FileInputScreen from './components/FileInputScreen';
+import OthrComponent from './components/othr/OthrComponent';
+import MainComponent from './components/mainpage/MainComponent';
+import ScComponent from './components/sc/ScComponent';
+import ScDetail from './components/sc/Scdetail';
+import MenuComponent from './components/menu/MenuComponent';
+import MenuDetail from './components/menu/MenuDetail';
+import IsmsComponent from './components/isms/IsmsComponent';
+import LtComponent from './components/lt/LtComponent';
+import LtDetail from './components/lt/LtDetail';
+import LtSpecific from './components/lt/LtSpecific';
+import FileInputScreen from './components/startpage/FileInputScreen';
 import ResetComponent from './components/ResetComponent';
 import './App.css';
 

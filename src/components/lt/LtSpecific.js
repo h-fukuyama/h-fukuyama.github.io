@@ -1,9 +1,9 @@
 import React from 'react';
-import { BinaryConverter, mapFolderValue, replaceControl, replaceValue } from '../utils/sc/scComponentFunction';
-import { LtSpecificTable0, LtSpecificTable1, LtSpecificTable2, LtSpecificTable3 } from '../utils/lt/LtSpecificTable';
-import { processBGMBand } from '../utils/bgmBand';
-import { hexToSignedDecimal } from '../utils/calculate';
-import useFileNavigation from './useFileNavigation';
+import { BinaryConverter, mapFolderValue, replaceControl, replaceValue } from '../../utils/sc/scComponentFunction';
+import { LtSpecificTable0, LtSpecificTable1, LtSpecificTable2, LtSpecificTable3 } from '../../utils/lt/LtSpecificTable';
+import { processBGMBand } from '../../utils/bgmBand';
+import { hexToSignedDecimal } from '../../utils/calculate';
+import useFileNavigation from '../useFileNavigation';
 
 const LtSpecific = (props) => {
     const { file, fileContent } = useFileNavigation(); //fileとsetFileContextを取得

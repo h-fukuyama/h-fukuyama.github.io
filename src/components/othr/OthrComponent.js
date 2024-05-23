@@ -1,15 +1,16 @@
 import React, { useRef } from 'react';
-import Header from './Header';
-import { processBGMBand } from '../utils/bgmBand';
-import { processVolume } from '../utils/processVolume';
-import { hexToBinary, checkBit, hexToSignedDecimal } from '../utils/calculate';
-import { checkButton } from '../utils/checkButton';
-import MenuComponent, { MenuProcessor, MenuProcessor2 } from './MenuComponent';
-import useFileNavigation from './useFileNavigation';
-import Sidebar from './Sidebar';
-import { IsmsProcessor } from './IsmsComponent';
-import { IsmsSettingComponent } from './IsmsSettingComponent';
-import CardComponent from './CardComponent';
+import Header from '../Header';
+import { processBGMBand } from '../../utils/bgmBand';
+import { processVolume } from '../../utils/processVolume';
+import { hexToBinary, checkBit, hexToSignedDecimal } from '../../utils/calculate';
+import { checkButton } from '../../utils/checkButton';
+import useFileNavigation from '../useFileNavigation';
+import Sidebar from '../Sidebar';
+import { IsmsProcessor } from '../isms/IsmsComponent';
+import { IsmsSettingComponent } from '../isms/IsmsSettingComponent';
+import CardComponent from '../CardComponent';
+import MenuComponent from '../menu/MenuComponent';
+import { MenuProcessor, MenuProcessor2 } from '../menu/MenuComponent';
 
   // ここから１行ずつのルール定義に入る(1~33行目)------------------------
 const processFunction1 = (property) => {
