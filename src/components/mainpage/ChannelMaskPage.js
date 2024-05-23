@@ -5,7 +5,7 @@ import { hexToBinary, checkBit } from '../../utils/calculate';
 import { channelMask } from '../../utils/checkButton';
 import useFileNavigation from '../useFileNavigation';
 import Header from '../Header';
-import { renderMatrix } from './renderMatrixComponent';
+import { renderMatrix } from '../isms/renderMatrixComponent';
 import Sidebar from '../Sidebar';
 
  // ここから１行ずつのルール定義に入る(1~33行目)------------------------
