@@ -1,12 +1,13 @@
 // IsmsComponent.js
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { processIsmsBGMBand } from '../utils/bgmBand';
 import { hexToBinary, checkBit } from '../utils/calculate';
 import { channelMask } from '../utils/checkButton';
 import useFileNavigation from './useFileNavigation';
 import Header from './Header';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, ButtonGroup, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import Sidebar from './Sidebar';
 
  // ここから１行ずつのルール定義に入る(1~33行目)------------------------
  const processFunction1 = (property) => {
@@ -164,22 +165,11 @@ const processResults = (results_all) => {
   return categories;
 };
 
-
-const StickyHeaderTable = (width, zIndex, left) => {
-  return {
-    position: "sticky",
-    left: left,
-    background: "white",
-    width: width,
-    zIndex: zIndex,
-  };
-}
-
 const renderMatrix = (data, title) => {
   return (
     <>
       <h2>{title}</h2>
-      <TableContainer component={Paper} sx={{ maxWidth: '80%', margin: 'auto', maxHeight: '80vh', overflow: 'auto' }}>
+      <TableContainer component={Paper} sx={{ maxWidth: '90%', margin: 'auto', maxHeight: '80vh', overflow: 'auto' }}>
         <Table size="small" stickyHeader>
           <TableHead>
             <TableRow>
@@ -214,13 +204,13 @@ const renderMatrix = (data, title) => {
             {data.map((item, rowIndex) => (
               <TableRow key={rowIndex}>
                 <StyledTableCell
-                  className="MuiTableCell-firstColumn"
+                  isFirstColumn={true}
+                  isAllOff={item.value === '全てOFF'}
                   sx={{
                     position: 'sticky',
                     left: 0,
-                    zIndex: 1, // ヘッダーの下に来るように設定
-                    backgroundColor: 'white',
-                    height: rowIndex === 0 ? '50px' : 'auto',
+                    backgroundColor: item.value === '全てOFF' ? 'white' : 'lightgreen',
+                    height: rowIndex === 0 ? '15px' : 'auto',
                   }}
                 >
                   {item.property}
@@ -244,46 +234,72 @@ const renderMatrix = (data, title) => {
   );
 };
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const StyledTableCell = styled(TableCell)(({ theme, isHeader, isFirstColumn, isAllOff }) => ({
   textAlign: 'center',
   whiteSpace: 'nowrap',
-  width: '20px',
-  backgroundColor: 'white',
+  minWidth: '8px',
+  height: '10px',
+  backgroundColor: isAllOff ? 'white' : (isFirstColumn ? 'lightgreen' : 'inherit'),
+  color: isHeader ? theme.palette.primary.main : 'inherit',
+  position: isHeader ? 'sticky' : 'inherit',
+  left: isFirstColumn ? 0 : 'inherit',
 }));
 
-export const IsmsComponent = () => {
+
+const IsmsComponent = () => {
   const { fileContent } = useFileNavigation();
   const [ results_all, setResultsAll] = useState([]);
   const [ categories, setCategories ] = useState({});
+  const [ isLoading, setIsLoading ] = useState(true);
+
+  useEffect(() => {
+    if (categories && Object.keys(categories).length > 0) {
+      setIsLoading(false);
+    }
+  }, [categories]);
+
   useEffect(() => {
     const results_all = [];
     for (let i = 0x41; i <= 0x8E; i++) {
       const bgmBand = processIsmsBGMBand(i);
       results_all.push(channelMask(fileContent?.if_config?.isms[i - 0x40], bgmBand));
     }
-  
-    const flattenedResultsAll = results_all.flat(); // `results_all` がネストされている場合にフラット化
-  
-    console.log('flattenedResultsAll:', flattenedResultsAll); // 追加: デバッグのためのログ
-  
+    const flattenedResultsAll = results_all.flat(); // `results_all` がネストされている場合にフラット化  
     setResultsAll(flattenedResultsAll);
     setCategories(processResults(flattenedResultsAll));
   }, [fileContent]);
 
-   console.log(results_all);
-    return (
-      <div>
-        <Header zIndex={1000000} />
+  const refs = {
+    atoz: useRef(null),
+    uatouz: useRef(null),
+    zatozz: useRef(null)
+  };
+  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop - 80);
+  const items = [
+    { label: 'A~Zチャンネルマスク', ref: refs.atoz },
+    { label: 'UA~UZチャンネルマスク', ref: refs.uatouz },
+    { label: 'ZA~ZZチャンネルマスク', ref: refs.zatozz }
+  ];
+  return (
+    <div>
+      <Header />
+      <Sidebar items={items} scrollToRef={scrollToRef} />
+      <div id="main-content">
         <div>
-          <div style={{margin: '50px'}}>{categories['A-Z'] && renderMatrix(categories['A-Z'], 'A-Z チャンネルマスク')}</div>
-          <div style={{margin: '50px'}}>{categories['UA-UZ'] && renderMatrix(categories['UA-UZ'], 'UA-UZ チャンネルマスク')}</div>
-          <div style={{margin: '50px'}}>{categories['ZA-ZZ'] && renderMatrix(categories['ZA-ZZ'], 'ZA-ZZ チャンネルマスク')}</div>
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <>
+              <div ref={refs.atoz} style={{margin: '10px'}}>{categories['A-Z'] && renderMatrix(categories['A-Z'], 'A-Z チャンネルマスク')}</div>
+              <div ref={refs.uatouz} style={{margin: '10px'}}>{categories['UA-UZ'] && renderMatrix(categories['UA-UZ'], 'UA-UZ チャンネルマスク')}</div>
+              <div ref={refs.zatozz} style={{margin: '10px'}}>{categories['ZA-ZZ'] && renderMatrix(categories['ZA-ZZ'], 'ZA-ZZ チャンネルマスク')}</div>
+            </>
+          )}
         </div>
       </div>
-    );
+    </div>
+  );
 };
-
-
 export default IsmsComponent;
 
 export const IsmsProcessor = ({ isms }) => {
