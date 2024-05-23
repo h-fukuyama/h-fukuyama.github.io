@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  position: fixed;
+  position: relative;
   top: 0;
   width: 100%;
   background-color: black;
@@ -25,7 +25,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  z-index: 1000; /* 必要に応じて、他の要素よりも手前に表示するための z-index を指定します。 */
+  z-index: 1000000; /* 必要に応じて、他の要素よりも手前に表示するための z-index を指定します。 */
 }
 h2 {
   margin: 5px;

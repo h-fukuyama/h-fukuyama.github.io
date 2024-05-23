@@ -1,13 +1,12 @@
 import React from 'react';
-import Header from './Header';
-import { LtMainTable } from '../utils/lt/ltMainTable';
-import { hexToBinary } from '../utils/calculate';
-import { oneTouch } from '../utils/checkButton';
-import useFileNavigation from './useFileNavigation';
+import Header from '../Header';
+import { LtMainTable } from '../../utils/lt/ltMainTable';
+import { hexToBinary } from '../../utils/calculate';
+import { oneTouch } from '../../utils/checkButton';
+import useFileNavigation from '../useFileNavigation';
 
 const LtComponent = () => {
   const { file, fileContent} = useFileNavigation();
-
   const lt = fileContent?.if_config?.lt;
   const menu = fileContent?.if_config?.menu[10];
   const datasets = [];

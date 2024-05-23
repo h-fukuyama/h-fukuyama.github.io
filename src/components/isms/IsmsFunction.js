@@ -1,13 +1,41 @@
-// IsmsComponent.js
-import React from 'react';
-import { processIsmsBGMBand } from '../utils/bgmBand';
-import { hexToBinary, checkBit } from '../utils/calculate';
-import { channelMask } from '../utils/checkButton';
-import useFileNavigation from './useFileNavigation';
-import Header from './Header';
+import { hexToBinary, checkBit } from '../../utils/calculate';
+import { channelMask } from '../../utils/checkButton';
+import { processIsmsBGMBand } from '../../utils/bgmBand';
+
+export const IsmsProcessor = ({ isms }) => {
+    const ismsPropertyFunctions = [
+      processFunction1, processFunction2, processFunction3, processFunction4, processFunction5, processFunction6, processFunction7, processFunction8, processFunction9, processFunction10,
+      processFunction11, processFunction12, processFunction13, processFunction14
+    ];
+  
+    const results = [];
+  
+    for (let i = 0; i < 14 ; i++) {
+      if(i===2||i===6||i===7||i===8||i===9||i===10){continue}
+      const property = isms[i];
+      const func = ismsPropertyFunctions[i];
+      const results2 = [];
+  
+      if( i === 0 ) {
+        results.push(func(property));
+      }
+      else if ( i === 1 ) {
+        for ( let j = 0x41; j <= 0x8E; j++ ) {
+          const bgmBand = processIsmsBGMBand(j);
+          results2.push(processFunction2(isms[j-0x40], bgmBand));
+        }
+        results.push(results2);
+      } else {
+        const property = isms[i+77];
+        const result = func(property);
+        results.push(result);
+      }
+    }
+    return results;
+  };
 
  // ここから１行ずつのルール定義に入る(1~33行目)------------------------
- const processFunction1 = (property) => {
+ export const processFunction1 = (property) => {
   const result1 = [];
   const binaryString = hexToBinary(property);
 
@@ -29,7 +57,7 @@ import Header from './Header';
   return result1;
 };
 //チャンネルマスク
-const processFunction2 = (property, prefix) => {
+export const processFunction2 = (property, prefix) => {
   const channelMaskResult = channelMask(property, prefix);
   return {
     property: channelMaskResult[0].property,
@@ -37,10 +65,10 @@ const processFunction2 = (property, prefix) => {
   };
 };
 //未使用
-const processFunction3 = (property) => {
+export const processFunction3 = (property) => {
   return [{ property, value: "未使用" }];
 };
-const processFunction4 = (property) => {
+export const processFunction4 = (property) => {
   if (property === "00") {
     return [{ property: 'DNS設定', value: '自動' }];
   } else if (property === "01") {
@@ -49,7 +77,7 @@ const processFunction4 = (property) => {
     return [{ property: 'DNS設定', value: '不明' }];
   }
 };
-const processFunction5 = (property) => {
+export const processFunction5 = (property) => {
   let result5 = '';
   if ( property ){
     for (let i = 0; i < property.length; i += 2) {
@@ -66,7 +94,7 @@ const processFunction5 = (property) => {
   }
   return [{ property: 'DNSプライマリ', value: result5 }];
 };
-const processFunction6 = (property) => {
+export const processFunction6 = (property) => {
   let result6 = '';
   if (property) {
     for (let i = 0; i < property.length; i += 2) {
@@ -84,26 +112,26 @@ const processFunction6 = (property) => {
   return [{ property: 'DNSセカンダリ', value: result6 }];
 };
 //未使用
-const processFunction7 = (property) => {
+export const processFunction7 = (property) => {
   return [{ property, value: "未使用" }];
 };
 //未使用
-const processFunction8 = (property) => {
+export const processFunction8 = (property) => {
   return [{ property, value: "未使用" }];
 };
 //未使用
-const processFunction9 = (property) => {
+export const processFunction9 = (property) => {
   return [{ property, value: "未使用" }];
 };
 //未使用
-const processFunction10 = (property) => {
+export const processFunction10 = (property) => {
   return [{ property, value: "未使用" }];
 };
 //未使用
-const processFunction11 = (property) => {
+export const processFunction11 = (property) => {
   return [{ property, value: "未使用" }];
 };
-const processFunction12 = (property) => {
+export const processFunction12 = (property) => {
   if ( property === '00' ) {
     return [{ property: '放送優先順位', value: 'ローカルタイマ > タイムテーブル > ワンタッチ分指定 > ワンタッチ連続' }];
   } else if ( property === '01' ) {
@@ -120,7 +148,7 @@ const processFunction12 = (property) => {
     return [{ property: '放送優先順位', value: '不明' }];
   }
 };
-const processFunction13 = (property) => {
+export const processFunction13 = (property) => {
   if (property === "00") {
     return [{ property: 'AUX優先順位エリア①店内', value: 'low' }];
   } else if (property === "01") {
@@ -129,7 +157,7 @@ const processFunction13 = (property) => {
     return [{ property: 'AUX優先順位エリア①店内', value: '不明' }];
   }
 };
-const processFunction14 = (property) => {
+export const processFunction14 = (property) => {
   if (property === "00") {
     return [{ property: 'AUX優先順位エリア②事務所', value: 'low' }];
   } else if (property === "01") {
@@ -139,64 +167,3 @@ const processFunction14 = (property) => {
   }
 };
 // ここまで-----------------------------------------------------------
-
-export const IsmsComponent = () => {
-  const { fileContent } = useFileNavigation();
-    const results_all = IsmsProcessor({ isms: fileContent?.if_config?.isms || []  })  
-    return (
-      <div>
-        <Header />
-        {results_all && results_all.slice(1, 2).map((result, index) => (
-          <>
-            <h2 style={{ marginBottom: '50px', marginLeft: '20px', marginTop: '20px' }}>チャンネルマスク設定</h2>
-            <div style={{ margin: '50px' }}>
-              {typeof result === 'object' && result.map && result.map(({ property, value }) => (
-                <div
-                  key={property}
-                  className={`${value === '有効' ? 'underline' : ''} ${value === '未使用' ? 'line-through' : ''}`}
-                  style={{ marginBottom: '0.5em' }}
-                >
-                  {`${property}: ${value}`}
-                </div>
-              ))}
-            </div>
-          </>
-        ))}
-      </div>
-    );
-};
-
-
-export default IsmsComponent;
-
-export const IsmsProcessor = ({ isms }) => {
-  const ismsPropertyFunctions = [
-    processFunction1, processFunction2, processFunction3, processFunction4, processFunction5, processFunction6, processFunction7, processFunction8, processFunction9, processFunction10,
-    processFunction11, processFunction12, processFunction13, processFunction14
-  ];
-
-  const results = [];
-
-  for (let i = 0; i < 14 ; i++) {
-    if(i===2||i===6||i===7||i===8||i===9||i===10){continue}
-    const property = isms[i];
-    const func = ismsPropertyFunctions[i];
-    const results2 = [];
-
-    if( i === 0 ) {
-      results.push(func(property));
-    }
-    else if ( i === 1 ) {
-      for ( let j = 0x41; j <= 0x8E; j++ ) {
-        const bgmBand = processIsmsBGMBand(j);
-        results2.push(processFunction2(isms[j-0x40], bgmBand));
-      }
-      results.push(results2);
-    } else {
-      const property = isms[i+77];
-      const result = func(property);
-      results.push(result);
-    }
-  }
-  return results;
-};

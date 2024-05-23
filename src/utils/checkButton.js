@@ -2,14 +2,8 @@ export const checkButton = (property, buttonCount, buttonDisplayName) => {
   const binary = parseInt(property, 16).toString(2).padStart(16, '0');
   const buttonStatus = binary.slice(-buttonCount).split('').map(bit => (bit === '0' ? '許可': '禁止')).reverse();
 
-  if (buttonStatus.every(status => status === '禁止')) {
-    return [{ property: buttonDisplayName, value: '全て禁止' }];
-  }
-
-  if (buttonStatus.every(status => status === '許可')) {
-    return [{ property: buttonDisplayName, value: '全て許可' }];
-  }
-
+  if (buttonStatus.every(status => status === '禁止')){ return [{ property: buttonDisplayName, value: '全て禁止' }];}
+  if (buttonStatus.every(status => status === '許可')) { return [{ property: buttonDisplayName, value: '全て許可' }];}
   const activeButtons = buttonStatus.reduce((acc, status, index) => {
     if (status === '許可') {  
       acc.push(index + 1);
@@ -50,15 +44,15 @@ export const channelMask = (property, prefix) => {
       const bitValue = binaryString[i];
       const buttonName = `${binaryString.length - i}`;
       const result = { property: buttonName, value: bitValue === '0' ? 'OFF' : 'ON' };
-    
+
       if (!groupedResults[result.value]) {
         groupedResults[result.value] = [];
       }
-    
+
       groupedResults[result.value].push(result);
     }
 
-    let resultEntries = []; // 初期値を空の配列に設定
+    let resultEntries = [];
 
     if (Object.keys(groupedResults).length === 1 && 'ON' in groupedResults) {
       resultEntries = [{ property: `${prefix}チャンネルマスク`, value: '全てON' }];
@@ -68,13 +62,14 @@ export const channelMask = (property, prefix) => {
       resultEntries = Object.entries(groupedResults)
         .filter(([value]) => value === 'ON')
         .map(([value, buttons]) => ({
-          property: `${prefix}チャンネルマスク(ONのみ表示) `,
+          property: `${prefix}チャンネルマスク`,
           value: `${buttons.map((button) => button.property).join(', ')}`
         }));
     }
-
+    // console.log(`channelMask for ${prefix}:`, resultEntries); 
     return resultEntries;
   } else {
     return [{ property: `${prefix}チャンネルマスク:`, value: '不明' }];
   }
 };
+

@@ -1,8 +1,4 @@
-import { getActionResult1, getActionResult2 } from '../utils/sc/scComponentFunction';
-
-const ScComponent = () => {
-};
-export default ScComponent;
+import { getActionResult1, getActionResult2 } from '../../utils/sc/scComponentFunction';
 
 export const ScProcessor1 = ({ sc }) => {
   const datasets = [];

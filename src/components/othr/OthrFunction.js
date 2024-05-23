@@ -1,18 +1,30 @@
-import React, { useRef } from 'react';
-import Header from './Header';
-import { processBGMBand } from '../utils/bgmBand';
-import { processVolume } from '../utils/processVolume';
-import { hexToBinary, checkBit, hexToSignedDecimal } from '../utils/calculate';
-import { checkButton } from '../utils/checkButton';
-import MenuComponent, { MenuProcessor, MenuProcessor2 } from './MenuComponent';
-import useFileNavigation from './useFileNavigation';
-import Sidebar from './Sidebar';
-import { IsmsProcessor } from './IsmsComponent';
-import { IsmsSettingComponent } from './IsmsSettingComponent';
-import CardComponent from './CardComponent';
+import React from 'react';
+import { processBGMBand } from '../../utils/bgmBand';
+import { processVolume } from '../../utils/processVolume';
+import { hexToBinary, checkBit, hexToSignedDecimal } from '../../utils/calculate';
+import { checkButton } from '../../utils/checkButton';
+
+export const OthrProcessor = ({ other }) => {
+    const otherPropertyFunctions = [
+      processFunction1, processFunction2, processFunction3, processFunction4, processFunction5, processFunction6, processFunction7, processFunction8, processFunction9, processFunction10,
+      processFunction11, processFunction12, processFunction13, processFunction14, processFunction15, processFunction16, processFunction17, processFunction18, processFunction19, processFunction20,
+      processFunction21, processFunction22, processFunction23, processFunction24, processFunction25, processFunction26, processFunction27, processFunction28, processFunction29, processFunction30,
+      processFunction31, processFunction32, processFunction33
+    ];
+    const results = [];
+
+    for (let i = 0; i < 33 ; i++) {
+      if(i===1||i===2||i===3||i===4){continue}
+      const property = other[i];
+      const func = otherPropertyFunctions[i];
+      const result = func(property);
+      results.push(result);
+    }
+    return results;
+  };
 
   // ここから１行ずつのルール定義に入る(1~33行目)------------------------
-const processFunction1 = (property) => {
+export const processFunction1 = (property) => {
   const result1 = [];
   const binaryString = hexToBinary(property);
 
@@ -39,40 +51,39 @@ const processFunction1 = (property) => {
   return result1;
 };
 //未使用
-const processFunction2 = (property) => {
+export const processFunction2 = (property) => {
   const result2 = [];
   result2.push({ property, value: "未使用" });
 
   return result2;
 };
 //未使用
-const processFunction3 = (property) => {
+export const processFunction3 = (property) => {
   const result3 = [];
   result3.push({ property, value: "未使用" });
-
   return result3;
 };
 //未使用
-const processFunction4 = (property) => {
+export const processFunction4 = (property) => {
   const result4 = [];
   result4.push({ property, value: "未使用" });  
 
   return result4;
 };
 //未使用
-const processFunction5 = (property) => {
+export const processFunction5 = (property) => {
   const result5 = [];
   result5.push({ property, value: "未使用" });
 
   return result5;
 };
-const processFunction6 = (property) => {
+export const processFunction6 = (property) => {
   const result6 = [];
   result6.push({ property: "radiko放送局名", value: (property ? property.trim() : "") || '未設定' })
 
   return result6;
 };
-const processFunction7 = (property) => {
+export const processFunction7 = (property) => {
   const result7 = [];
   if (property) {
     const firstTwoDigits = property.substring(0, 2);
@@ -85,7 +96,7 @@ const processFunction7 = (property) => {
 
   return result7;
 };
-const processFunction8 = (property) => {
+export const processFunction8 = (property) => {
   const result8 = [];
   if (property) {
     const firstTwoDigits = property.substring(0, 2);
@@ -97,7 +108,7 @@ const processFunction8 = (property) => {
   }
   return result8;
 };
-const processFunction9 = (property) => {
+export const processFunction9 = (property) => {
   const result9 = [];
   if (property) {
     const firstTwoDigits = parseInt(property.substring(0, 2), 16);
@@ -111,7 +122,7 @@ const processFunction9 = (property) => {
   }
   return result9;
 };
-const processFunction10 = (property) => {
+export const processFunction10 = (property) => {
   const result10 = [];
   if (property) {
     const band = processBGMBand(property);
@@ -121,7 +132,7 @@ const processFunction10 = (property) => {
   }
   return result10;
 };
-const processFunction11 = (property) => {
+export const processFunction11 = (property) => {
   const result11 = [];
   if (property) {
     const band = processBGMBand(property);
@@ -131,10 +142,10 @@ const processFunction11 = (property) => {
   }
   return result11;
 };
-const processFunction12 = (property) => {
+export const processFunction12 = (property) => {
   return processVolume(property, '店内音量');
 };
-const processFunction13 = (property) => {
+export const processFunction13 = (property) => {
   const result13 = [];
   if (property) {
     const volume = parseInt(property, 16);
@@ -148,10 +159,10 @@ const processFunction13 = (property) => {
   }
   return result13;
 };
-const processFunction14 = (property) => {
+export const processFunction14 = (property) => {
   return processVolume(property, '事務所音量');
 };
-const processFunction15 = (property) => {
+export const processFunction15 = (property) => {
   const result15 = [];
   if (property) {
     const volume = parseInt(property, 16);
@@ -165,7 +176,7 @@ const processFunction15 = (property) => {
   }
   return result15;
 };
-const processFunction16 = (property) => {
+export const processFunction16 = (property) => {
   const result16 = [];
   if (property) {
     const volume = parseInt(property, 16);
@@ -175,7 +186,7 @@ const processFunction16 = (property) => {
   }
   return result16;
 };
-const processFunction17 = (property) => {
+export const processFunction17 = (property) => {
   const result17 = [];
   if (property) {
     const volume = parseInt(property, 16);
@@ -185,7 +196,7 @@ const processFunction17 = (property) => {
   }
   return result17;
 };
-const processFunction18 = (property) => {
+export const processFunction18 = (property) => {
   const result18 = [];
   if (property) {
     const volume = parseInt(property, 16);
@@ -195,7 +206,7 @@ const processFunction18 = (property) => {
   }
   return result18;
 };
-const processFunction19 = (property) => {
+export const processFunction19 = (property) => {
   const result19 = [];
   if (property) {
     const volume = parseInt(property, 16);
@@ -205,10 +216,10 @@ const processFunction19 = (property) => {
   }
   return result19;
 };
-const processFunction20 = (property) => {
+export const processFunction20 = (property) => {
   return processVolume(property, 'インカム音量ライン出力');
 };
-const processFunction21 = (property) => {
+export const processFunction21 = (property) => {
   const result21 = [];
   if (property) {
     const volume = hexToSignedDecimal(parseInt(property, 16));
@@ -218,7 +229,7 @@ const processFunction21 = (property) => {
   }
   return result21;
 };
-const processFunction22 = (property) => {
+export const processFunction22 = (property) => {
   const result22 = [];
   if (property) {
     const volume = parseInt(property, 16);
@@ -232,7 +243,7 @@ const processFunction22 = (property) => {
   }
   return result22;
 };
-const processFunction23 = (property) => {
+export const processFunction23 = (property) => {
   const result23 = [];
   if (property) {
     const volume = hexToSignedDecimal(property, 16);
@@ -246,19 +257,19 @@ const processFunction23 = (property) => {
   }
   return result23;
 };
-const processFunction24 = (property) => {
+export const processFunction24 = (property) => {
   return processVolume(property, 'イヤホン音量値');
 };
-const processFunction25 = (property) => {
+export const processFunction25 = (property) => {
   return processVolume(property, '再生/試聴店内音量値');
 };
-const processFunction26 = (property) => {
+export const processFunction26 = (property) => {
   return processVolume(property, '再生/試聴事務所音量値');
 };
-const processFunction27 = (property) => {
+export const processFunction27 = (property) => {
   return processVolume(property, '再生/試聴インカム音量値ライン');
 };
-const processFunction28 = (property) => {
+export const processFunction28 = (property) => {
   const result28 = [];
   if (property) {
     const volume = hexToSignedDecimal(parseInt(property, 16));
@@ -268,7 +279,7 @@ const processFunction28 = (property) => {
   }
   return result28;
 };
-const processFunction29 = (property) => {
+export const processFunction29 = (property) => {
   const result29 = [];
   if (property) {
     const second = parseInt(property, 16);
@@ -279,10 +290,10 @@ const processFunction29 = (property) => {
   return result29;
 };
 //ルールがあってるか確認が必要？
-const processFunction30 = (property) => {
+export const processFunction30 = (property) => {
   return checkButton(property, 14, 'ワンタッチ変更許可ボタン');
 };
-const processFunction31 = (property) => {
+export const processFunction31 = (property) => {
   const results31 = [];
   if (property) {
     const binaryArray = property.split('').map((hexDigit) => {
@@ -308,114 +319,10 @@ const processFunction31 = (property) => {
     return [{ property: 'スタッフコール無線①変更', value: '不明' }];
   }
 };
-
-const processFunction32 = (property) => {
+export const processFunction32 = (property) => {
   return checkButton(property, 16, 'スタッフコール無線②変更許可ボタン');
 };
-const processFunction33 = (property) => {
+export const processFunction33 = (property) => {
   return checkButton(property, 16, 'スタッフコール有線許可ボタン');
 };
-
 // ここまで-----------------------------------------------------------
-
-const OthrComponent = () => {
-  const { file, fileContent} = useFileNavigation();
-  const OthrProcessor = ({ other }) => {
-    const otherPropertyFunctions = [
-      processFunction1, processFunction2, processFunction3, processFunction4, processFunction5, processFunction6, processFunction7, processFunction8, processFunction9, processFunction10,
-      processFunction11, processFunction12, processFunction13, processFunction14, processFunction15, processFunction16, processFunction17, processFunction18, processFunction19, processFunction20,
-      processFunction21, processFunction22, processFunction23, processFunction24, processFunction25, processFunction26, processFunction27, processFunction28, processFunction29, processFunction30,
-      processFunction31, processFunction32, processFunction33
-    ];
-    const results = [];
-
-    for (let i = 0; i < 33 ; i++) {
-      if(i===1||i===2||i===3||i===4){continue}
-      const property = other[i];
-      const func = otherPropertyFunctions[i];
-      const result = func(property);
-      results.push(result);
-    }
-    return results;
-  };
-
-  //サイドバーのitems定義
-  const refs = {
-    othr: useRef(null),
-    menu: useRef(null),
-    isms: useRef(null)
-  };
-  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop - 80);
-  const items = [
-    { label: 'isms設定値', ref: refs.isms },
-    { label: 'menu設定値', ref: refs.menu },
-    { label: 'othr設定値', ref: refs.othr }
-  ];
-
-  //Othr設定値の呼出し
-  const results_all = OthrProcessor({ other: fileContent?.if_config?.othr || [] });
-  //Menu設定値の呼出し
-  const menu_all = MenuProcessor({ menu: fileContent?.if_config?.menu || [] });
-  const menu_all2 = MenuProcessor2({ menu: fileContent?.if_config?.menu || [] });
-  //isms設定値の呼出し
-  const isms_all = IsmsProcessor({ isms: fileContent?.if_config?.isms || []  })
-  
-  return (
-    <div>
-      {file ? (
-        <div>
-          <Header />
-          <Sidebar items={items} scrollToRef={scrollToRef} />
-          <IsmsSettingComponent results_all={isms_all} ismsRef={refs.isms} />
-          <MenuComponent results_all={menu_all} results_all2={menu_all2} menuRef={refs.menu} />
-          <div id="main-content">
-            <h2 ref={refs.othr} style={{ marginBottom: '20px', marginTop: '20px' }}>Othr Page</h2>
-            {fileContent && fileContent.if_config ? (
-              <div>
-                <div style={{ display: 'flex' }}>
-                  <div style={{ flex: 1 }}>
-                    <CardComponent results={results_all.slice(0, 1)} />
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <CardComponent results={results_all.slice(1, 4)} />
-                    <h4>特殊バンド設定</h4>
-                    <CardComponent results={results_all.slice(4, 7)} />
-                  </div>
-                </div>
-                <div style={{ display: 'flex' }}>
-                  <div style={{ flex: 1 }}>
-                    <h4>店内/事務所音量</h4>
-                    <CardComponent results={results_all.slice(7, 11)} />
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <h4>CMバランス</h4>
-                    <CardComponent results={results_all.slice(11, 15)} />
-                  </div>
-                </div>
-                <div style={{ display: 'flex' }}>
-                  <div style={{ flex: 1 }}>
-                    <h4>インカム音量</h4>
-                    <CardComponent results={results_all.slice(15, 19)} />
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <h4>音量値</h4>
-                    <CardComponent results={results_all.slice(19, 24)} />
-                  </div>
-                </div>
-                <CardComponent results={results_all.slice(24, 25)} />
-                <h4>許可ボタン設定</h4>
-                <CardComponent results={results_all.slice(25)} />
-              </div>
-            ) : (
-              <p>Loading...</p>
-            )}
-          </div>
-        </div>
-      ) : (
-        <p>Resetting...</p>
-      )}
-    </div>
-  );
-};
-
-export default OthrComponent;
