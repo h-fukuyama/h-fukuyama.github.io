@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Header from '../Header';
 import useFileNavigation from '../useFileNavigation';
 import Sidebar from '../Sidebar';
-import { IsmsProcessor } from './ChannelMaskPage';
+import { IsmsProcessor } from '../isms/IsmsFunction';
 import { IsmsSettingComponent } from '../isms/IsmsSettingComponent';
 import MenuComponent from '../menu/MenuComponent';
 import { MenuProcessor, MenuProcessor2 } from '../menu/MenuComponent';

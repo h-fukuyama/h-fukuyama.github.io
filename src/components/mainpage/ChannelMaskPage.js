@@ -1,4 +1,3 @@
-// IsmsComponent.js
 import React, {useState, useEffect, useRef} from 'react';
 import { processIsmsBGMBand } from '../../utils/bgmBand';
 import { channelMask } from '../../utils/checkButton';
@@ -76,36 +75,5 @@ const IsmsComponent = () => {
       </div>
     </div>
   );
-};export default IsmsComponent;
-
-export const IsmsProcessor = ({ isms }) => {
-  const ismsPropertyFunctions = [
-    processFunction1, processFunction2, processFunction3, processFunction4, processFunction5, processFunction6, processFunction7, processFunction8, processFunction9, processFunction10,
-    processFunction11, processFunction12, processFunction13, processFunction14
-  ];
-
-  const results = [];
-
-  for (let i = 0; i < 14 ; i++) {
-    if(i===2||i===6||i===7||i===8||i===9||i===10){continue}
-    const property = isms[i];
-    const func = ismsPropertyFunctions[i];
-    const results2 = [];
-
-    if( i === 0 ) {
-      results.push(func(property));
-    }
-    else if ( i === 1 ) {
-      for ( let j = 0x41; j <= 0x8E; j++ ) {
-        const bgmBand = processIsmsBGMBand(j);
-        results2.push(processFunction2(isms[j-0x40], bgmBand));
-      }
-      results.push(results2);
-    } else {
-      const property = isms[i+77];
-      const result = func(property);
-      results.push(result);
-    }
-  }
-  return results;
 };
+export default IsmsComponent;
