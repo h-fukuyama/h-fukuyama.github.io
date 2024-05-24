@@ -94,8 +94,8 @@ const FileInputScreen = () => {
     <div>
       <div  style={{ display: 'flex', alignItems: 'center' }}>
       <div className="box"></div>
-        <h1 style={{ marginTop: '64px', flex: 1 }}>PRX-IP5000 configファイル解析アプリ</h1></div>
-        <h3 style={{ textAlign: 'right', marginRight: '64px' }}>version 1.0</h3>
+        <h1 style={{ marginTop: '30px', flex: 1 }}>PRX-IP5000 configファイル解析アプリ</h1></div>
+        <h5 style={{ textAlign: 'right', marginRight: '64px' }}>version 1.0</h5>
       <div style={{marginLeft: '64px', marginRight: '64px'}}>  
       <b>{renderErrorMessages}</b>
       <div
