@@ -2,15 +2,15 @@ import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-const StyledTableCell = styled(TableCell)(({ theme, isHeader, isFirstColumn, isAllOff }) => ({
+const StyledTableCell = styled(TableCell)(({ theme, isHeader, isfirstcolumn, isalloff }) => ({
     textAlign: 'center',
     whiteSpace: 'nowrap',
     minWidth: '8px',
     height: '10px',
-    backgroundColor: isAllOff ? 'white' : (isFirstColumn ? 'lightgreen' : 'inherit'),
+    backgroundColor: isalloff ? 'white' : (isfirstcolumn ? 'lightgreen' : 'inherit'),
     color: isHeader ? theme.palette.primary.main : 'inherit',
     position: isHeader ? 'sticky' : 'inherit',
-    left: isFirstColumn ? 0 : 'inherit',
+    left: isfirstcolumn ? 0 : 'inherit',
   }));
 
 export const renderMatrix = (data, title) => {
@@ -53,8 +53,8 @@ export const renderMatrix = (data, title) => {
               {data.map((item, rowIndex) => (
                 <TableRow key={rowIndex}>
                   <StyledTableCell
-                    isFirstColumn={true}
-                    isAllOff={item.value === '全てOFF'}
+                    isfirstcolumn="true"
+                    isalloff='全てOFF'
                     sx={{
                       position: 'sticky',
                       left: 0,
