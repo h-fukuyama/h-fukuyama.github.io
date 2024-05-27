@@ -26,7 +26,6 @@ const SettingPage = () => {
 
   //Othr設定値の呼出し
   const results_all = OthrProcessor({ other: fileContent?.if_config?.othr || [] });
-  console.log(results_all);
   //Menu設定値の呼出し
   const menu_all = MenuProcessor({ menu: fileContent?.if_config?.menu || [] });
   const menu_all2 = MenuProcessor2({ menu: fileContent?.if_config?.menu || [] });

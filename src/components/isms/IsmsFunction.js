@@ -53,16 +53,15 @@ export const IsmsProcessor = ({ isms }) => {
     const isBitSet = checkBit(binaryString, bit);
     result1.push({ property, value: isBitSet ? '有効' : '無効' });
   });
-
   return result1;
 };
 //チャンネルマスク
 export const processFunction2 = (property, prefix) => {
-  const channelMaskResult = channelMask(property, prefix);
-  return {
-    property: channelMaskResult[0].property,
-    value: Array.isArray(channelMaskResult) ? channelMaskResult[0].value : '不明'
-  };
+  // const channelMaskResult = channelMask(property, prefix);
+  // return {
+  //   property: channelMaskResult[0].property,
+  //   value: Array.isArray(channelMaskResult) ? channelMaskResult[0].value : '不明'
+  // };
 };
 //未使用
 export const processFunction3 = (property) => {
