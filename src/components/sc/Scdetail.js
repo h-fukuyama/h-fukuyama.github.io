@@ -20,7 +20,9 @@ const ScDetail = (props) => {
                 {tableSet.props.fileName?.join('') === '' ? 
                   <table align='center'>
                     <tbody>
-                      <td><b>未登録</b></td>
+                      <tr>
+                        <td><b>未登録</b></td>
+                      </tr>
                     </tbody>
                   </table> : tableSet}
                 {
@@ -30,7 +32,9 @@ const ScDetail = (props) => {
                   <h4 align='left'>呼戻</h4>
                   <table align='center'>
                     <tbody>
-                      <td><b>呼び戻し無し</b></td>
+                      <tr>
+                        <td><b>呼び戻し無し</b></td>
+                      </tr>
                     </tbody>
                   </table>
                 </>
@@ -41,7 +45,9 @@ const ScDetail = (props) => {
                   <h4 align='left'>呼戻</h4>
                   <table align='center'>
                     <tbody>
-                      <td><b>未登録</b></td>
+                      <tr>
+                        <td><b>未登録</b></td>
+                      </tr>
                     </tbody>
                   </table>
                 </>

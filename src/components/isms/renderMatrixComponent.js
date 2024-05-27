@@ -13,11 +13,12 @@ const StyledTableCell = styled(TableCell)(({ theme, isHeader, isfirstcolumn, isa
     left: isfirstcolumn ? 0 : 'inherit',
   }));
 
-export const Matrix = forwardRef(({ data, band, title }, ref, style) => {
+export const Matrix = forwardRef((props, ref) => {
+  const { data, band, title } = props;
   return (
     <>
       <h2 ref={ref} style={{ margin: '20px' }}>{title}</h2>
-      <TableContainer component={Paper} style={style} sx={{ maxWidth: '100%', margin: 'auto', maxHeight: '600px', overflow: 'auto' }}>
+      <TableContainer component={Paper} sx={{ maxWidth: '100%', margin: 'auto', maxHeight: '600px', overflow: 'auto' }}>
         <Table size="small" stickyHeader>
           <TableHead>
             <TableRow>

@@ -124,8 +124,8 @@ export const ScDetailTable2 = ({channel, external, back}) => {
             )}
           </>
         )}
-        </tbody>
-      </table>
+      </tbody>
+    </table>
   )
 };
 
@@ -145,7 +145,7 @@ export const ScDetailTable3 = ({action, cm, bgm, minute, back}) => {
           <th width='26%'>店内<br />(エリア1)</th>
           <th width='26%'>事務所<br />(エリア2)</th>
           <th width='26%'>インカム<br />(エリア3)</th>
-        </tr>
+      </tr>
       <tr>
         <th>BGM</th>
         {bgm.slice(0, 3).map((value, index) => (
@@ -164,7 +164,7 @@ export const ScDetailTable3 = ({action, cm, bgm, minute, back}) => {
         <td key={index}>{value ? '☑' : ''}</td>
       ))}
       </tr>
-        </tbody>
+      </tbody>
     </table>
   )
 };
@@ -184,7 +184,7 @@ export const ScDetailTable4 = ({button, control, back}) => {
             <th width='30%'>動作</th>
             <td>{control}</td>
           </tr>
-          </tbody>
+        </tbody>
       </table>
     )
 };
@@ -227,19 +227,19 @@ export const ScDetailTable6 = ({subject, control, volume, back}) => {
           <tr>
             <th width='30%'>対象</th>
             <td colSpan={2}>{subject}</td>
-        </tr>
-        <tr>
+          </tr>
+          <tr>
             <th width='30%'>制御</th>
             <td colSpan={2}>{control}</td>
-        </tr>
-        {control === "秒数指定" && (
-        <tr>
-            <th width='30%'>秒数</th>
-            <td width='40%'>{volume}秒</td>
-            <td>(1~99秒)</td>
-        </tr>
-        )}
+          </tr>
+          {control === "秒数指定" && (
+            <tr>
+              <th width='30%'>秒数</th>
+              <td width='40%'>{volume}秒</td>
+              <td>(1~99秒)</td>
+            </tr>
+          )}
         </tbody>
-        </table>
+      </table>
     )
 };

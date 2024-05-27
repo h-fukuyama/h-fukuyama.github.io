@@ -48,9 +48,9 @@ const IsmsComponent = () => {
             <div>Loading...</div>
           ) : (
             <>
-              <Matrix ref={refs.atoz} style={{ margin: '30px' }} data={resultsAtoZ} band={atoz} title="A~Zチャンネルマスク" />
-              <Matrix ref={refs.uatouz} style={{ margin: '30px' }} data={resultsUAtoUZ} band={uatouz} title="UA~UZチャンネルマスク" />
-              <Matrix ref={refs.zatozz} style={{ margin: '30px' }} data={resultsZAtoZZ} band={zatozz} title="ZA~ZZチャンネルマスク" />
+              <Matrix ref={refs.atoz} data={resultsAtoZ} band={atoz} title="A~Zチャンネルマスク" />
+              <Matrix ref={refs.uatouz} data={resultsUAtoUZ} band={uatouz} title="UA~UZチャンネルマスク" />
+              <Matrix ref={refs.zatozz} data={resultsZAtoZZ} band={zatozz} title="ZA~ZZチャンネルマスク" />
             </>
           )}
         </div>

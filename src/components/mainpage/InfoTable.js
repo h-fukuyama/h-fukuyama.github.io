@@ -2,7 +2,7 @@ export const InfoTable = ({ info }) => {
     return (
     <div style={{ display: 'flex', border: '1px solid #ddd' }}>
         <div style={{flex: 1}}>
-            <table class='infoTable'>
+            <table className='infoTable'>
                 <tbody>
                     <tr><td style={{textAlign: 'left'}} colSpan={2}><b>■ バージョン</b></td></tr>
                     <tr>
@@ -106,7 +106,7 @@ export const InfoTable = ({ info }) => {
             </table>
         </div>
         <div style={{ flex: 1 }}>
-            <table class='infoTable'>
+            <table className='infoTable'>
                 <tbody>
                     <tr><td style={{textAlign: 'left'}} colSpan={2}><b>■ パラメーター値</b></td></tr>
                     <tr>

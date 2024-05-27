@@ -8,7 +8,7 @@ import IsmsComponent from './components/mainpage/ChannelMaskPage';
 import LtPage from './components/mainpage/LtPage.js';
 import LtDetail from './components/lt/LtDetail';
 import FileInputScreen from './components/startpage/FileInputScreen';
-import ResetComponent from './components/general/ResetComponent'
+import ResetComponent from './components/general/ResetComponent.js';
 import './App.css';
 
 function App() {
