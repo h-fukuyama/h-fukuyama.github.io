@@ -7,6 +7,9 @@ import { Matrix } from '../isms/renderMatrixComponent';
 import Sidebar from '../Sidebar';
 
 const IsmsComponent = () => {
+  const { fileContent } = useFileNavigation();
+  const maskItem = [];
+  const bgmItem = [];
   const refs = {
     atoz: useRef(null),
     uatouz: useRef(null),
@@ -19,13 +22,9 @@ const IsmsComponent = () => {
     { label: 'ZA~ZZチャンネルマスク', ref: refs.zatozz }
   ];
 
-  const { fileContent } = useFileNavigation();
-  const maskItem = [];
-  const bgmItem = [];
   for (let i = 0x41; i <= 0x8E; i++) {
     const bgmBand = processIsmsBGMBand(i);
     const channelMaskResult = channelMask(fileContent?.if_config?.isms[i - 0x40]);
-    // bgmBandで返される文字列を配列に追加
     bgmItem.push(bgmBand);
     if(channelMaskResult) {
       maskItem.push(channelMaskResult)

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Table, TableContainer, TableHead, TableRow, TableBody, Paper, TableCell } from '@mui/material';
+import { styled } from '@mui/system';
 
 const StyledTableCell = styled(TableCell)(({ theme, isHeader, isfirstcolumn, isalloff }) => ({
     textAlign: 'center',
@@ -13,7 +13,7 @@ const StyledTableCell = styled(TableCell)(({ theme, isHeader, isfirstcolumn, isa
     left: isfirstcolumn ? 0 : 'inherit',
   }));
 
-export const Matrix  = forwardRef(({ data, band, title }, ref, style) => {
+export const Matrix = forwardRef(({ data, band, title }, ref, style) => {
   return (
     <>
       <h2 ref={ref} style={{ margin: '20px' }}>{title}</h2>
@@ -63,9 +63,7 @@ export const Matrix  = forwardRef(({ data, band, title }, ref, style) => {
                       height: 'auto',
                       fontWeight: 'bold'
                     }}
-                  >
-                    {item}チャンネルマスク
-                  </StyledTableCell> {/* Row header */}
+                  >{item}チャンネルマスク</StyledTableCell>
                   {data[index] && data[index].map((property, idx) => (
                     <StyledTableCell
                       key={idx}
@@ -73,9 +71,7 @@ export const Matrix  = forwardRef(({ data, band, title }, ref, style) => {
                         backgroundColor: property === "〇" ? 'lightgreen' : 'inherit',
                         maxWidth: '6px'
                       }}
-                    >
-                      {property}
-                    </StyledTableCell>
+                    >{property}</StyledTableCell>
                   ))}
                 </TableRow>
               );
