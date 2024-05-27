@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import Header from '../Header';
-import useFileNavigation from '../useFileNavigation';
-import Sidebar from '../Sidebar';
+import Header from '../general/Header';
+import useFileNavigation from '../../fileOperation/useFileNavigation';
+import Sidebar from '../general/Sidebar';
 import { IsmsProcessor } from '../isms/IsmsFunction';
 import { IsmsSettingComponent } from '../isms/IsmsSettingComponent';
 import MenuComponent from '../menu/MenuComponent';

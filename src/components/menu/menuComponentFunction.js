@@ -1,4 +1,4 @@
-import { processBGMBand } from "../bgmBand";
+import { processBGMBand } from "../../utils/bgmBand";
 import { replaceValue, replaceVolume, generateOutput } from "../sc/scComponentFunction";
 
 export const replacePattern = (value) => {

@@ -1,4 +1,4 @@
-import { processBGMBand } from "../bgmBand";
+import { processBGMBand } from "../../utils/bgmBand";
 
 export const replaceValue = (value) => {
     switch (value) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { MenuProcessor3 } from '../menu/MenuComponent';
-import { MenuTable } from '../../utils/menu/menuTable';
+import { MenuTable } from './menuTable';
 
 const OneTouchButtonSection = React.forwardRef(({ fileContent }, ref) => {
   const datasets3 = MenuProcessor3({ menu: fileContent?.if_config?.menu || [] });

@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 import { processIsmsBGMBand } from '../../utils/bgmBand';
 import { channelMask } from '../../utils/checkButton';
-import useFileNavigation from '../useFileNavigation';
-import Header from '../Header';
+import useFileNavigation from '../../fileOperation/useFileNavigation';
+import Header from '../general/Header';
 import { Matrix } from '../isms/renderMatrixComponent';
-import Sidebar from '../Sidebar';
+import Sidebar from '../general/Sidebar';
 
 const IsmsComponent = () => {
   const { fileContent } = useFileNavigation();

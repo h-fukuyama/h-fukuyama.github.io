@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuDetail from '../../components/menu/MenuDetail';
+import MenuDetail from './MenuDetail';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import IconButton from '@mui/material/Button'

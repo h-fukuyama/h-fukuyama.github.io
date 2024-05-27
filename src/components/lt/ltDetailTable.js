@@ -3,7 +3,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import IconButton from '@mui/material/Button'
 import { Collapse } from '@mui/material';
-import LtSpecific from '../../components/lt/LtSpecific';
+import LtSpecific from './LtSpecific';
 
 const daysOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
 

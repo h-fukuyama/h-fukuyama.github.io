@@ -1,6 +1,6 @@
 import React from 'react';
-import useFileNavigation from '../useFileNavigation';
-import CardComponent from '../CardComponent';
+import useFileNavigation from '../../fileOperation/useFileNavigation';
+import CardComponent from '../general/CardComponent';
 
 export const IsmsSettingComponent = ({ results_all, ismsRef }) => {
   const { fileContent } = useFileNavigation();

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFileContext } from '../context/FileContext';
-import useFileContent from '../utils/useFileContent';
+import { useFileContext } from './FileContext';
+import useFileContent from './useFileContent';
 
 const useFileNavigation = () => {
   const { file } = useFileContext();

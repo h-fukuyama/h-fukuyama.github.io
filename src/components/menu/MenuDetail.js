@@ -1,10 +1,10 @@
 import React from 'react';
-import { MenuDetailTable0, MenuDetailTable1, MenuDetailTable2, MenuDetailTable3, MenuDetailTable4, MenuDetailTable5 } from '../../utils/menu/menuDetailTable'
-import { BinaryConverter, mapFolderValue, replaceControl, replaceValue, replaceSubject, replaceVolume, generateOutput } from '../../utils/sc/scComponentFunction';
+import { MenuDetailTable0, MenuDetailTable1, MenuDetailTable2, MenuDetailTable3, MenuDetailTable4, MenuDetailTable5 } from './menuDetailTable'
+import { BinaryConverter, mapFolderValue, replaceControl, replaceValue, replaceSubject, replaceVolume, generateOutput } from '../sc/scComponentFunction';
 import { hexToSignedDecimal } from '../../utils/calculate';
 import { processBGMBand } from '../../utils/bgmBand';
 import { oneTouch } from '../../utils/checkButton';
-import useFileNavigation from '../useFileNavigation';
+import useFileNavigation from '../../fileOperation/useFileNavigation';
 
 const MenuDetail = (props) => {
   const { file, fileContent } = useFileNavigation();

@@ -1,10 +1,10 @@
 import React from 'react';
+import Header from '../general/Header';
 import { useParams } from 'react-router-dom';
-import Header from '../Header';
 import { hexToBinary } from '../../utils/calculate';
-import { LtDetailTable, LtDetailTable2 } from '../../utils/lt/ltDetailTable';
-import { getActionResult } from '../../utils/lt/ltComponentFunction';
-import useFileNavigation from '../useFileNavigation';
+import { LtDetailTable, LtDetailTable2 } from './ltDetailTable';
+import { getActionResult } from '../menu/menuComponentFunction';
+import useFileNavigation from '../../fileOperation/useFileNavigation';
 
 const LtDetail = () => {
     const { file, fileContent } = useFileNavigation(); //fileとsetFileContextを取得

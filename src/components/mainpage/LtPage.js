@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from '../Header';
-import { LtMainTable } from '../../utils/lt/ltMainTable';
+import Header from '../general/Header';
+import { LtMainTable } from '../lt/ltMainTable';
 import { hexToBinary } from '../../utils/calculate';
 import { oneTouch } from '../../utils/checkButton';
-import useFileNavigation from '../useFileNavigation';
+import useFileNavigation from '../../fileOperation/useFileNavigation';
 
 const LtComponent = () => {
   const { file, fileContent} = useFileNavigation();

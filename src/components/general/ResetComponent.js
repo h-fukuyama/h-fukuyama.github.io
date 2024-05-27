@@ -1,6 +1,5 @@
-// ResetComponent.js
 import React from 'react';
-import { useFileContext } from '../context/FileContext';
+import { useFileContext } from '../../fileOperation/FileContext';
 import { useNavigate } from 'react-router-dom';
 
 const ResetComponent = () => {

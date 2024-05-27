@@ -61,7 +61,7 @@ export const Matrix = forwardRef(({ data, band, title }, ref, style) => {
                       left: 0,
                       backgroundColor: isHighlighted ? 'lightgreen' : 'white',
                       height: 'auto',
-                      fontWeight: 'bold'
+                      fontWeight: isHighlighted ? 'bold' : 'none'
                     }}
                   >{item}チャンネルマスク</StyledTableCell>
                   {data[index] && data[index].map((property, idx) => (

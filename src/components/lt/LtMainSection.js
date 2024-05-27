@@ -1,6 +1,6 @@
 import React from 'react';
 import { hexToBinary } from '../../utils/calculate';
-import { LtMainTable } from '../../utils/lt/ltMainTable';
+import { LtMainTable } from './ltMainTable';
 import { oneTouch } from '../../utils/checkButton';
 
 const LocalTimerSection = React.forwardRef(({ fileContent }, ref) => {

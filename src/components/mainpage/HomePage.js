@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
-import Header from '../Header';
-import Sidebar from '../Sidebar';
-import useFileNavigation from '../useFileNavigation';
-import { InfoTable } from '../../InfoTable';
+import Header from '../general/Header';
+import Sidebar from '../general/Sidebar';
+import useFileNavigation from '../../fileOperation/useFileNavigation';
+import { InfoTable } from './InfoTable';
 import StaffCallSection from '../sc/ScMainSection';
 import OneTouchButtonSection from '../menu/OneTouchMainSection';
 import LocalTimerSection from '../lt/LtMainSection';

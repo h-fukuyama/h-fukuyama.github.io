@@ -1,5 +1,5 @@
 import { replaceValue } from "../sc/scComponentFunction"
-import { processBGMBand } from "../bgmBand";
+import { processBGMBand } from "../../utils/bgmBand";
 
 export const getActionResult = (lt, startIndex) => {
     if(lt){

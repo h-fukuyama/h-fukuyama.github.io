@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScProcessor1, ScProcessor2 } from '../sc/ScComponent';
-import { ScTable1, ScTable2 } from '../../utils/sc/scTable';
+import { ScTable1, ScTable2 } from './scTable';
 
 const StaffCallSection = React.forwardRef(({ fileContent }, ref) => {
   const datasets1 = ScProcessor1({ sc: fileContent?.if_config?.sc || [] });

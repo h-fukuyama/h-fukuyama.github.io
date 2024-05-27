@@ -1,10 +1,10 @@
 import React from 'react';
 import { hexToBinary, checkBit, hexToSignedDecimal } from '../../utils/calculate';
-import { replaceEQ, eqSetting } from '../../utils/menu/menuComponentFunction';
+import { replaceEQ, eqSetting } from './menuComponentFunction';
 import { oneTouch } from '../../utils/checkButton';
-import { getActionResult, replacePattern } from '../../utils/menu/menuComponentFunction';
-import useFileNavigation from '../useFileNavigation';
-import CardComponent from '../CardComponent';
+import { getActionResult, replacePattern } from './menuComponentFunction';
+import useFileNavigation from '../../fileOperation/useFileNavigation';
+import CardComponent from '../general/CardComponent';
 
   // ここから１行ずつのルール定義に入る------------------------
   const processFunction1 = (property) => {

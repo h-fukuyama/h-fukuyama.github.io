@@ -30,43 +30,6 @@ export const oneTouch = (property, title) => {
   }
 };
 
-// export const channelMask = (property, prefix) => {
-//   if (property) {
-//     const binaryString = property.split('').map((hexDigit) => parseInt(hexDigit, 16).toString(2).padStart(4, '0')).join('');
-//     const groupedResults = {};
-
-//     for (let i = binaryString.length - 1; i >= binaryString.length - 100; i--) {
-//       const bitValue = binaryString[i];
-//       const buttonName = `${binaryString.length - i}`;
-//       const result = { property: buttonName, value: bitValue === '0' ? 'OFF' : 'ON' };
-//       console.log(result)
-//       if (!groupedResults[result.value]) {
-//         groupedResults[result.value] = [];
-//       }
-
-//       groupedResults[result.value].push(result);
-//     }
-
-//     let resultEntries = [];
-
-//     if (Object.keys(groupedResults).length === 1 && 'ON' in groupedResults) {
-//       resultEntries = [{ property: `${prefix}チャンネルマスク`, value: '全てON' }];
-//     } else if (Object.keys(groupedResults).length === 1 && 'OFF' in groupedResults) {
-//       resultEntries = [{ property: `${prefix}チャンネルマスク`, value: '全てOFF' }];
-//     } else {
-//       resultEntries = Object.entries(groupedResults)
-//         .filter(([value]) => value === 'ON')
-//         .map(([value, buttons]) => ({
-//           property: `${prefix}チャンネルマスク`,
-//           value: `${buttons.map((button) => button.property).join(', ')}`
-//         }));
-//     }
-//     // console.log(`channelMask for ${prefix}:`, resultEntries); 
-//     return resultEntries;
-//   } else {
-//     return [{ property: `${prefix}チャンネルマスク:`, value: '不明' }];
-//   }
-// };
 
 export const channelMask = (property) => {
   if (property) {

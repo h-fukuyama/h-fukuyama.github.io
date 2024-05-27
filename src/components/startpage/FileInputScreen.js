@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFileContext } from '../../context/FileContext';
+import { useFileContext } from '../../fileOperation/FileContext';
 import { useDropzone } from 'react-dropzone';
 
 const FileInputScreen = () => {
   const navigate = useNavigate();
-  const { setFileContext } = useFileContext();
+  const { setFile } = useFileContext();  // ここを修正
   const [errors, setErrors] = useState([]);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: '.json',
@@ -27,7 +27,7 @@ const FileInputScreen = () => {
           const fileContent = JSON.parse(e.target.result);
           const { isValid, errors } = checkProperties(fileContent);
           if (isValid) {
-            setFileContext(selectedFile);
+            setFile(selectedFile);  // ここを修正
             navigate('/main');
           } else {
             setErrors(errors);
