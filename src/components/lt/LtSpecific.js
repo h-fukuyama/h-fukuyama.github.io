@@ -11,24 +11,26 @@ const LtSpecific = (props) => {
     const id2 = props.id2;
     const table = LtSpecificProcessor({ lt: fileContent?.if_config.lt || [], id, id2 });
 
-    return (
+  return (
+    <div>
+      {file && ( 
         <div>
-          {file && ( 
-            <div>
-                {fileContent && (
-                  <div>
-                    {table.props.fileName?.join('') === '' ? 
-                      <table align='center'>
-                        <tbody>
-                          <td><b>未登録</b></td>
-                        </tbody>
-                      </table> : table}                </div>
-                )}
-            </div>
-          )}
-          {!file && <h2>Lt Page</h2>} {/* fileが存在しなければタイトルだけ表示（/に遷移するとかでもよさそう) */}
+            {fileContent && (
+              <div>
+                {table.props.fileName?.join('') === '' ? 
+                  <table align='center'>
+                    <tbody>
+                      <tr>
+                        <td><b>未登録</b></td>
+                      </tr>
+                    </tbody>
+                  </table> : table}                </div>
+            )}
         </div>
-      );
+      )}
+      {!file && <h2>Lt Page</h2>} {/* fileが存在しなければタイトルだけ表示（/に遷移するとかでもよさそう) */}
+    </div>
+  );
 };
 
 export default LtSpecific;

@@ -3,7 +3,7 @@ import Header from '../general/Header';
 import { useParams } from 'react-router-dom';
 import { hexToBinary } from '../../utils/calculate';
 import { LtDetailTable, LtDetailTable2 } from './ltDetailTable';
-import { getActionResult } from '../menu/menuComponentFunction';
+import { getActionResult } from './ltComponentFunction';
 import useFileNavigation from '../../fileOperation/useFileNavigation';
 
 const LtDetail = () => {
