@@ -13,6 +13,10 @@ const headerStyle = {
     zIndex: "100"
 }
 
+const resetLinkStyle = {
+    marginLeft: "auto"
+}
+
 const Header = () => {
     return (
         <div style={headerStyle}>
@@ -22,7 +26,7 @@ const Header = () => {
                     <li><Link to="/isms">チャンネルマスク</Link></li>
                     <li><Link to="/lt">ローカルタイマー</Link></li>
                     <li><Link to="/othr">設定値</Link></li>
-                    <li className="reset-link"><Link to="/reset">リセット</Link></li>
+                    <li style={resetLinkStyle}><Link to="/reset">リセット</Link></li>
                 </ul>
             </nav>
         </div>

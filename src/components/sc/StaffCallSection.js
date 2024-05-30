@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScProcessor1, ScProcessor2 } from '../sc/ScComponent';
+import { ScProcessor1, ScProcessor2 } from './ScComponent';
 import { ScTable1, ScTable2 } from './scTable';
 
 const StaffCallSection = React.forwardRef(({ fileContent }, ref) => {

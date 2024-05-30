@@ -13,7 +13,7 @@ export const replaceValue = (value) => {
       case '04' :
         return "数値の指定";    
       default:
-        return value; // 何も該当しない場合は元の値をそのまま返す
+        return value; 
     }
 };
 
@@ -35,7 +35,7 @@ export const replaceVolume = (value) => {
       case '02':
         return "ダウン";  
       default:
-        return value; // 何も該当しない場合は元の値をそのまま返す
+        return value;
     }
 };
 
@@ -50,7 +50,7 @@ export const replaceSubject = (value) => {
     case '04':
       return "店内&事務所";  
     default:
-      return value; // 何も該当しない場合は元の値をそのまま返す
+      return value;
   }
 };
 
@@ -64,9 +64,8 @@ export const mapFolderValue = (value) => {
       return 'オリジナル録音';
     case '32':
       return '取り込み音源';
-    // 他にも条件があれば追加
     default:
-      return value; // マッチしない場合は元の値を返す
+      return value;
   }
 };
 
@@ -88,7 +87,6 @@ export const BinaryConverter = (input) => {
         case 2:
           output[2] = 'インカム';
           break;
-        // 他のビットに対する処理も追加
         default:
           break;
       }
@@ -108,7 +106,7 @@ export const replaceControl = (value) => {
     case '05':
       return "再生中";  
     default:
-      return value; // 何も該当しない場合は元の値をそのまま返す
+      return value;
   }
 };
 

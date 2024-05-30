@@ -10,8 +10,7 @@ import { OthrProcessor } from '../othr/OthrFunction';
 import { OthrTable } from '../othr/othrTable';
 
 const SettingPage = () => {
-  const { file, fileContent} = useFileNavigation();
-  //サイドバーのitems定義
+  const { file, fileContent } = useFileNavigation();
   const refs = {
     othr: useRef(null),
     menu: useRef(null),
@@ -24,14 +23,11 @@ const SettingPage = () => {
     { label: 'othr設定値', ref: refs.othr }
   ];
 
-  //Othr設定値の呼出し
   const results_all = OthrProcessor({ other: fileContent?.if_config?.othr || [] });
-  //Menu設定値の呼出し
   const menu_all = MenuProcessor({ menu: fileContent?.if_config?.menu || [] });
   const menu_all2 = MenuProcessor2({ menu: fileContent?.if_config?.menu || [] });
-  //isms設定値の呼出し
-  const isms_all = IsmsProcessor({ isms: fileContent?.if_config?.isms || []  })
-  
+  const isms_all = IsmsProcessor({ isms: fileContent?.if_config?.isms || [] })
+
   return (
     <div>
       {file ? (
@@ -40,17 +36,13 @@ const SettingPage = () => {
           <Sidebar items={items} scrollToRef={scrollToRef} />
           {fileContent && fileContent.if_config ? (
             <div>
-            <IsmsSettingComponent results_all={isms_all} ismsRef={refs.isms} />
-            <MenuComponent results_all={menu_all} results_all2={menu_all2} menuRef={refs.menu} />
-            <OthrTable results_all={results_all} othrRef={refs.othr} />
+              <IsmsSettingComponent results_all={isms_all} ismsRef={refs.isms} />
+              <MenuComponent results_all={menu_all} results_all2={menu_all2} menuRef={refs.menu} />
+              <OthrTable results_all={results_all} othrRef={refs.othr} />
             </div>
-          ) : (
-            <p>Loading...</p>
-          )}
+          ) : ( <p>Loading...</p>)}
         </div>
-      ) : (
-        <p>Resetting...</p>
-      )}
+      ) : ( <p>Resetting...</p> )}
     </div>
   );
 };

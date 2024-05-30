@@ -31,26 +31,19 @@ const IsmsComponent = () => {
     }
   }
 
-  const resultsAtoZ = maskItem.slice(0,26);
-  const atoz = bgmItem.slice(0,26);
-  const resultsUAtoUZ = maskItem.slice(26,52);
-  const uatouz = bgmItem.slice(26,52);
-  const resultsZAtoZZ = maskItem.slice(52,78);
-  const zatozz = bgmItem.slice(52,78);
-
   return (
     <div>
       <Header />
       <Sidebar items={items} scrollToRef={scrollToRef} />
       <div id="main-content">
         <div>
-          {!resultsAtoZ ? (
+          {!maskItem && !bgmItem ? (
             <div>Loading...</div>
           ) : (
             <>
-              <Matrix ref={refs.atoz} data={resultsAtoZ} band={atoz} title="A~Zチャンネルマスク" />
-              <Matrix ref={refs.uatouz} data={resultsUAtoUZ} band={uatouz} title="UA~UZチャンネルマスク" />
-              <Matrix ref={refs.zatozz} data={resultsZAtoZZ} band={zatozz} title="ZA~ZZチャンネルマスク" />
+              <Matrix ref={refs.atoz} data={maskItem.slice(0,26)} band={bgmItem.slice(0,26)} title="A~Zチャンネルマスク" />
+              <Matrix ref={refs.uatouz} data={maskItem.slice(26,52)} band={bgmItem.slice(26,52)} title="UA~UZチャンネルマスク" />
+              <Matrix ref={refs.zatozz} data={maskItem.slice(52,78)} band={bgmItem.slice(52,78)} title="ZA~ZZチャンネルマスク" />
             </>
           )}
         </div>

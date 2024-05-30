@@ -5,7 +5,7 @@ import { useDropzone } from 'react-dropzone';
 
 const FileInputScreen = () => {
   const navigate = useNavigate();
-  const { setFile } = useFileContext();  // ここを修正
+  const { setFile } = useFileContext(); 
   const [errors, setErrors] = useState([]);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: '.json',
@@ -104,6 +104,7 @@ const FileInputScreen = () => {
             border: '2px dashed #cccccc',
             borderRadius: '4px',
             padding: '20px',
+            marginBottom: '20px',
             textAlign: 'center',
             cursor: 'pointer',
             height: '500px',

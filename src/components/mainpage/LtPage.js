@@ -21,7 +21,7 @@ const LtComponent = () => {
 
   return (
     <div>
-      {file ? ( // fileが存在すれば以下を表示
+      {file ? (
         <div>
           <Header />
           <h2 style={{ marginBottom: '50px', marginLeft: '20px', marginTop: '20px' }}>Lt Page</h2>

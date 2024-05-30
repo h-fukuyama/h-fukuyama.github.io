@@ -16,9 +16,9 @@ export const ScTable1 = ({ id, button, call, back }) => {
                     <td width="100px">呼出</td>
                     <td width="600px"><b>{call}</b></td>
                     <td width="150px" rowSpan={2} >
-                        <IconButton style={{color: 'black'}} z-index='1'  onClick={() => setOpen(!open)}>
+                        <IconButton style={{ color: 'black' }} z-index='1' onClick={() => setOpen(!open)}>
                             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                            {open ? "詳細非表示": "詳細表示"}
+                            {open ? "詳細非表示" : "詳細表示"}
                         </IconButton>
                     </td>
                 </tr>
@@ -39,26 +39,27 @@ export const ScTable1 = ({ id, button, call, back }) => {
                 )}
             </tbody>
         </table>
-    );};
+    );
+};
 
 export const ScTable2 = ({ id, call }) => {
     const [open, setOpen] = React.useState(false);
     return (
         <table align='center'>
             <tbody>
-            <tr align='center'>
-                <td width="100px" textalign="center">{id}.</td>
-                <td width="100px">ボタン{id}</td>
-                <td width="500px"><b>{call}</b></td>
-                <td width="150px">
-                <IconButton style={{color: 'black'}} z-index='1'  onClick={() => setOpen(!open)}>
-                    {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                    {open ? "詳細非表示": "詳細表示"}
-                </IconButton>
-                </td>
-            </tr>
-            {open && (
-                    <tr style={{backgroundColor: 'white'}}>
+                <tr align='center'>
+                    <td width="100px" textalign="center">{id}.</td>
+                    <td width="100px">ボタン{id}</td>
+                    <td width="500px"><b>{call}</b></td>
+                    <td width="150px">
+                        <IconButton style={{ color: 'black' }} z-index='1' onClick={() => setOpen(!open)}>
+                            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                            {open ? "詳細非表示" : "詳細表示"}
+                        </IconButton>
+                    </td>
+                </tr>
+                {open && (
+                    <tr style={{ backgroundColor: 'white' }}>
                         <td colSpan={5}>
                             <Collapse in={open} timeout="auto" unmountOnExit>
                                 <ScDetail id={id} />

@@ -159,4 +159,3 @@ export const processFunction14 = (property) => {
     return [{ property: 'AUX優先順位エリア②事務所', value: '不明' }];
   }
 };
-// ここまで-----------------------------------------------------------

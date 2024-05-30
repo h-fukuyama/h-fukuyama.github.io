@@ -7,6 +7,15 @@
   pointer-events: none;
 }
 
+/* FileInputScreenのbox用 */
+.box {
+  margin: 30px;
+  width: 10px;
+  height: 50px;
+  background: #000000;
+}
+
+/* デフォルト */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -19,8 +28,9 @@ body {
 h2 {
   margin: 5px;
 }
+
 h4 {
-  margin:10px;
+  margin: 10px;
 }
 
 nav {
@@ -34,39 +44,25 @@ ul {
 }
 
 li {
-  margin-right: 20px; /* リンク間の余白 */
+  margin-right: 20px;
 }
 
 li:last-child {
-  margin-right: 0; /* 最後のリンクの余白をなくす */
+  margin-right: 0;
 }
 
+/* ヘッダーの文字色・下線の調整 ///////*/
 a {
   text-decoration: none;
-  color: white; /* リンクのテキスト色 */
-  font-weight: bold; /* リンクのテキストの太さ */
+  color: white;
+  font-weight: bold;
 }
 
 a:hover {
-  color: #ffcc00; /* ホバー時のリンクのテキスト色 */
+  color: #ffcc00;
 }
 
-.reset-link {
-  margin-left: auto;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* /////////////////////////////////// */
 
 .underline {
   text-decoration: underline;
@@ -80,18 +76,17 @@ a:hover {
   border: 1px solid black;
   padding: 01em;
   margin: 1em;
-  border-radius: 8px; /* 任意の角丸の半径を指定 */
-  /* width: 350px; カードの幅を指定 */
+  border-radius: 8px;
 }
 
 .card-container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly; /* 要素間を均等にスペースを開ける */
+  justify-content: space-evenly;
 }
 
-.detail-button {
+button {
   background-color: black;
   color: white;
   padding: 10px 20px;
@@ -99,88 +94,47 @@ a:hover {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  /* margin-bottom: 30px; */
 }
 
-.detail-button:hover {
+button:hover {
   background-color: #ffcc00;
 }
-
-/* App.css や適切な場所に配置 */
-
+/* Table周りのcss ----------------------------------*/
 .table-container {
-  max-height: 300px; /* 適切な高さに調整してください */
+  max-height: 300px;
   overflow-y: auto;
 }
 
 table {
   width: 90%;
   border-collapse: collapse;
-  margin-bottom: 10px; /* 余白を増やす */
+  margin-bottom: 10px;
 }
 
-th, td {
-  padding: 5px; /* セルの余白を調整 */
-  border: 1px solid #ddd; /* ボーダーを追加 */
+th,
+td {
+  padding: 5px;
+  border: 1px solid #ddd;
   text-align: center;
 }
 
 th {
-  background-color: #3f51b5; /* ヘッダーの背景色を変更 */
-  color: white; /* ヘッダーのテキスト色を変更 */
+  background-color: #3f51b5;
+  color: white;
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2; /* 偶数行の背景色を変更 */
-}
-
-
-/* Sidebar styles */
-#sidebar {
-  /* list-style-type: none; */
-  padding: 10;
-  margin: 10;
-  background-color: white;
-  position: fixed;
-  height: 100%;
-  /* flex-direction: column; */
-}
-
-#sidebar li {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  cursor: pointer;
-}
-
-
-
-/* Highlight the selected item */
-#sidebar li:hover {
-  background-color: #ddd;
-}
-
-/* Main content styles */
-#main-content {
-  margin-left: 220px; /* Adjust margin to accommodate the sidebar width */
-  padding: 20px;
-}
-
-.on {
-  background-color: black;
-  color: white;
-  font-weight: bold;
-}
-
-.highlighted {
-  background-color: #c3edff; /* 背景色を変更 */
+  background-color: #f2f2f2;
 }
 
 .infoTable {
-  border: 1px solid black;
+  border: 0px;
   width: 100%;
 }
 
 .infoTable th{
-  border: 2px solid black;
+  border: 0px solid black;
   background-color: white;
   color: black;
   text-align: left;
@@ -192,4 +146,37 @@ tr:nth-child(even) {
   color: black;
   text-align: left;
 }
+/*---------------------------------------------------------------*/
 
+#sidebar {
+  padding: 10;
+  margin: 10;
+  background-color: white;
+  position: fixed;
+  height: 100%;
+}
+
+#sidebar li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+#sidebar li:hover {
+  background-color: #ddd;
+}
+
+#main-content {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+.on {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.highlighted {
+  background-color: #c3edff;
+}

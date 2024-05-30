@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 const daysOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
 
 export const LtMainTable = ({ power, id, week, title }) => {
-    // weekを配列に変換する
     const weekArray = week.split('').map(Number).slice(-7).reverse();
 
     return (
@@ -17,9 +16,9 @@ export const LtMainTable = ({ power, id, week, title }) => {
                         <td key={index} width="5%" textalign="center">{value === 1 ? daysOfWeek[index] : ''}</td>
                     ))}
                     <td width="40%"><b>{title}</b></td>
-                    <td width="15%">
+                    <td width="15%" justify-content='center'>
                         <Link to={`/lt/${id}`}>
-                            <button className="detail-button">詳細表示</button>
+                            <button margin="none" textalign="center" className="detail-button">詳細表示</button>
                         </Link>
                     </td>
                 </tr>
