@@ -1,7 +1,6 @@
 import React from 'react';
 import { processBGMBand } from '../../utils/bgmBand';
-import { processVolume } from '../../utils/processVolume';
-import { hexToBinary, checkBit, hexToSignedDecimal } from '../../utils/calculate';
+import { hexToBinary, checkBit, hexToSignedDecimal, processVolume } from '../../utils/calculate';
 import { checkButton } from '../../utils/checkButton';
 
 export const OthrProcessor = ({ other }) => {

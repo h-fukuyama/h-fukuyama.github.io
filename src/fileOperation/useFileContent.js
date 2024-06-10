@@ -1,4 +1,3 @@
-// useFileContent.js
 import { useState, useEffect } from 'react';
 
 const useFileContent = (file) => {
