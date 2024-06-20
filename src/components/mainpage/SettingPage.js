@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useState } from 'react';
 import Header from '../general/Header';
 import useFileNavigation from '../../fileOperation/useFileNavigation';
 import Sidebar from '../general/Sidebar';
@@ -11,12 +12,26 @@ import { OthrTable } from '../othr/othrTable';
 
 const SettingPage = () => {
   const { file, fileContent } = useFileNavigation();
+  const [highlightedRef, setHighlightedRef] = useState(null);
+  
+  const scrollToRef = (ref) => {
+    window.scrollTo(0, ref.current.offsetTop - 80);
+    if (highlightedRef) {
+      highlightedRef.current.classList.remove('highlight');
+    }
+    ref.current.classList.add('highlight');
+    setHighlightedRef(ref);
+    setTimeout(() => {
+      ref.current.classList.remove('highlight');
+      setHighlightedRef(null);
+    }, 1000);
+  };
+
   const refs = {
     othr: useRef(null),
     menu: useRef(null),
     isms: useRef(null)
   };
-  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop - 80);
   const items = [
     { label: 'isms設定値', ref: refs.isms },
     { label: 'menu設定値', ref: refs.menu },

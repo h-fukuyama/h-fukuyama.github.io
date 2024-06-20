@@ -7,7 +7,6 @@ const OneTouchButtonSection = React.forwardRef(({ fileContent }, ref) => {
 
   return (
     <div ref={ref}>
-      <h2>登録済みワンタッチボタン</h2>
       {datasets3.map((data, index) => (
         <div key={index}>
           {(data[1] !== '<未登録>' || data[2] !== '') && <MenuTable id={data[0]} title={data[1]} call={data[2]} />}
