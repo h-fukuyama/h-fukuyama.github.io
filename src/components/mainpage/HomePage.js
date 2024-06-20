@@ -5,11 +5,12 @@ import useFileNavigation from '../../fileOperation/useFileNavigation';
 import { InfoTable } from './InfoTable';
 import StaffCallSection from '../sc/StaffCallSection';
 import OneTouchButtonSection from '../menu/OneTouchMainSection';
+import { useVisible } from '../../fileOperation/VisibleContext';
 // import LocalTimerSection from '../lt/LtMainSection';
 
 const MainComponent = () => {
   const { file, fileContent } = useFileNavigation();
-  const [isVisible, setIsVisible] = useState(false);
+  const { isVisible, setIsVisible } = useVisible();
   const [highlightedRef, setHighlightedRef] = useState(null);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -31,11 +32,13 @@ const MainComponent = () => {
   };
 
   const refs = {
+    mainPage: useRef(null),
     staffCall: useRef(null),
     oneTouchButton: useRef(null),
   };
 
   const items = [
+    { label: 'メインページ', ref: refs.mainPage },
     { label: 'スタッフコール', ref: refs.staffCall },
     { label: 'ワンタッチボタン', ref: refs.oneTouchButton },
   ];
@@ -47,8 +50,10 @@ const MainComponent = () => {
           <Header />
           <Sidebar items={items} scrollToRef={scrollToRef} />
           <div id="main-content">
-            <h2>メインページ</h2>
-            <p>ファイル名: {file.name}</p>
+            <div ref={refs.mainPage}>
+              <h2 >メインページ</h2>
+              <p>ファイル名: {file.name}</p>
+            </div>
             {fileContent ? (
               <div>
                 <button onClick={toggleVisibility} style={{ marginBottom: '30px' }}>

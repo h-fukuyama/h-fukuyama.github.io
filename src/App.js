@@ -8,22 +8,25 @@ import FileInputScreen from './components/startpage/FileInputScreen';
 import ResetComponent from './components/general/ResetComponent.js';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { FileProvider } from './fileOperation/FileContext';
+import { VisibleProvider } from './fileOperation/VisibleContext';
 
 function App() {
   return (
-    <Router>
-      <FileProvider>
+    <VisibleProvider>
+      <Router>
+        <FileProvider>
           <Routes>
-            <Route path={ "/" } element={<FileInputScreen />} />  {/* components/startpage */}
-            <Route path={ "/main" } element={<MainComponent />} /> {/* components/mainpage/HomePage */}
-            <Route path={ "/isms" } element={<IsmsComponent />} /> {/* components/mainpage/ChannelMask */}
-            <Route path={ "/lt" } element={<LtPage />} /> {/* components/mainpage/LtPage */}
-              <Route path={ "/lt/:id" } element={<LtDetail />} /> {/* components/lt/LtDetail */}
-            <Route path={ "/othr" } element={<OthrComponent />} /> {/* components/startpage/SettingPage */}
-            <Route path={ "/reset" } element={<ResetComponent />} /> {/* components/general/ResetComponent */}
+            <Route path={"/"} element={<FileInputScreen />} />  {/* components/startpage */}
+            <Route path={"/main"} element={<MainComponent />} /> {/* components/mainpage/HomePage */}
+            <Route path={"/isms"} element={<IsmsComponent />} /> {/* components/mainpage/ChannelMask */}
+            <Route path={"/lt"} element={<LtPage />} /> {/* components/mainpage/LtPage */}
+            <Route path={"/lt/:id"} element={<LtDetail />} /> {/* components/lt/LtDetail */}
+            <Route path={"/othr"} element={<OthrComponent />} /> {/* components/startpage/SettingPage */}
+            <Route path={"/reset"} element={<ResetComponent />} /> {/* components/general/ResetComponent */}
           </Routes>
-      </FileProvider>
-    </Router>
+        </FileProvider>
+      </Router>
+    </VisibleProvider>
   );
 }
 
