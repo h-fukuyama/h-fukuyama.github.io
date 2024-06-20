@@ -1,24 +1,14 @@
 import React, { forwardRef } from 'react';
 import { Table, TableContainer, TableHead, TableRow, TableBody, Paper, TableCell } from '@mui/material';
-import { styled } from '@mui/system';
 
-const StyledTableCell = styled(TableCell)(({ theme, isHeader, isfirstcolumn, isalloff }) => ({
-    textAlign: 'center',
-    whiteSpace: 'nowrap',
-    minWidth: '8px',
-    height: '10px',
-    backgroundColor: isalloff ? 'white' : (isfirstcolumn ? 'lightgreen' : 'inherit'),
-    color: isHeader ? theme.palette.primary.main : 'inherit',
-    position: isHeader ? 'sticky' : 'inherit',
-    left: isfirstcolumn ? 0 : 'inherit',
-  }));
+const checkColumnHighlight = (data) => {
+    return data.map(column => column.includes("〇"));
+};
 
-  export const Matrix = forwardRef((props, ref) => {
-    const { data, band, title } = props;
-  
-    // 列ごとに "〇" の有無をチェック
-    const columnsWithCircle = [...Array(99).keys()].map(i => data.some(row => row[i] === "〇"));
-  
+export const Matrix = forwardRef((props, ref) => {
+    const { data, band, title } = props;  
+    const columnHighlights = checkColumnHighlight(data);
+
     return (
       <div ref={ref}>
         <h2  style={{ margin: '20px' }}>{title}</h2>
@@ -26,7 +16,7 @@ const StyledTableCell = styled(TableCell)(({ theme, isHeader, isfirstcolumn, isa
           <Table size="small" stickyHeader>
             <TableHead>
               <TableRow>
-                <StyledTableCell
+                <TableCell
                   className="MuiTableCell-stickyHeader MuiTableCell-firstColumn"
                   sx={{
                     position: 'sticky',
@@ -35,47 +25,46 @@ const StyledTableCell = styled(TableCell)(({ theme, isHeader, isfirstcolumn, isa
                     zIndex: 2,
                     backgroundColor: 'white',
                   }}
-                ></StyledTableCell>
+                ></TableCell>
                 {band.map((item, index) => (
-                  <StyledTableCell
+                  <TableCell
                     align="center"
                     className="MuiTableCell-stickyHeader"
                     sx={{
                       position: 'sticky',
                       top: 0,
                       zIndex: 2,
-                      backgroundColor: columnsWithCircle[index] ? 'lightgreen' : 'white',
+                      backgroundColor: columnHighlights[index] ? 'lightgreen' : 'white',
                       maxWidth: '10px'
                     }}
                     key={index}
                   >
                     {item}
-                  </StyledTableCell>
+                  </TableCell>
                 ))}
               </TableRow>
             </TableHead>
             <TableBody>
               {[...Array(99).keys()].map(i => {
-                const isRowHighlighted = data[i] && data[i].includes("〇");
                 return (
                   <TableRow key={i + 1}>
-                    <StyledTableCell
+                    <TableCell
                       sx={{
                         position: 'sticky',
                         left: 0,
-                        backgroundColor: isRowHighlighted ? 'lightgreen' : 'white',
                         height: 'auto',
-                        fontWeight: isRowHighlighted ? 'bold' : 'none'
+                        backgroundColor: 'black',
+                        color: 'white'
                       }}
-                    >{i + 1}</StyledTableCell>
+                    >{i + 1}</TableCell>
                     {data.map((item, idx) => (
-                      <StyledTableCell
+                      <TableCell
                         key={idx}
                         sx={{
                           backgroundColor: item[i] === "〇" ? 'lightgreen' : 'inherit',
                           maxWidth: '6px'
                         }}
-                      >{item[i]}</StyledTableCell>
+                      >{item[i]}</TableCell>
                     ))}
                   </TableRow>
                 );
@@ -85,5 +74,4 @@ const StyledTableCell = styled(TableCell)(({ theme, isHeader, isfirstcolumn, isa
         </TableContainer>
       </div>
     );
-  });
-  
+});
