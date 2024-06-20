@@ -13,73 +13,77 @@ const StyledTableCell = styled(TableCell)(({ theme, isHeader, isfirstcolumn, isa
     left: isfirstcolumn ? 0 : 'inherit',
   }));
 
-export const Matrix = forwardRef((props, ref) => {
-  const { data, band, title } = props;
-  return (
-    <>
-      <h2 ref={ref} style={{ margin: '20px' }}>{title}</h2>
-      <TableContainer component={Paper} sx={{ maxWidth: '100%', margin: 'auto', maxHeight: '600px', overflow: 'auto' }}>
-        <Table size="small" stickyHeader>
-          <TableHead>
-            <TableRow>
-              <StyledTableCell
-                className="MuiTableCell-stickyHeader MuiTableCell-firstColumn"
-                sx={{
-                  position: 'sticky',
-                  left: 0,
-                  top: 0,
-                  zIndex: 2,
-                  backgroundColor: 'white',
-                }}
-              ></StyledTableCell>
-              {[...Array(99).keys()].map(i => (
+  export const Matrix = forwardRef((props, ref) => {
+    const { data, band, title } = props;
+  
+    // 列ごとに "〇" の有無をチェック
+    const columnsWithCircle = [...Array(99).keys()].map(i => data.some(row => row[i] === "〇"));
+  
+    return (
+      <>
+        <h2 ref={ref} style={{ margin: '20px' }}>{title}</h2>
+        <TableContainer component={Paper} sx={{ maxWidth: '100%', margin: 'auto', maxHeight: '600px', overflow: 'auto' }}>
+          <Table size="small" stickyHeader>
+            <TableHead>
+              <TableRow>
                 <StyledTableCell
-                  align="center"
-                  className="MuiTableCell-stickyHeader"
+                  className="MuiTableCell-stickyHeader MuiTableCell-firstColumn"
                   sx={{
                     position: 'sticky',
+                    left: 0,
                     top: 0,
                     zIndex: 2,
-                    backgroundColor: 'black',
-                    color: 'white',
-                    maxWidth: '10px'
+                    backgroundColor: 'white',
                   }}
-                  key={i + 1}
-                >
-                  {i + 1}
-                </StyledTableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {band.map((item, index) => {
-              const isHighlighted = data[index] && data[index].includes("〇");
-              return (
-                <TableRow key={item}>
+                ></StyledTableCell>
+                {band.map((item, index) => (
                   <StyledTableCell
+                    align="center"
+                    className="MuiTableCell-stickyHeader"
                     sx={{
                       position: 'sticky',
-                      left: 0,
-                      backgroundColor: isHighlighted ? 'lightgreen' : 'white',
-                      height: 'auto',
-                      fontWeight: isHighlighted ? 'bold' : 'none'
+                      top: 0,
+                      zIndex: 2,
+                      backgroundColor: columnsWithCircle[index] ? 'lightgreen' : 'white',
+                      maxWidth: '10px'
                     }}
-                  >{item}チャンネルマスク</StyledTableCell>
-                  {data[index] && data[index].map((property, idx) => (
+                    key={index}
+                  >
+                    {item}
+                  </StyledTableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {[...Array(99).keys()].map(i => {
+                const isRowHighlighted = data[i] && data[i].includes("〇");
+                return (
+                  <TableRow key={i + 1}>
                     <StyledTableCell
-                      key={idx}
                       sx={{
-                        backgroundColor: property === "〇" ? 'lightgreen' : 'inherit',
-                        maxWidth: '6px'
+                        position: 'sticky',
+                        left: 0,
+                        backgroundColor: isRowHighlighted ? 'lightgreen' : 'white',
+                        height: 'auto',
+                        fontWeight: isRowHighlighted ? 'bold' : 'none'
                       }}
-                    >{property}</StyledTableCell>
-                  ))}
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
-  );
-});
+                    >{i + 1}</StyledTableCell>
+                    {data.map((item, idx) => (
+                      <StyledTableCell
+                        key={idx}
+                        sx={{
+                          backgroundColor: item[i] === "〇" ? 'lightgreen' : 'inherit',
+                          maxWidth: '6px'
+                        }}
+                      >{item[i]}</StyledTableCell>
+                    ))}
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </>
+    );
+  });
+  

@@ -5,7 +5,7 @@ import useFileNavigation from '../../fileOperation/useFileNavigation';
 import { InfoTable } from './InfoTable';
 import StaffCallSection from '../sc/StaffCallSection';
 import OneTouchButtonSection from '../menu/OneTouchMainSection';
-import LocalTimerSection from '../lt/LtMainSection';
+// import LocalTimerSection from '../lt/LtMainSection';
 
 const MainComponent = () => {
   const { file, fileContent} = useFileNavigation();
@@ -16,12 +16,10 @@ const MainComponent = () => {
   const refs = {
     staffCall: useRef(null),
     oneTouchButton: useRef(null),
-    localTimer: useRef(null)
   };
   const items = [
     { label: 'スタッフコール', ref: refs.staffCall },
     { label: 'ワンタッチボタン', ref: refs.oneTouchButton },
-    { label: 'ローカルタイマー', ref: refs.localTimer }
   ];
 
   return (
@@ -39,7 +37,7 @@ const MainComponent = () => {
                 {isVisible && <InfoTable info={fileContent} />}
                 <StaffCallSection ref={refs.staffCall} fileContent={fileContent} />
                 <OneTouchButtonSection ref={refs.oneTouchButton} fileContent={fileContent} />
-                <LocalTimerSection ref={refs.localTimer} fileContent={fileContent} />
+                {/* <LocalTimerSection ref={refs.localTimer} fileContent={fileContent} /> */}
               </>
             ) : (
               <p>Loading...</p>
