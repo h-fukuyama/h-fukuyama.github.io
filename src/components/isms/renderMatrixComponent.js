@@ -20,8 +20,8 @@ const StyledTableCell = styled(TableCell)(({ theme, isHeader, isfirstcolumn, isa
     const columnsWithCircle = [...Array(99).keys()].map(i => data.some(row => row[i] === "〇"));
   
     return (
-      <>
-        <h2 ref={ref} style={{ margin: '20px' }}>{title}</h2>
+      <div ref={ref}>
+        <h2  style={{ margin: '20px' }}>{title}</h2>
         <TableContainer component={Paper} sx={{ maxWidth: '100%', margin: 'auto', maxHeight: '600px', overflow: 'auto' }}>
           <Table size="small" stickyHeader>
             <TableHead>
@@ -83,7 +83,7 @@ const StyledTableCell = styled(TableCell)(({ theme, isHeader, isfirstcolumn, isa
             </TableBody>
           </Table>
         </TableContainer>
-      </>
+      </div>
     );
   });
   

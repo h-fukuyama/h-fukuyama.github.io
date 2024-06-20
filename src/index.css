@@ -180,3 +180,8 @@ tr:nth-child(even) {
 .highlighted {
   background-color: #c3edff;
 }
+
+.highlight {
+  background-color: lightblue;
+  transition: background-color 0.1s ease;
+}

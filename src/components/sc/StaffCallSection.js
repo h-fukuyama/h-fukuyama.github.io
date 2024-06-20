@@ -8,7 +8,6 @@ const StaffCallSection = React.forwardRef(({ fileContent }, ref) => {
 
   return (
     <div ref={ref}>
-      <h2>スタッフコール(両方未接続の設定以外を表示)</h2>
       <h3>無線① WCシリーズ(101~400)</h3>
       {datasets1.map((data, index) => (
         <div key={index}>
