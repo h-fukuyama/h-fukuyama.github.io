@@ -1,8 +1,7 @@
 import React from 'react';
 
-export const ScDetailTable0 = ({ fileName, folder, volume, mixing, output, external, channel, back }) => {
+export const ScDetailTable0 = ({ id, fileName, folder, volume, mixing, output, repeat, external, channel, back }) => {
   const rowHeaders = ["前チャイム", "コメント①", "コメント②", "コメント③", "後チャイム"];
-
   return (
     <table align='center'>
       <tbody>
@@ -67,6 +66,12 @@ export const ScDetailTable0 = ({ fileName, folder, volume, mixing, output, exter
               <td colSpan={4}>{channel[1]}</td>
             </tr>
           </>
+        )}
+        {id < 44800 && (
+        <tr>
+          <th>リピート間隔(呼戻)</th>
+          <td colSpan={4}>{repeat}</td>
+        </tr>
         )}
       </tbody>
     </table>

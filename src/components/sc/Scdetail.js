@@ -99,7 +99,7 @@ export const ScDetailProcessor = ({ sc, id }) => {
       })();
       channel.push(channelName);
       const back = fileName2?.join('') === '' ? '利用しない' : '利用する';
-      return <ScDetailTable0 fileName={fileName} folder={transformedFolder} volume={transformedVolume} mixing={transformedMixing} output={output} repeat={repeat} external={external} channel={channel} back={back} />;
+      return <ScDetailTable0 id={id} fileName={fileName} folder={transformedFolder} volume={transformedVolume} mixing={transformedMixing} output={output} repeat={repeat} external={external} channel={channel} back={back} />;
     case '01': //電源制御:1行
       return <ScDetailTable1 title="電源ON/OFF" power={replaceValue(sc[startIndex + 33])} back={sc[startIndex + 22400] === '00' ? "利用しない" : "利用する"} />;
     case '02': //チャンネル変更:9行(呼び戻し無し)
