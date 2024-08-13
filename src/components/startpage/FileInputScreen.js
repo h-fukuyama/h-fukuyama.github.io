@@ -10,42 +10,59 @@ const FileInputScreen = () => {
   const [errors, setErrors] = useState([]);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: '.json',
-    maxFiles: 1,
     onDrop: handleFileChange,
   });
 
   function handleFileChange(files) {
+    setErrors([]); // エラーメッセージをリセット
+    const newErrors = []; // 新しいエラーメッセージを格納する配列
+
+    const fileCount = files.length;
+    if (fileCount > 1) {
+        newErrors.push('複数のファイルが選択されています。1つのファイルのみを選択してください。');
+        setErrors(newErrors); // エラーを設定
+        return; // 処理を終了
+    }
+
     const selectedFile = files[0];
     if (selectedFile) {
-      if (!selectedFile.name.toLowerCase().endsWith('.json')) {
-        setErrors(['JSON ファイルを選択してください。']);
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        try {
-          const fileContent = JSON.parse(e.target.result);
-          const { isValid, errors } = checkProperties(fileContent);
-          if (isValid) {
-            setFile(selectedFile);
-            navigate('/main');
-          } else {
-            setErrors(errors);
-          }
-        } catch (error) {
-          if (error instanceof SyntaxError) {
-            setErrors(['予期しないJSONファイルです。']);
-          } else {
-            setErrors(['予期しないエラーが発生しました。']);
-          }
+        if (!selectedFile.name.toLowerCase().endsWith('.json')) {
+            newErrors.push('JSONファイルを選択してください。');
+            setErrors(newErrors); // エラーを設定
+            return; // 処理を終了
+        } else {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const fileContent = JSON.parse(e.target.result);
+                    const { isValid, errors } = checkProperties(fileContent, fileCount);
+                    if (isValid) {
+                        setFile(selectedFile);
+                        navigate('/main');
+                    } else {
+                        newErrors.push(...errors);
+                    }
+                } catch (error) {
+                    if (error instanceof SyntaxError) {
+                        newErrors.push('予期しないJSONファイルです。');
+                    } else {
+                        newErrors.push('予期しないエラーが発生しました。');
+                    }
+                } finally {
+                    if (newErrors.length > 0) {
+                        setErrors(newErrors); // エラーを設定
+                    }
+                }
+            };
+            reader.readAsText(selectedFile);
         }
-      };
-      reader.readAsText(selectedFile);
     }
-  }
+}
+
   const renderErrorMessages = errors.map((error, index) => (
     <p key={index} style={{ color: 'red' }}>{error}</p>
   ));
+
 
   return (
     <div>

@@ -65,13 +65,13 @@ export const ScDetailTable0 = ({ id, fileName, folder, volume, mixing, output, r
               <th width='30px'>チャンネル</th>
               <td colSpan={4}>{channel[1]}</td>
             </tr>
+            {id < 44800 && (
+              <tr>
+                <th>リピート間隔(呼戻)</th>
+                <td colSpan={4}>{repeat}</td>
+              </tr>
+            )}
           </>
-        )}
-        {id < 44800 && (
-        <tr>
-          <th>リピート間隔(呼戻)</th>
-          <td colSpan={4}>{repeat}</td>
-        </tr>
         )}
       </tbody>
     </table>
