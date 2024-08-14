@@ -1,6 +1,6 @@
 import React from 'react';
 import { MenuDetailTable0, MenuDetailTable1, MenuDetailTable2, MenuDetailTable3, MenuDetailTable4, MenuDetailTable5 } from './menuDetailTable'
-import { BinaryConverter, replaceControl, replaceValue, replaceSubject, replaceVolume, generateOutput } from '../sc/scComponentFunction';
+import { BinaryConverter, replaceControl, replaceValue, replaceSubject, replaceVolume, generateOutput } from '../sc/scProcessorFunction';
 import { processBGMBand } from '../../utils/bgmBand';
 import { getChannelName, getValidStatus, getPattern, parseTime, mapFolder, parseVolume, parseMixing } from './menuDetailFunction';
 import useFileNavigation from '../../fileOperation/useFileNavigation';

@@ -1,6 +1,6 @@
-import { getActionResult1, getActionResult2 } from './scComponentFunction';
+import { getActionResult1, getActionResult2 } from './scProcessorFunction';
 
-export const ScProcessor1 = ({ sc }) => {
+export const scProcessor1 = ({ sc }) => {
   const datasets = [];
   for (let i = 0; i < 22400; i += 56) {
     if ((sc[i] === sc[i + 22400]) && sc[i] === '00') { //両方「コメント再生」
@@ -27,7 +27,7 @@ export const ScProcessor1 = ({ sc }) => {
   return datasets;
 };
 
-export const ScProcessor2 = ({ sc }) => {
+export const scProcessor2 = ({ sc }) => {
   const datasets = [];
   for (let i = 44800; i < 45695; i += 56) {
     const isSameButton = sc[i] === sc[i + 448];

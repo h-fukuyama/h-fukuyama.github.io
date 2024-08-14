@@ -1,4 +1,4 @@
-import { BinaryConverter, mapFolderValue, replaceControl, replaceValue } from '../sc/scComponentFunction';
+import { BinaryConverter, mapFolderValue, replaceControl, replaceValue } from '../sc/scProcessorFunction';
 import { processBGMBand } from '../../utils/bgmBand';
 import { hexToSignedDecimal } from '../../utils/calculate';
 

@@ -3,7 +3,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import IconButton from '@mui/material/Button'
 import { Collapse } from '@mui/material';
-import ScDetail from './Scdetail';
+import ScDetail from './ScDetail';
 
 export const ScTable1 = ({ id, button, call, back }) => {
     const [open, setOpen] = React.useState(false);

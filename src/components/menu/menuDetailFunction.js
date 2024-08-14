@@ -1,6 +1,6 @@
 import { processBGMBand } from "../../utils/bgmBand";
 import { oneTouch } from "../../utils/checkButton";
-import { mapFolderValue } from "../sc/scComponentFunction";
+import { mapFolderValue } from "../sc/scProcessorFunction";
 import { hexToSignedDecimal } from "../../utils/calculate";
 
 export const getChannelName = (menu, startIndex) => {

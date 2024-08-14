@@ -1,6 +1,60 @@
 import { hexToBinary, checkBit, hexToSignedDecimal } from '../../utils/calculate';
-import { replaceEQ, eqSetting } from './menuComponentFunction';
 import { oneTouch } from '../../utils/checkButton';
+
+export const replacePattern = (value) => {
+  switch (value) {
+    case '00':
+      return "分指定再生";
+    case '01':
+      return "1~99回数指定再生";
+    case '02':
+      return "連続再生";  
+    default:
+      return value; // 何も該当しない場合は元の値をそのまま返す
+  }
+};
+
+export const replaceEQ = (value) => {
+  switch (value) {
+    case 0:
+      return "Lo";
+    case 1:
+      return "Mid";
+    case 2:
+      return "Hi";  
+    default:
+      return value; // 何も該当しない場合は元の値をそのまま返す
+  }
+};
+
+export const eqSetting = (value) => {
+  switch (value) {
+    case '00':
+      return "マニュアル";
+    case '01':
+      return "POPS";
+    case '02':
+      return "ROCK";
+    case '03':
+      return "JAZZ/FUSION";
+    case '04':
+      return "VOCAL";
+    case '05':
+      return "CLUB/DANCE";  
+    case '06':
+      return "CAFE";
+    case '07':
+      return "LOUNGE";
+    case '08':
+      return "CLASSIC";     
+    case '09':
+      return "HEALING";
+    case '0A':
+      return "イージーリスニング/インスト";      
+    default:
+      return value; // 何も該当しない場合は元の値をそのまま返す
+  }
+};
 
   // ここから１行ずつのルール定義に入る------------------------
   export const processFunction1 = (property) => {

@@ -1,4 +1,4 @@
-import { replaceValue } from "../sc/scComponentFunction"
+import { replaceValue } from "../sc/scProcessorFunction"
 import { processBGMBand } from "../../utils/bgmBand";
 
 export const getActionResult = (lt, startIndex) => {

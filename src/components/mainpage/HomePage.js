@@ -6,7 +6,6 @@ import { InfoTable } from './InfoTable';
 import StaffCallSection from '../sc/StaffCallSection';
 import OneTouchButtonSection from '../menu/OneTouchMainSection';
 import { useVisible } from '../../fileOperation/VisibleContext';
-// import LocalTimerSection from '../lt/LtMainSection';
 
 const MainComponent = () => {
   const { file, fileContent } = useFileNavigation();
@@ -68,10 +67,6 @@ const MainComponent = () => {
                   <h2>ワンタッチボタン</h2>
                   <OneTouchButtonSection fileContent={fileContent} />
                 </div>
-                {/* <div ref={refs.localTimer}>
-                  <h2>ローカルタイマー</h2>
-                  <LocalTimerSection fileContent={fileContent} />
-                </div> */}
               </div>
             ) : (
               <p>Loading...</p>

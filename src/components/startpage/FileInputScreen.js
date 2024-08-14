@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFileContext } from '../../fileOperation/FileContext';
 import { useDropzone } from 'react-dropzone';
@@ -8,12 +8,8 @@ const FileInputScreen = () => {
   const navigate = useNavigate();
   const { setFile } = useFileContext();
   const [errors, setErrors] = useState([]);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: '.json',
-    onDrop: handleFileChange,
-  });
 
-  function handleFileChange(files) {
+  const handleFileChange = useCallback((files) => {
     setErrors([]); // エラーメッセージをリセット
     const newErrors = []; // 新しいエラーメッセージを格納する配列
 
@@ -57,21 +53,26 @@ const FileInputScreen = () => {
             reader.readAsText(selectedFile);
         }
     }
-}
+  }, [setFile, navigate]);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: '.json',
+    onDrop: handleFileChange,
+  });
 
   const renderErrorMessages = errors.map((error, index) => (
     <p key={index} style={{ color: 'red' }}>{error}</p>
   ));
 
-
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <div className="box"></div>
-        <h1 style={{ marginTop: '30px', flex: 1 }}>PRX-IP5000 configファイル解析アプリ</h1></div>
+        <h1 style={{ marginTop: '30px', flex: 1 }}>PRX-IP5000 configファイル解析アプリ</h1>
+      </div>
       <h5 style={{ textAlign: 'right', marginRight: '64px' }}>version 1.0</h5>
       <div style={{ marginLeft: '64px', marginRight: '64px' }}>
-        <b>{renderErrorMessages}</b>
+        {renderErrorMessages}
         <div
           {...getRootProps({
             style: {

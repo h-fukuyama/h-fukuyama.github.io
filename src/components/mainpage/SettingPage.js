@@ -6,7 +6,7 @@ import Sidebar from '../general/Sidebar';
 import { IsmsProcessor } from '../isms/IsmsFunction';
 import { IsmsSettingComponent } from '../isms/IsmsSettingComponent';
 import MenuComponent from '../menu/MenuComponent';
-import { MenuProcessor, MenuProcessor2 } from '../menu/MenuComponent';
+import { menuProcessor, menuProcessor2 } from '../menu/MenuComponent';
 import { OthrProcessor } from '../othr/OthrFunction';
 import { OthrTable } from '../othr/othrTable';
 
@@ -39,8 +39,8 @@ const SettingPage = () => {
   ];
 
   const results_all = OthrProcessor({ other: fileContent?.if_config?.othr || [] });
-  const menu_all = MenuProcessor({ menu: fileContent?.if_config?.menu || [] });
-  const menu_all2 = MenuProcessor2({ menu: fileContent?.if_config?.menu || [] });
+  const menu_all = menuProcessor({ menu: fileContent?.if_config?.menu || [] });
+  const menu_all2 = menuProcessor2({ menu: fileContent?.if_config?.menu || [] });
   const isms_all = IsmsProcessor({ isms: fileContent?.if_config?.isms || [] })
 
   return (

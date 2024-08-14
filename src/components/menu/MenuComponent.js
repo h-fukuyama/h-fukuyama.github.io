@@ -1,5 +1,4 @@
 import React from 'react';
-import { getActionResult, replacePattern } from './menuComponentFunction';
 import useFileNavigation from '../../fileOperation/useFileNavigation';
 import CardComponent from '../general/CardComponent';
 import { processFunction1, processFunction2, processFunction3, processFunction4, processFunction5, processFunction6, processFunction7, processFunction8, processFunction9, processFunction10, processFunction11, processFunction12, processFunction13, processFunction14, processFunction15, processFunction16, processFunction17, processFunction997, processFunction998, processFunction999  } from './menuFunction';
@@ -45,7 +44,7 @@ import { processFunction1, processFunction2, processFunction3, processFunction4,
   );};
 export default MenuComponent;
 
-export const MenuProcessor = ({ menu }) => {
+export const menuProcessor = ({ menu }) => {
   const menuPropertyFunctions = [
     processFunction1, processFunction2, processFunction3, processFunction4, processFunction5, processFunction6, processFunction7, processFunction8, processFunction9, processFunction10,
     processFunction11, processFunction12, processFunction13, processFunction14, processFunction15, processFunction16, processFunction17
@@ -63,7 +62,7 @@ export const MenuProcessor = ({ menu }) => {
   return results;
 };
 
-export const MenuProcessor2 = ({ menu }) => {
+export const menuProcessor2 = ({ menu }) => {
   const menuPropertyFunctions = [
     processFunction997, processFunction998, processFunction999
   ];
@@ -79,21 +78,3 @@ export const MenuProcessor2 = ({ menu }) => {
   return results;
 };
 
-export const MenuProcessor3 = ({ menu }) => {
-  const datasets = [];
-  for (let i = 17; i < 996; i += 70) {
-    if (menu[i]==='00') {
-      const dataset = [menu[i + 1], menu[i + 5], menu[i + 9], menu[i + 13], menu[i + 17]];
-      const firstArrayValue = dataset.find(value => value !== "");
-      datasets.push([
-        ((i - 17) / 70) + 1,
-        firstArrayValue ? replacePattern(menu[i+22]) : "<未登録>",
-        firstArrayValue || "",
-      ]); 
-    } else {
-      const actionResult = getActionResult(menu, i);
-      datasets.push([((i -17 )/70)+1, ...actionResult]);
-    }
-  }
-  return datasets;
-};

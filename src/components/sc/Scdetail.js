@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScDetailTable0, ScDetailTable1, ScDetailTable2, ScDetailTable3, ScDetailTable4, ScDetailTable5, ScDetailTable6 } from './ScDetailTable';
-import { BinaryConverter, mapFolderValue, replaceControl, replaceValue, replaceSubject, replaceVolume, generateOutput } from './scComponentFunction';
+import { BinaryConverter, mapFolderValue, replaceControl, replaceValue, replaceSubject, replaceVolume, generateOutput } from './scProcessorFunction';
 import { hexToSignedDecimal } from '../../utils/calculate';
 import { processBGMBand } from '../../utils/bgmBand';
 import useFileNavigation from '../../fileOperation/useFileNavigation';
