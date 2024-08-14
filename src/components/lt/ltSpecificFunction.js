@@ -8,11 +8,11 @@ export const getMinute = (lt, startIndex) => lt[startIndex + 1] === '3C' ? '--' 
 
 export const getFileName = (lt, startIndex) => [lt[startIndex + 3], lt[startIndex + 7], lt[startIndex + 11], lt[startIndex + 15], lt[startIndex + 19]];
 
-export const getTransformedFolder = (lt, startIndex) => [lt[startIndex + 4], lt[startIndex + 8], lt[startIndex + 12], lt[startIndex + 16], lt[startIndex + 17]].map(mapFolderValue);
+export const getTransformedFolder = (lt, startIndex) => [lt[startIndex + 4], lt[startIndex + 8], lt[startIndex + 12], lt[startIndex + 16], lt[startIndex + 20]].map(mapFolderValue);
 
-export const getTransformedVolume = (lt, startIndex) => [lt[startIndex + 5], lt[startIndex + 9], lt[startIndex + 13], lt[startIndex + 17], lt[startIndex + 20]].map(hexToSignedDecimal);
+export const getTransformedVolume = (lt, startIndex) => [lt[startIndex + 5], lt[startIndex + 9], lt[startIndex + 13], lt[startIndex + 17], lt[startIndex + 21]].map(hexToSignedDecimal);
 
-export const getTransformedMixing = (lt, startIndex) => [lt[startIndex + 6], lt[startIndex + 10], lt[startIndex + 14], lt[startIndex + 18], lt[startIndex + 21]].map(hexValue => parseInt(hexValue, 16));
+export const getTransformedMixing = (lt, startIndex) => [lt[startIndex + 6], lt[startIndex + 10], lt[startIndex + 14], lt[startIndex + 18], lt[startIndex + 22]].map(hexValue => parseInt(hexValue, 16));
 
 export const getOutput = (lt, startIndex) => BinaryConverter(lt[startIndex + 23]);
 
@@ -20,8 +20,10 @@ export const getExternal = (lt, startIndex) => [lt[startIndex + 24] === '00' ? '
 
 export const getExternal2 = (lt, startIndex) => [lt[startIndex + 40] === '00' ? '利用しない' : '利用する', parseInt(lt[startIndex + 41], 16), replaceControl(lt[startIndex + 42]), parseInt(lt[startIndex + 43], 16)];
 
-export const getExternal3 = (lt, startIndex) => [parseInt(lt[startIndex + 44], 16), replaceControl(lt[startIndex + 45]), parseInt(lt[startIndex + 46], 16)];
-
+export const getExternal3 = (lt, startIndex) => {
+    console.log(parseInt(lt[startIndex+44],16))
+    return [parseInt(lt[startIndex + 44], 16), replaceControl(lt[startIndex + 45]), parseInt(lt[startIndex + 46], 16)];
+}
 export const getChannelName = (lt, startIndex) => {
     switch (lt[startIndex + 29]) {
         case '00':

@@ -130,11 +130,11 @@ export const MenuDetailTable1 = ({ channel, external }) => {
     <table align='center'>
       <tbody>
         <tr textalign='center'>
-          <td colSpan={2}><b>チャンネル変更</b></td>
+          <td colSpan={3}><b>チャンネル変更</b></td>
         </tr>
         <tr>
           <th width='30%'>チャンネル</th>
-          <td>{channel}</td>
+          <td colSpan={2}>{channel}</td>
         </tr>
         <tr>
           <th width='30%' colSpan={1}>外部出力</th>

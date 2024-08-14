@@ -55,24 +55,29 @@ export const ScDetailTable0 = ({ id, fileName, folder, volume, mixing, output, r
             )}
           </>
         )}
-        <tr>
-          <th>ch変更</th>
-          <td colSpan={4}>{channel[0]}</td>
-        </tr>
-        {channel[0] !== "利用しない" && (
+        {id < 22400 && (
           <>
             <tr>
-              <th width='30px'>チャンネル</th>
-              <td colSpan={4}>{channel[1]}</td>
+              <th>ch変更</th>
+              <td colSpan={4}>{channel[0]}</td>
             </tr>
-            {id < 44800 && (
-              <tr>
-                <th>リピート間隔(呼戻)</th>
-                <td colSpan={4}>{repeat}</td>
-              </tr>
+            {channel[0] !== "利用しない" && (
+              <>
+                <tr>
+                  <th width='30px'>チャンネル</th>
+                  <td colSpan={4}>{channel[1]}</td>
+                </tr>
+                <tr>
+                  <th>リピート間隔(呼戻)</th>
+                  <td colSpan={4}>
+                    {repeat === "未設定" ? repeat : `${repeat}秒`}
+                  </td>
+                </tr>
+              </>
             )}
           </>
         )}
+
       </tbody>
     </table>
   )

@@ -18,7 +18,7 @@ export const getActionResult = (lt, startIndex) => {
                 }
                 return 'チャンネル変更 ' + channel;
             case '03':
-                return '外部制御' + parseInt(lt[startIndex + 44]) + ' ' + replaceValue(lt[startIndex + 45]);
+                return '外部制御' + parseInt(lt[startIndex + 44],16) + ' ' + replaceValue(lt[startIndex + 45]);
             default:
                 return lt[startIndex];
         }

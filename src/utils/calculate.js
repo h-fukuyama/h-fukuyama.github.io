@@ -11,8 +11,12 @@ export const checkBit = (binaryString, position) => {
 //符号付16進数を10進数に変換する
 export const hexToSignedDecimal = (hexString) => {
   const decimalValue = parseInt(hexString, 16);
-  return decimalValue > 0x7FFFFFFF ? decimalValue - 0x100000000 : decimalValue;
+  const byteLength = hexString.length / 2; // バイト数を計算
+  const maxPositiveValue = Math.pow(2, 8 * byteLength - 1) - 1; // 正の最大値を計算
+  const maxValue = Math.pow(2, 8 * byteLength); // 最大値を計算
+  return decimalValue > maxPositiveValue ? decimalValue - maxValue : decimalValue;
 }
+
 
 //ボリューム値の変換
 export const processVolume = (property, propertyName) => {

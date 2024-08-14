@@ -74,7 +74,7 @@ export const ScDetailProcessor = ({ sc, id }) => {
   switch (sc[startIndex]) {
     case '00': //コメント再生         
       const fileName = [sc[startIndex + 1], sc[startIndex + 5], sc[startIndex + 9], sc[startIndex + 13], sc[startIndex + 17]];
-      const fileName2 = [sc[startIndex + 449], sc[startIndex + 453], sc[startIndex + 457], sc[startIndex + 461], sc[startIndex + 465]];
+      const fileName2 = [sc[startIndex + 22401], sc[startIndex + 22405], sc[startIndex + 22409], sc[startIndex + 22413], sc[startIndex + 22417]];
       const folder = [sc[startIndex + 2], sc[startIndex + 6], sc[startIndex + 10], sc[startIndex + 14], sc[startIndex + 18]];
       const transformedFolder = folder.map(mapFolderValue);
       const volume = [sc[startIndex + 3], sc[startIndex + 7], sc[startIndex + 11], sc[startIndex + 15], sc[startIndex + 19]];
@@ -88,7 +88,7 @@ export const ScDetailProcessor = ({ sc, id }) => {
       const channelName = (() => {
         switch (sc[startIndex + 28]) {
           case '00':
-            return `${processBGMBand(sc[startIndex + 31])}${parseInt(sc[startIndex + 32])}`;
+            return `${processBGMBand(sc[startIndex + 31])}${parseInt(sc[startIndex + 32],16)}`;
           case '01':
             return sc[startIndex + 29] === '00' ? '未設定' : `プログラム${sc[startIndex + 29]}`;
           case '02':

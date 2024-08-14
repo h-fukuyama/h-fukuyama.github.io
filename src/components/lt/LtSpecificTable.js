@@ -104,36 +104,36 @@ export const LtSpecificTable2 = ({channel, external, hour, minute}) => {
     <table align='center'>
       <tbody>
         <tr textalign='center'>
-            <th width='30%'>時刻</th>
-            <td ><b>{hour}:{minute}</b></td>
+            <th >時刻</th>
+            <td colSpan={2}><b>{hour}:{minute}</b></td>
         </tr>
         <tr textalign='center'>
           <th width='30%'>機能</th>
-          <td><b>チャンネル変更</b></td>
+          <td colSpan={2}><b>チャンネル変更</b></td>
         </tr>
         <tr>
           <th width='30%'>チャンネル</th>
-          <td>{channel}</td>
+          <td colSpan={2}>{channel}</td>
         </tr>
         <tr>
           <th  width='30%' colSpan={1}>外部出力</th>
-          <td colSpan={4}>{external[0]}</td>
+          <td colSpan={2}>{external[0]}</td>
         </tr>
         {external[0] !== "利用しない" && (
           <>
             <tr>
               <th width='30%'>出力先</th>
               <td width='30%'>{external[1]}</td>
-              <td colSpan={3}>(外部制御1~16)</td>
+              <td colSpan={1}>(外部制御1~16)</td>
             </tr>
             <tr>
               <th width='30%'>動作</th>
-              <td colSpan={4}>{external[2]}</td>
+              <td colSpan={2}>{external[2]}</td>
             </tr>
             {external[2] === "秒数指定" && (
               <tr>
                 <th width='30%'>秒数</th>
-                <td width='30%' colSpan={3}>{external[3]}秒</td>
+                <td width='30%' colSpan={1}>{external[3]}秒</td>
                 <td>(1~99秒)</td>
               </tr>
             )}
