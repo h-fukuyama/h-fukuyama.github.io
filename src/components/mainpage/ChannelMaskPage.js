@@ -3,7 +3,7 @@ import { processIsmsBGMBand } from '../../utils/bgmBand';
 import { channelMask } from '../../utils/checkButton';
 import useFileNavigation from '../../fileOperation/useFileNavigation';
 import Header from '../general/Header';
-import { Matrix } from '../isms/renderMatrixComponent';
+import { Matrix } from '../isms/RenderMatrixComponent';
 import Sidebar from '../general/Sidebar';
 
 const IsmsComponent = () => {

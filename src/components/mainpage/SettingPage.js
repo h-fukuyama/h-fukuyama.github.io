@@ -7,8 +7,8 @@ import { IsmsProcessor } from '../isms/IsmsFunction';
 import { IsmsSettingComponent } from '../isms/IsmsSettingComponent';
 import MenuComponent from '../menu/MenuComponent';
 import { menuProcessor, menuProcessor2 } from '../menu/MenuComponent';
-import { OthrProcessor } from '../othr/OthrFunction';
-import { OthrTable } from '../othr/othrTable';
+import { OthrProcessor } from '../othr/othrFunction';
+import { OthrTable } from '../othr/OthrTable';
 
 const SettingPage = () => {
   const { file, fileContent } = useFileNavigation();
