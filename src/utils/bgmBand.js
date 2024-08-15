@@ -4,7 +4,7 @@ export const processBGMBand = (firstTwoDigits) => {
     } else if (firstTwoDigits >= '5B' && firstTwoDigits <= '74') {
       // UA~UZ
       return 'U' + String.fromCharCode(parseInt(firstTwoDigits, 16) - 26);
-    } else if (firstTwoDigits >= '75' && firstTwoDigits <= '8E') {
+    } else if (firstTwoDigits >= '75' && firstTwoDigits <= 'FE') {
       // ZA~ZZ
       return 'Z' + String.fromCharCode(parseInt(firstTwoDigits, 16) - 52);
     } else if (firstTwoDigits === 'FF') {

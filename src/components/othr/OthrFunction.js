@@ -1,4 +1,3 @@
-import React from 'react';
 import { processBGMBand } from '../../utils/bgmBand';
 import { hexToBinary, checkBit, hexToSignedDecimal, processVolume } from '../../utils/calculate';
 import { checkButton } from '../../utils/checkButton';
@@ -86,8 +85,13 @@ export const processFunction7 = (property) => {
   const result7 = [];
   if (property) {
     const firstTwoDigits = property.substring(0, 2);
-    const lastTwoDigits = parseInt(property.substring(2), 16);
     const bgm = processBGMBand(firstTwoDigits);
+    let lastTwoDigits;
+    if (bgm === 'AUX') {
+        lastTwoDigits = "";
+    } else {
+        lastTwoDigits = parseInt(property.substring(2), 16);
+    }
     result7.push({ property: 'BGMバンド', value: `${bgm}${lastTwoDigits}` });
   } else {
     result7.push({ property: 'BGMバンド', value: '未設定' });
@@ -99,8 +103,13 @@ export const processFunction8 = (property) => {
   const result8 = [];
   if (property) {
     const firstTwoDigits = property.substring(0, 2);
-    const lastTwoDigits = parseInt(property.substring(2), 16);
     const bgm = processBGMBand(firstTwoDigits);
+    let lastTwoDigits;
+    if (bgm === 'AUX') {
+        lastTwoDigits = "";
+    } else {
+        lastTwoDigits = parseInt(property.substring(2), 16);
+    }
     result8.push({ property: '最大BGMバンド', value: `${bgm}${lastTwoDigits}` });
   } else {
     result8.push({ property: '最大BGMバンド', value: '未設定' });
@@ -221,7 +230,7 @@ export const processFunction20 = (property) => {
 export const processFunction21 = (property) => {
   const result21 = [];
   if (property) {
-    const volume = hexToSignedDecimal(parseInt(property, 16));
+    const volume = hexToSignedDecimal(property);
     result21.push({ property: 'インカム音量インカム出力', value: `${volume}` });
   } else {
     result21.push({ property: 'インカム音量インカム出力', value: '不明' });
@@ -246,7 +255,7 @@ export const processFunction23 = (property) => {
   const result23 = [];
   if (property) {
     const volume = hexToSignedDecimal(property, 16);
-    if (volume === 255 ) {
+    if (volume === -1 ) {
       result23.push({ property: 'インカム音量インカム出力基準値', value: '未設定' });
     } else {
       result23.push({ property: 'インカム音量インカム出力基準値', value: `${volume}` });
@@ -271,7 +280,7 @@ export const processFunction27 = (property) => {
 export const processFunction28 = (property) => {
   const result28 = [];
   if (property) {
-    const volume = hexToSignedDecimal(parseInt(property, 16));
+    const volume = hexToSignedDecimal(property);
     result28.push({ property: '再生/試聴インカム音量値インカム', value: `${volume}` });
   } else {
     result28.push({ property: '再生/試聴インカム音量値インカム', value: '不明' });
@@ -290,8 +299,8 @@ export const processFunction29 = (property) => {
 };
 //ルールがあってるか確認が必要？
 export const processFunction30 = (property) => {
-  return checkButton(property, 14, 'ワンタッチ変更許可ボタン');
-};
+  return checkButton(property, 14, 'ワンタッチ変更許可ボタン')[0];
+}
 export const processFunction31 = (property) => {
   const results31 = [];
   if (property) {
@@ -313,15 +322,15 @@ export const processFunction31 = (property) => {
     } else if (results31.every((result) => result.value === '禁止')) {
         return [{ property: 'スタッフコール無線①変更', value: '全て禁止' }];
     }
-    return [{ property: <b>スタッフコール無線①変更禁止ボタン</b>, value: propertyString }];
+    return [{ property: 'スタッフコール無線①変更禁止ボタン', value: propertyString }];
   } else {
     return [{ property: 'スタッフコール無線①変更', value: '不明' }];
   }
 };
 export const processFunction32 = (property) => {
-  return checkButton(property, 16, 'スタッフコール無線②変更許可ボタン');
+  return checkButton(property, 16, 'スタッフコール無線②変更許可ボタン')[0];
 };
 export const processFunction33 = (property) => {
-  return checkButton(property, 16, 'スタッフコール有線許可ボタン');
+  return checkButton(property, 16, 'スタッフコール有線許可ボタン')[0];
 };
 // ここまで-----------------------------------------------------------

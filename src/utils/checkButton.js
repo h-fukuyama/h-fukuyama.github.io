@@ -1,17 +1,23 @@
 export const checkButton = (property, buttonCount, buttonDisplayName) => {
+  const result = [];
   const binary = parseInt(property, 16).toString(2).padStart(16, '0');
-  const buttonStatus = binary.slice(-buttonCount).split('').map(bit => (bit === '0' ? '許可' : '禁止')).reverse();
-
-  if (buttonStatus.every(status => status === '禁止')) { return [{ property: buttonDisplayName, value: '全て禁止' }]; }
-  if (buttonStatus.every(status => status === '許可')) { return [{ property: buttonDisplayName, value: '全て許可' }]; }
-  const activeButtons = buttonStatus.reduce((acc, status, index) => {
-    if (status === '許可') {
-      acc.push(index + 1);
+  const allowedNumbers = [];
+  
+  for (let i = 0; i < buttonCount; i++) {
+    if (binary[i] === '0') {
+      allowedNumbers.push(i + 1);
     }
-    return acc;
-  }, []);
-  return [{ property: <b>{buttonDisplayName}</b>, value: activeButtons.join(',') }];
+  }
+  if (allowedNumbers.length === buttonCount) {
+    result.push([{ property: buttonDisplayName, value: "すべて許可" }]);
+  } else if (allowedNumbers.length === 0) {
+    result.push([{ property: buttonDisplayName, value: "すべて禁止" }]);
+  } else {
+    result.push([{ property: buttonDisplayName, value: allowedNumbers.join(',') }]);
+  }
+  return result;
 };
+
 
 export const oneTouch = (property, title) => {
   if (property) {

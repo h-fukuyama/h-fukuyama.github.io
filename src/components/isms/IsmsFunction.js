@@ -75,7 +75,7 @@ export const processFunction5 = (property) => {
   if ( property ){
     for (let i = 0; i < property.length; i += 2) {
       const twoBits = property.substr(i, 2);
-      const decimalValue = parseInt(twoBits, 2);
+      const decimalValue = parseInt(twoBits, 16);
       const formattedDecimal = decimalValue.toString();
       result5 += formattedDecimal;
       if (i < property.length - 2) {
