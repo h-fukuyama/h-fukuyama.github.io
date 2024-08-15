@@ -242,11 +242,11 @@ export const ScDetailTable6 = ({ subject, control, volume }) => {
           <th width='30%'>制御</th>
           <td colSpan={2}>{control}</td>
         </tr>
-        {control === "秒数指定" && (
+        {control === "数値の指定" && (
           <tr>
-            <th width='30%'>秒数</th>
-            <td width='40%'>{volume}秒</td>
-            <td>(1~99秒)</td>
+            <th width='30%'>音量値</th>
+            <td width='40%'>{volume}</td>
+            <td>(1~56)</td>
           </tr>
         )}
       </tbody>

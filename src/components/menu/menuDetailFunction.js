@@ -4,11 +4,9 @@ import { mapFolderValue } from "../sc/scProcessorFunction";
 import { hexToSignedDecimal } from "../../utils/calculate";
 
 export const getChannelName = (menu, startIndex) => {
-  console.log(menu[startIndex + 45])
     switch (menu[startIndex + 45]) {
       case '00':
         const num = parseInt(menu[startIndex+48]) === '00' ? '':parseInt(menu[startIndex+49],16); 
-        console.log(num)
         return `${processBGMBand(menu[startIndex + 48])}${num}`;
       case '01':
         return menu[startIndex + 46] === '00' ? '未設定' : `プログラム${menu[startIndex + 46]}`;

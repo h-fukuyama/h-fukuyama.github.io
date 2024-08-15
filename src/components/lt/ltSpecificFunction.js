@@ -20,10 +20,8 @@ export const getExternal = (lt, startIndex) => [lt[startIndex + 24] === '00' ? '
 
 export const getExternal2 = (lt, startIndex) => [lt[startIndex + 40] === '00' ? '利用しない' : '利用する', parseInt(lt[startIndex + 41], 16), replaceControl(lt[startIndex + 42]), parseInt(lt[startIndex + 43], 16)];
 
-export const getExternal3 = (lt, startIndex) => {
-    console.log(parseInt(lt[startIndex+44],16))
-    return [parseInt(lt[startIndex + 44], 16), replaceControl(lt[startIndex + 45]), parseInt(lt[startIndex + 46], 16)];
-}
+export const getExternal3 = (lt, startIndex) => [parseInt(lt[startIndex + 44], 16), replaceControl(lt[startIndex + 45]), parseInt(lt[startIndex + 46], 16)];
+
 export const getChannelName = (lt, startIndex) => {
     switch (lt[startIndex + 29]) {
         case '00':

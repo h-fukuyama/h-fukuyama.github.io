@@ -120,7 +120,7 @@ export const ScDetailProcessor = ({ sc, id }) => {
       const minute = BinaryConverter(sc[startIndex + 45]);
       return <ScDetailTable3 cm={cm} bgm={bgm} minute={minute} action={generateOutput(sc[startIndex + 46])} back={sc[startIndex + 22400] === '00' ? "利用しない" : "利用する"} />;
     case '04': //ワンタッチボタン:2行
-      return <ScDetailTable4 button={(sc[startIndex + 47] === '00' ? "未設定" : parseInt(sc[startIndex + 48], 16))} control={replaceValue(sc[startIndex + 48])} back={sc[startIndex + 22400] === '00' ? "利用しない" : "利用する"} />;
+      return <ScDetailTable4 button={(sc[startIndex + 47] === '00' ? "未設定" : parseInt(sc[startIndex + 47], 16))} control={replaceValue(sc[startIndex + 48])} back={sc[startIndex + 22400] === '00' ? "利用しない" : "利用する"} />;
     case '05': //外部制御:3行
       const external2 = [parseInt(sc[startIndex + 49], 16), replaceControl(sc[startIndex + 50]), parseInt(sc[startIndex + 51], 16)];
       return <ScDetailTable5 external2={external2} back={sc[startIndex + 22400] === '00' ? "利用しない" : "利用する"} />;

@@ -47,7 +47,7 @@ export const replaceSubject = (value) => {
       return "店内";
     case '02':
       return "事務所";
-    case '04':
+    case '03':
       return "店内&事務所";  
     default:
       return value;
@@ -99,6 +99,12 @@ export const BinaryConverter = (input) => {
 
 export const replaceControl = (value) => {
   switch (value) {
+    case '00':
+      return "ON⇔OFF";
+    case '01':
+      return "ON";
+    case '02':
+      return "OFF";
     case '03':
       return "ワンショット";
     case '04':

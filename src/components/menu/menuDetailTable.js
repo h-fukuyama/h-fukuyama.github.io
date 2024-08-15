@@ -130,11 +130,11 @@ export const MenuDetailTable1 = ({ channel, external }) => {
     <table align='center'>
       <tbody>
         <tr textalign='center'>
-          <td colSpan={3}><b>チャンネル変更</b></td>
+          <td colSpan={4}><b>チャンネル変更</b></td>
         </tr>
         <tr>
           <th width='30%'>チャンネル</th>
-          <td colSpan={2}>{channel}</td>
+          <td colSpan={3}>{channel}</td>
         </tr>
         <tr>
           <th width='30%' colSpan={1}>外部出力</th>
@@ -151,10 +151,10 @@ export const MenuDetailTable1 = ({ channel, external }) => {
               <th width='30%'>動作</th>
               <td colSpan={4}>{external[2]}</td>
             </tr>
-            {external[2] === "秒数指定" && (
+            {external[2] === "数値の指定" && (
               <tr>
                 <th width='30%'>秒数</th>
-                <td width='40%' colSpan={3}>{external[3]}秒</td>
+                <td width='40%' colSpan={1}>{external[3]}秒</td>
                 <td>(1~99秒)</td>
               </tr>
             )}
