@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useFileContext } from '../../fileOperation/FileContext';
 import { useDropzone } from 'react-dropzone';
 import { checkProperties } from './fileValidation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 const FileInputScreen = () => {
   const navigate = useNavigate();
@@ -108,6 +110,7 @@ const FileInputScreen = () => {
               onClick={(e) => e.stopPropagation()}
             >
               ステージング環境にログインする。
+              <FontAwesomeIcon icon={faExternalLinkAlt} style={{ marginLeft: '5px' }} />
             </a>
             <br />
             <a
@@ -119,6 +122,7 @@ const FileInputScreen = () => {
               style={{ marginTop: '10px' }}
             >
               本番環境にログインする。
+              <FontAwesomeIcon icon={faExternalLinkAlt} style={{ marginLeft: '5px' }} />
             </a>
           </div>
         </div>
