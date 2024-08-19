@@ -24,7 +24,7 @@ const LtComponent = () => {
       {file ? (
         <div>
           <Header />
-          <h2 style={{ marginBottom: '50px', marginLeft: '20px', marginTop: '20px' }}>Lt Page</h2>
+          <h2 style={{ marginBottom: '50px', marginLeft: '20px', marginTop: '20px' }}>ローカルタイマーページ</h2>
           {fileContent ? (
             <div>
               {datasets.map((data, index) => (

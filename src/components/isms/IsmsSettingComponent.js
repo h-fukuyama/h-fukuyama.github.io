@@ -6,7 +6,7 @@ export const IsmsSettingComponent = ({ results_all, ismsRef }) => {
   const { fileContent } = useFileNavigation();
   return (
     <div id="main-content">
-      <h2 ref={ismsRef}>isms Page</h2>
+      <h2 ref={ismsRef}>isms プロパティ</h2>
       {fileContent && fileContent.if_config ? (
         <div>
           {results_all && results_all.slice(0, 1).map((result, index) => (

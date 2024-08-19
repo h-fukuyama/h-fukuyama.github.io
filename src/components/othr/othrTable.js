@@ -4,7 +4,7 @@ import CardComponent from '../general/CardComponent';
 export const OthrTable = ({ results_all, othrRef }) => {
   return (
   <div id="main-content">
-    <h2 ref={othrRef} style={{ marginBottom: '20px', marginTop: '20px' }}>Othr Page</h2>
+    <h2 ref={othrRef} style={{ marginBottom: '20px', marginTop: '20px' }}>Othr プロパティ</h2>
       <div>
         <div style={{ display: 'flex' }}>
           <div style={{ flex: 1 }}>

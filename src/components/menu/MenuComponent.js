@@ -7,7 +7,7 @@ import { processFunction1, processFunction2, processFunction3, processFunction4,
   const { fileContent } = useFileNavigation();
   return (
     <div id="main-content">
-      <h2 ref={menuRef}>Menu Page</h2>
+      <h2 ref={menuRef}>Menu プロパティ</h2>
       {fileContent && fileContent.if_config ? (
         <div>
           <h4>イコライザ設定</h4>

@@ -185,3 +185,15 @@ tr:nth-child(even) {
   background-color: lightblue;
   transition: background-color 0.1s ease;
 }
+
+.modern-link {
+  color: #3498db;  /* 初期リンク色 */
+  text-decoration: underline;  /* 下線を消す */
+  font-weight: bold;  /* 太字にする */
+  transition: color 0.3s ease;  /* ホバー時の色変化をスムーズに */
+}
+
+.modern-link:hover {
+  color: #2ecc71;  /* ホバー時の色 */
+  text-decoration: underline;  /* ホバー時に下線を表示 */
+}

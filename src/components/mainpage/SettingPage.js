@@ -51,6 +51,7 @@ const SettingPage = () => {
           <Sidebar items={items} scrollToRef={scrollToRef} />
           {fileContent && fileContent.if_config ? (
             <div>
+              <h2 style={{marginLeft: '220px', paddingTop: '20px'}}>各種設定値ページ</h2>
               <IsmsSettingComponent results_all={isms_all} ismsRef={refs.isms} />
               <MenuComponent results_all={menu_all} results_all2={menu_all2} menuRef={refs.menu} />
               <OthrTable results_all={results_all} othrRef={refs.othr} />

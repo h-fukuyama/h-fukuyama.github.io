@@ -70,11 +70,12 @@ const ScDetail = (props) => {
 export default ScDetail;
 
 export const ScDetailProcessor = ({ sc, id }) => {
-  const startIndex = id;
+  let startIndex=id;
   switch (sc[startIndex]) {
     case '00': //コメント再生         
       const fileName = [sc[startIndex + 1], sc[startIndex + 5], sc[startIndex + 9], sc[startIndex + 13], sc[startIndex + 17]];
       const fileName2 = [sc[startIndex + 22401], sc[startIndex + 22405], sc[startIndex + 22409], sc[startIndex + 22413], sc[startIndex + 22417]];
+      const fileName3 = [sc[startIndex + 449], sc[startIndex + 453], sc[startIndex + 457], sc[startIndex + 461], sc[startIndex + 465]];
       const folder = [sc[startIndex + 2], sc[startIndex + 6], sc[startIndex + 10], sc[startIndex + 14], sc[startIndex + 18]];
       const transformedFolder = folder.map(mapFolderValue);
       const volume = [sc[startIndex + 3], sc[startIndex + 7], sc[startIndex + 11], sc[startIndex + 15], sc[startIndex + 19]];
@@ -98,7 +99,8 @@ export const ScDetailProcessor = ({ sc, id }) => {
         }
       })();
       channel.push(channelName);
-      const back = fileName2?.join('') === '' ? '利用しない' : '利用する';
+      const filesToJoin = id >= 44800 ? fileName3 : fileName2;
+      const back = filesToJoin?.join('') === '' ? '利用しない' : '利用する';      
       return <ScDetailTable0 id={id} fileName={fileName} folder={transformedFolder} volume={transformedVolume} mixing={transformedMixing} output={output} repeat={repeat} external={external} channel={channel} back={back} />;
     case '01': //電源制御:1行
       return <ScDetailTable1 title="電源ON/OFF" power={replaceValue(sc[startIndex + 33])} back={sc[startIndex + 22400] === '00' ? "利用しない" : "利用する"} />;

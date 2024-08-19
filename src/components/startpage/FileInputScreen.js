@@ -15,43 +15,43 @@ const FileInputScreen = () => {
 
     const fileCount = files.length;
     if (fileCount > 1) {
-        newErrors.push('複数のファイルが選択されています。1つのファイルのみを選択してください。');
-        setErrors(newErrors); // エラーを設定
-        return; // 処理を終了
+      newErrors.push('複数のファイルが選択されています。1つのファイルのみを選択してください。');
+      setErrors(newErrors); // エラーを設定
+      return; // 処理を終了
     }
 
     const selectedFile = files[0];
     if (selectedFile) {
-        if (!selectedFile.name.toLowerCase().endsWith('.json')) {
-            newErrors.push('JSONファイルを選択してください。');
-            setErrors(newErrors); // エラーを設定
-            return; // 処理を終了
-        } else {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                try {
-                    const fileContent = JSON.parse(e.target.result);
-                    const { isValid, errors } = checkProperties(fileContent, fileCount);
-                    if (isValid) {
-                        setFile(selectedFile);
-                        navigate('/main');
-                    } else {
-                        newErrors.push(...errors);
-                    }
-                } catch (error) {
-                    if (error instanceof SyntaxError) {
-                        newErrors.push('予期しないJSONファイルです。');
-                    } else {
-                        newErrors.push('予期しないエラーが発生しました。');
-                    }
-                } finally {
-                    if (newErrors.length > 0) {
-                        setErrors(newErrors); // エラーを設定
-                    }
-                }
-            };
-            reader.readAsText(selectedFile);
-        }
+      if (!selectedFile.name.toLowerCase().endsWith('.json')) {
+        newErrors.push('JSONファイルを選択してください。');
+        setErrors(newErrors); // エラーを設定
+        return; // 処理を終了
+      } else {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          try {
+            const fileContent = JSON.parse(e.target.result);
+            const { isValid, errors } = checkProperties(fileContent, fileCount);
+            if (isValid) {
+              setFile(selectedFile);
+              navigate('/main');
+            } else {
+              newErrors.push(...errors);
+            }
+          } catch (error) {
+            if (error instanceof SyntaxError) {
+              newErrors.push('予期しないJSONファイルです。');
+            } else {
+              newErrors.push('予期しないエラーが発生しました。');
+            }
+          } finally {
+            if (newErrors.length > 0) {
+              setErrors(newErrors); // エラーを設定
+            }
+          }
+        };
+        reader.readAsText(selectedFile);
+      }
     }
   }, [setFile, navigate]);
 
@@ -92,11 +92,40 @@ const FileInputScreen = () => {
           })}
         >
           <input {...getInputProps()} />
-          <p><b>PRX-IP5000のconfigファイル(.json)<br />をここにドラッグ&ドロップするか<br />クリックしてファイルを一つ選択してください。</b></p>
+          <p>
+            <b>
+              PRX-IP5000のconfigファイル(.json)<br />
+              をここにドラッグ&ドロップするか<br />
+              クリックしてファイルを一つ選択してください。
+            </b>
+          </p>
+          <div style={{ marginTop: '20px' }}>
+            <a
+              href="https://st-ui-uradio.usen.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modern-link"
+              onClick={(e) => e.stopPropagation()}
+            >
+              ステージング環境にログインする。
+            </a>
+            <br />
+            <a
+              href="https://ui-uradio.usen.co.jp/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modern-link"
+              onClick={(e) => e.stopPropagation()}
+              style={{ marginTop: '10px' }}
+            >
+              本番環境にログインする。
+            </a>
+          </div>
         </div>
       </div>
     </div>
   );
+  
 };
 
 export default FileInputScreen;

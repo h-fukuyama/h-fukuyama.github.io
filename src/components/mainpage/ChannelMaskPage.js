@@ -58,6 +58,7 @@ const IsmsComponent = () => {
             <div>Loading...</div>
           ) : (
             <div>
+              ※チャンネルマスクON状態のチャンネルが「〇」表示されます。
               <Matrix ref={refs.atoz} data={maskItem.slice(0,26)} band={bgmItem.slice(0,26)} title="A~Zチャンネルマスク" />
               <Matrix ref={refs.uatouz} data={maskItem.slice(26,52)} band={bgmItem.slice(26,52)} title="UA~UZチャンネルマスク" />
               <Matrix ref={refs.zatozz} data={maskItem.slice(52,78)} band={bgmItem.slice(52,78)} title="ZA~ZZチャンネルマスク" />
